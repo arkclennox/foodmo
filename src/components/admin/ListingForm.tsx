@@ -22,6 +22,7 @@ export type ListingFormData = {
   instagramUrl: string;
   shopeeFoodUrl: string;
   tiktokUrl: string;
+  googleMapsUrl: string;
   priceRange: string;
   openingHours: string;
   facilities: string[];
@@ -50,6 +51,7 @@ export const emptyListingForm: ListingFormData = {
   instagramUrl: '',
   shopeeFoodUrl: '',
   tiktokUrl: '',
+  googleMapsUrl: '',
   priceRange: '',
   openingHours: '',
   facilities: [],
@@ -297,6 +299,16 @@ export function ListingForm({
               value={data.tiktokUrl}
               onChange={(e) => update('tiktokUrl', e.target.value)}
               placeholder="https://www.tiktok.com/@..."
+              className="input-base"
+            />
+          </div>
+          <div>
+            <label className="label-base">Google Maps URL</label>
+            <input
+              type="url"
+              value={data.googleMapsUrl}
+              onChange={(e) => update('googleMapsUrl', e.target.value)}
+              placeholder="https://maps.app.goo.gl/..."
               className="input-base"
             />
           </div>

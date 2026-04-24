@@ -26,6 +26,7 @@ export const listingInputSchema = z.object({
   instagramUrl: stringOrEmptyToNull(500).optional(),
   shopeeFoodUrl: stringOrEmptyToNull(500).optional(),
   tiktokUrl: stringOrEmptyToNull(500).optional(),
+  googleMapsUrl: stringOrEmptyToNull(500).optional(),
   priceRange: z
     .union([z.enum(PRICE_RANGES), z.literal(''), z.null(), z.undefined()])
     .transform((v) => (v == null || v === '' ? null : v))

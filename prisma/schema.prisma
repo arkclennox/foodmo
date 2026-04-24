@@ -72,6 +72,7 @@ model Listing {
   instagramUrl     String?
   shopeeFoodUrl    String?  // URL Shopee Food
   tiktokUrl        String?  // URL TikTok
+  googleMapsUrl    String?  // URL Google Maps
   priceRange       String?  // "murah" | "sedang" | "mahal" | "premium"
   openingHours     String?  // JSON string
   facilities       String?  // JSON array string

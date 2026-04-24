@@ -6,6 +6,7 @@ import { ListingCard } from '@/components/ListingCard';
 import {
   ClockIcon,
   GlobeIcon,
+  GoogleMapsIcon,
   InstagramIcon,
   MapPinIcon,
   PhoneIcon,
@@ -277,7 +278,18 @@ export default async function ListingDetailPage({
                   <span className="truncate">Lihat TikTok</span>
                 </a>
               )}
-              {!listing.phone && !listing.whatsapp && !listing.websiteUrl && !listing.instagramUrl && !listing.shopeeFoodUrl && !listing.tiktokUrl && (
+              {listing.googleMapsUrl && (
+                <a
+                  href={listing.googleMapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary flex items-center gap-2 justify-start"
+                >
+                  <GoogleMapsIcon className="h-4 w-4 text-navy shrink-0" />
+                  <span className="truncate">Buka di Google Maps</span>
+                </a>
+              )}
+              {!listing.phone && !listing.whatsapp && !listing.websiteUrl && !listing.instagramUrl && !listing.shopeeFoodUrl && !listing.tiktokUrl && !listing.googleMapsUrl && (
                 <p className="text-sm text-black/60">
                   Belum ada kontak yang diisi pemilik.
                 </p>
@@ -303,14 +315,22 @@ export default async function ListingDetailPage({
 
           {(listing.latitude != null && listing.longitude != null) && (
             <div className="card overflow-hidden">
-              <iframe
-                title={`Lokasi ${listing.name}`}
-                className="aspect-square w-full border-0"
-                src={`https://www.openstreetmap.org/export/embed.html?bbox=${listing.longitude! - 0.01}%2C${listing.latitude! - 0.01}%2C${listing.longitude! + 0.01}%2C${listing.latitude! + 0.01}&layer=mapnik&marker=${listing.latitude}%2C${listing.longitude}`}
-                loading="lazy"
-              />
+              <div className="flex items-center gap-2 p-4 pb-0">
+                <GoogleMapsIcon className="h-5 w-5 text-navy" />
+                <h2 className="text-lg font-semibold text-black">Lokasi</h2>
+              </div>
+              <div className="p-3">
+                <iframe
+                  title={`Lokasi ${listing.name}`}
+                  className="h-52 w-full rounded-lg border-0"
+                  src={`https://maps.google.com/maps?q=${listing.latitude},${listing.longitude}&z=16&output=embed`}
+                  loading="lazy"
+                  allowFullScreen
+                />
+              </div>
             </div>
           )}
+
         </aside>
       </div>
 

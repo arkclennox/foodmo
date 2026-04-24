@@ -240,3 +240,12 @@ export function TiktokIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function GoogleMapsIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z" />
+      <circle cx={12} cy={10} r={3} />
+    </svg>
+  );
+}

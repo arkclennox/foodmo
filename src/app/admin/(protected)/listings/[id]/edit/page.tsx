@@ -41,6 +41,7 @@ export default async function EditListingPage({
     instagramUrl: listing.instagramUrl ?? '',
     shopeeFoodUrl: listing.shopeeFoodUrl ?? '',
     tiktokUrl: listing.tiktokUrl ?? '',
+    googleMapsUrl: listing.googleMapsUrl ?? '',
     priceRange: listing.priceRange ?? '',
     openingHours: listing.openingHours ?? '',
     facilities: parseJsonArray<string>(listing.facilities),
