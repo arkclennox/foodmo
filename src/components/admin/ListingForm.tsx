@@ -20,6 +20,8 @@ export type ListingFormData = {
   whatsapp: string;
   websiteUrl: string;
   instagramUrl: string;
+  shopeeFoodUrl: string;
+  tiktokUrl: string;
   priceRange: string;
   openingHours: string;
   facilities: string[];
@@ -46,6 +48,8 @@ export const emptyListingForm: ListingFormData = {
   whatsapp: '',
   websiteUrl: '',
   instagramUrl: '',
+  shopeeFoodUrl: '',
+  tiktokUrl: '',
   priceRange: '',
   openingHours: '',
   facilities: [],
@@ -273,6 +277,26 @@ export function ListingForm({
               type="url"
               value={data.instagramUrl}
               onChange={(e) => update('instagramUrl', e.target.value)}
+              className="input-base"
+            />
+          </div>
+          <div>
+            <label className="label-base">Shopee Food URL</label>
+            <input
+              type="url"
+              value={data.shopeeFoodUrl}
+              onChange={(e) => update('shopeeFoodUrl', e.target.value)}
+              placeholder="https://shopee.co.id/..."
+              className="input-base"
+            />
+          </div>
+          <div>
+            <label className="label-base">TikTok URL</label>
+            <input
+              type="url"
+              value={data.tiktokUrl}
+              onChange={(e) => update('tiktokUrl', e.target.value)}
+              placeholder="https://www.tiktok.com/@..."
               className="input-base"
             />
           </div>

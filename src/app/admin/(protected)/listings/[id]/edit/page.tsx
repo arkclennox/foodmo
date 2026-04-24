@@ -39,6 +39,8 @@ export default async function EditListingPage({
     whatsapp: listing.whatsapp ?? '',
     websiteUrl: listing.websiteUrl ?? '',
     instagramUrl: listing.instagramUrl ?? '',
+    shopeeFoodUrl: listing.shopeeFoodUrl ?? '',
+    tiktokUrl: listing.tiktokUrl ?? '',
     priceRange: listing.priceRange ?? '',
     openingHours: listing.openingHours ?? '',
     facilities: parseJsonArray<string>(listing.facilities),

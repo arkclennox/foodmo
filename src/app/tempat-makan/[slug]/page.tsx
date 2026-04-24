@@ -9,7 +9,9 @@ import {
   InstagramIcon,
   MapPinIcon,
   PhoneIcon,
+  ShopeeFoodIcon,
   StarIcon,
+  TiktokIcon,
   WhatsappIcon,
 } from '@/components/icons';
 import { findListingBySlug, listListings } from '@/lib/queries';
@@ -209,61 +211,78 @@ export default async function ListingDetailPage({
 
         <aside className="space-y-4">
           <div className="card p-5">
-            <h2 className="mb-3 text-lg font-semibold text-black">Kontak & Info</h2>
-            <ul className="space-y-3 text-sm">
+            <h2 className="mb-4 text-lg font-semibold text-black">Kontak & Info</h2>
+            <div className="flex flex-col gap-2">
               {listing.phone && (
-                <li className="flex items-start gap-2">
-                  <PhoneIcon className="mt-0.5 h-4 w-4 text-navy" />
-                  <a href={`tel:${listing.phone}`} className="hover:text-navy">
-                    {listing.phone}
-                  </a>
-                </li>
+                <a
+                  href={`tel:${listing.phone}`}
+                  className="btn-secondary flex items-center gap-2 justify-start"
+                >
+                  <PhoneIcon className="h-4 w-4 text-navy shrink-0" />
+                  <span>{listing.phone}</span>
+                </a>
               )}
               {listing.whatsapp && (
-                <li className="flex items-start gap-2">
-                  <WhatsappIcon className="mt-0.5 h-4 w-4 text-navy" />
-                  <a
-                    href={`https://wa.me/${listing.whatsapp.replace(/\D/g, '')}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-navy"
-                  >
-                    WhatsApp: {listing.whatsapp}
-                  </a>
-                </li>
+                <a
+                  href={`https://wa.me/${listing.whatsapp.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary flex items-center gap-2 justify-start"
+                >
+                  <WhatsappIcon className="h-4 w-4 text-navy shrink-0" />
+                  <span>WhatsApp: {listing.whatsapp}</span>
+                </a>
               )}
               {listing.websiteUrl && (
-                <li className="flex items-start gap-2">
-                  <GlobeIcon className="mt-0.5 h-4 w-4 text-navy" />
-                  <a
-                    href={listing.websiteUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="break-all hover:text-navy"
-                  >
-                    {listing.websiteUrl}
-                  </a>
-                </li>
+                <a
+                  href={listing.websiteUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary flex items-center gap-2 justify-start"
+                >
+                  <GlobeIcon className="h-4 w-4 text-navy shrink-0" />
+                  <span className="truncate">Kunjungi Website</span>
+                </a>
               )}
               {listing.instagramUrl && (
-                <li className="flex items-start gap-2">
-                  <InstagramIcon className="mt-0.5 h-4 w-4 text-navy" />
-                  <a
-                    href={listing.instagramUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="break-all hover:text-navy"
-                  >
-                    {listing.instagramUrl.replace(/^https?:\/\//, '')}
-                  </a>
-                </li>
+                <a
+                  href={listing.instagramUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary flex items-center gap-2 justify-start"
+                >
+                  <InstagramIcon className="h-4 w-4 text-navy shrink-0" />
+                  <span className="truncate">Lihat Instagram</span>
+                </a>
               )}
-              {!listing.phone && !listing.whatsapp && !listing.websiteUrl && !listing.instagramUrl && (
-                <li className="text-sm text-black/60">
+              {listing.shopeeFoodUrl && (
+                <a
+                  href={listing.shopeeFoodUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary flex items-center gap-2 justify-start"
+                >
+                  <ShopeeFoodIcon className="h-4 w-4 text-navy shrink-0" />
+                  <span className="truncate">Pesan di Shopee Food</span>
+                </a>
+              )}
+              {listing.tiktokUrl && (
+                <a
+                  href={listing.tiktokUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary flex items-center gap-2 justify-start"
+                >
+                  <TiktokIcon className="h-4 w-4 text-navy shrink-0" />
+                  <span className="truncate">Lihat TikTok</span>
+                </a>
+              )}
+              {!listing.phone && !listing.whatsapp && !listing.websiteUrl && !listing.instagramUrl && !listing.shopeeFoodUrl && !listing.tiktokUrl && (
+                <p className="text-sm text-black/60">
                   Belum ada kontak yang diisi pemilik.
-                </li>
+                </p>
               )}
-            </ul>
+            </div>
           </div>
 
           {openingHours && Object.keys(openingHours).length > 0 && (

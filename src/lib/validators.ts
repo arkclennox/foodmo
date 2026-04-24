@@ -24,6 +24,8 @@ export const listingInputSchema = z.object({
   whatsapp: stringOrEmptyToNull(100).optional(),
   websiteUrl: stringOrEmptyToNull(500).optional(),
   instagramUrl: stringOrEmptyToNull(500).optional(),
+  shopeeFoodUrl: stringOrEmptyToNull(500).optional(),
+  tiktokUrl: stringOrEmptyToNull(500).optional(),
   priceRange: z
     .union([z.enum(PRICE_RANGES), z.literal(''), z.null(), z.undefined()])
     .transform((v) => (v == null || v === '' ? null : v))

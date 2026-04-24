@@ -8,7 +8,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("postgresql://neondb_owner:npg_KltJ2ThrHs9I@ep-restless-truth-ao1jclvk-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require")
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -70,6 +70,8 @@ model Listing {
   whatsapp         String?
   websiteUrl       String?
   instagramUrl     String?
+  shopeeFoodUrl    String?  // URL Shopee Food
+  tiktokUrl        String?  // URL TikTok
   priceRange       String?  // "murah" | "sedang" | "mahal" | "premium"
   openingHours     String?  // JSON string
   facilities       String?  // JSON array string
