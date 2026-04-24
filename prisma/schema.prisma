@@ -1,0 +1,145 @@
+// Prisma schema for Direktori Kuliner
+// For production, switch provider to "postgresql" and point DATABASE_URL at
+// Supabase / Neon / Vercel Postgres.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  role         String   @default("admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Category {
+  id              String    @id @default(cuid())
+  name            String
+  slug            String    @unique
+  description     String?
+  type            String    @default("listing") // "listing" | "article"
+  metaTitle       String?
+  metaDescription String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  listings Listing[]
+  articles Article[]
+
+  @@index([slug])
+  @@index([type])
+}
+
+model City {
+  id              String    @id @default(cuid())
+  name            String
+  slug            String    @unique
+  province        String?
+  description     String?
+  metaTitle       String?
+  metaDescription String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  listings Listing[]
+
+  @@index([slug])
+}
+
+model Listing {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  description      String
+  shortDescription String?
+  categoryId       String?
+  cityId           String?
+  address          String
+  latitude         Float?
+  longitude        Float?
+  phone            String?
+  whatsapp         String?
+  websiteUrl       String?
+  instagramUrl     String?
+  priceRange       String?  // "murah" | "sedang" | "mahal" | "premium"
+  openingHours     String?  // JSON string
+  facilities       String?  // JSON array string
+  menuHighlights   String?  // JSON array string
+  featuredImageUrl String?
+  galleryImages    String?  // JSON array string
+  rating           Float    @default(0)
+  status           String   @default("draft") // draft | published | archived
+  isFeatured       Boolean  @default(false)
+  metaTitle        String?
+  metaDescription  String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  city     City?     @relation(fields: [cityId], references: [id], onDelete: SetNull)
+
+  @@index([slug])
+  @@index([status])
+  @@index([cityId])
+  @@index([categoryId])
+  @@index([isFeatured])
+}
+
+model Article {
+  id                String    @id @default(cuid())
+  title             String
+  slug              String    @unique
+  excerpt           String?
+  contentHtml       String
+  contentMarkdown   String?
+  featuredImageUrl  String?
+  categoryId        String?
+  tags              String?   // JSON array string
+  relatedListingIds String?   // JSON array string
+  authorName        String?
+  status            String    @default("draft") // draft | published | archived
+  publishedAt       DateTime?
+  metaTitle         String?
+  metaDescription   String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([slug])
+  @@index([status])
+  @@index([publishedAt])
+}
+
+model ApiKey {
+  id          String    @id @default(cuid())
+  name        String
+  keyHash     String    @unique
+  keyPreview  String    // first 8 chars + "..." for display
+  permissions String    // JSON array string
+  status      String    @default("active") // active | revoked
+  lastUsedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  revokedAt   DateTime?
+
+  @@index([status])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  status    String   @default("new") // new | read | archived
+  createdAt DateTime @default(now())
+}
