@@ -4,7 +4,7 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Syarat & Ketentuan',
-  description: 'Syarat dan ketentuan penggunaan website Direktori Kuliner.',
+  description: 'Syarat dan ketentuan penggunaan website FoodMo.',
   path: '/terms-of-service',
 });
 
@@ -20,12 +20,12 @@ export default function TermsPage() {
       <h1 className="mb-4 text-3xl font-semibold text-black">Syarat & Ketentuan</h1>
       <div className="prose prose-navy max-w-none text-black/80">
         <p>
-          Dengan mengakses Direktori Kuliner, Anda setuju untuk mematuhi syarat
+          Dengan mengakses FoodMo, Anda setuju untuk mematuhi syarat
           dan ketentuan berikut.
         </p>
         <h2>Penggunaan Konten</h2>
         <p>
-          Seluruh konten adalah milik Direktori Kuliner atau pemilik yang sah.
+          Seluruh konten adalah milik FoodMo atau pemilik yang sah.
           Anda dilarang menyalin, mendistribusikan ulang, atau memodifikasi
           konten tanpa izin tertulis.
         </p>
@@ -38,7 +38,7 @@ export default function TermsPage() {
         </p>
         <h2>Pembatasan Tanggung Jawab</h2>
         <p>
-          Direktori Kuliner tidak bertanggung jawab atas kerugian langsung
+          FoodMo tidak bertanggung jawab atas kerugian langsung
           maupun tidak langsung yang timbul dari penggunaan informasi di
           website.
         </p>

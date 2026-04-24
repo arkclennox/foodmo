@@ -4,7 +4,7 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Kebijakan Privasi',
-  description: 'Kebijakan privasi dan penggunaan data pengguna di Direktori Kuliner.',
+  description: 'Kebijakan privasi dan penggunaan data pengguna di FoodMo.',
   path: '/privacy-policy',
 });
 
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <h1 className="mb-4 text-3xl font-semibold text-black">Kebijakan Privasi</h1>
       <div className="prose prose-navy max-w-none text-black/80">
         <p>
-          Kebijakan ini menjelaskan bagaimana Direktori Kuliner mengumpulkan,
+          Kebijakan ini menjelaskan bagaimana FoodMo mengumpulkan,
           menggunakan, dan melindungi data pengguna. Dengan menggunakan website
           kami, Anda menyetujui ketentuan di bawah ini.
         </p>

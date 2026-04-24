@@ -5,7 +5,7 @@ import { ContactForm } from '@/components/ContactForm';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Kontak',
-  description: 'Hubungi tim Direktori Kuliner untuk kerja sama, saran, atau pertanyaan.',
+  description: 'Hubungi tim FoodMo untuk kerja sama, saran, atau pertanyaan.',
   path: '/contact',
 });
 
@@ -23,8 +23,8 @@ export default function ContactPage() {
         <aside className="card space-y-4 p-5 text-sm">
           <div>
             <div className="font-semibold text-black">Email</div>
-            <a href="mailto:hello@direktori-kuliner.id" className="text-navy hover:underline">
-              hello@direktori-kuliner.id
+            <a href="mailto:hello@foodmo.id" className="text-navy hover:underline">
+              hello@foodmo.id
             </a>
           </div>
           <div>

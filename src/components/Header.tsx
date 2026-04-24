@@ -16,7 +16,7 @@ export function Header() {
           <span className="flex h-9 w-9 items-center justify-center rounded-md bg-navy text-white">
             <UtensilsIcon className="h-5 w-5" />
           </span>
-          <span className="text-base sm:text-lg">Direktori Kuliner</span>
+          <span className="text-base sm:text-lg">FoodMo</span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           {NAV.map((item) => (

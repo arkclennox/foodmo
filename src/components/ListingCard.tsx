@@ -22,7 +22,7 @@ export function ListingCard({ listing }: { listing: ListingCardData }) {
     listing.featuredImageUrl ||
     'data:image/svg+xml;utf8,' +
       encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23F8FAFC" width="400" height="300"/><text x="50%25" y="50%25" text-anchor="middle" dy=".3em" font-family="Arial" font-size="18" fill="%2301083C">Direktori Kuliner</text></svg>',
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23F8FAFC" width="400" height="300"/><text x="50%25" y="50%25" text-anchor="middle" dy=".3em" font-family="Arial" font-size="18" fill="%2301083C">FoodMo</text></svg>',
       );
   const excerpt = listing.shortDescription || listing.description?.slice(0, 120);
 

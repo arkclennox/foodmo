@@ -4,7 +4,7 @@ import { buildMetadata, SITE_NAME } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   title: `Tentang ${SITE_NAME}`,
-  description: 'Tentang Direktori Kuliner — misi dan manfaat platform bagi pencari kuliner dan pemilik usaha.',
+  description: `Tentang FoodMo — misi dan manfaat platform bagi pencari kuliner dan pemilik usaha.`,
   path: '/about',
 });
 
@@ -12,10 +12,10 @@ export default function AboutPage() {
   return (
     <div className="section max-w-4xl py-10">
       <Breadcrumb items={[{ label: 'Beranda', href: '/' }, { label: 'Tentang' }]} />
-      <h1 className="mb-4 text-3xl font-semibold text-black">Tentang Direktori Kuliner</h1>
+      <h1 className="mb-4 text-3xl font-semibold text-black">Tentang FoodMo</h1>
       <div className="prose prose-navy max-w-none text-black/80">
         <p>
-          Direktori Kuliner adalah platform directory yang dirancang untuk
+          FoodMo adalah platform directory yang dirancang untuk
           membantu pengunjung menemukan restoran, cafe, dan warung makan
           terbaik di seluruh Indonesia. Kami percaya bahwa setiap kota memiliki
           cerita kuliner yang layak dibagikan — mulai dari warung kaki lima
@@ -32,7 +32,7 @@ export default function AboutPage() {
         </ul>
         <h2>Untuk Siapa?</h2>
         <p>
-          Direktori Kuliner ditujukan untuk pengunjung umum, food blogger, dan
+          FoodMo ditujukan untuk pengunjung umum, food blogger, dan
           pemilik bisnis kuliner. Jika Anda ingin listing tempat usaha Anda
           tampil di sini, silakan hubungi tim kami melalui halaman kontak.
         </p>

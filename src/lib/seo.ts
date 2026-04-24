@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
-export const SITE_NAME = 'Direktori Kuliner';
+export const SITE_NAME = 'FoodMo';
+
 export const SITE_DESCRIPTION =
   'Temukan restoran, cafe, dan warung makan terbaik di seluruh Indonesia — lengkap dengan alamat, harga, fasilitas, dan artikel kuliner pilihan.';
 

@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="mt-16 border-t border-border bg-soft">
       <div className="section grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="mb-3 text-lg font-semibold text-navy">Direktori Kuliner</div>
+          <div className="mb-3 text-lg font-semibold text-navy">FoodMo</div>
           <p className="text-sm text-black/70">
             Temukan restoran, cafe, dan warung makan terbaik di seluruh Indonesia.
           </p>
@@ -89,7 +89,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="section flex flex-col items-center justify-between gap-2 py-5 text-xs text-black/60 sm:flex-row">
-          <div>© {year} Direktori Kuliner. Semua hak dilindungi.</div>
+          <div>© {year} FoodMo. Semua hak dilindungi.</div>
           <div>Dibuat untuk pecinta kuliner Indonesia.</div>
         </div>
       </div>

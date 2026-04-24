@@ -30,7 +30,8 @@ export async function generateMetadata({
     description:
       category.metaDescription ||
       category.description ||
-      `Jelajahi tempat makan kategori ${category.name} di Direktori Kuliner.`,
+      `Jelajahi tempat makan kategori ${category.name} di FoodMo.`,
+
     path: `/kategori/${category.slug}`,
   });
 }

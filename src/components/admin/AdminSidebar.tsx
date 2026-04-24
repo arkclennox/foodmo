@@ -29,7 +29,7 @@ export function AdminSidebar() {
   return (
     <aside className="w-full shrink-0 rounded-xl border border-border bg-white p-3 lg:w-60">
       <div className="mb-2 px-2 py-1 text-base font-semibold text-navy">
-        Direktori Kuliner
+        FoodMo
       </div>
       <nav className="flex flex-col gap-0.5">
         {NAV.map((item) => {

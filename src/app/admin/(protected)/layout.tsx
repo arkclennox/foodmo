@@ -24,7 +24,7 @@ export default async function AdminLayout({
               <div className="text-xs font-semibold uppercase tracking-wide text-black/50">
                 Dashboard
               </div>
-              <div className="text-lg font-semibold text-black">Direktori Kuliner Admin</div>
+              <div className="text-lg font-semibold text-black">FoodMo Admin</div>
             </div>
             <div className="flex items-center gap-3 text-sm">
               <Link href="/" className="btn-ghost">

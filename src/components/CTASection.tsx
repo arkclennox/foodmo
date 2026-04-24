@@ -10,7 +10,7 @@ export function CTASection() {
               Punya restoran, cafe, atau warung makan?
             </h3>
             <p className="mt-2 text-white/80">
-              Daftarkan tempat usaha Anda ke Direktori Kuliner agar ditemukan
+              Daftarkan tempat usaha Anda ke FoodMo agar ditemukan
               oleh ribuan pencari kuliner di seluruh Indonesia.
             </p>
           </div>
