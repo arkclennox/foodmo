@@ -57,9 +57,14 @@ export default async function AdminListingsPage({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-xl font-semibold text-black">Listing</h1>
-        <Link href="/admin/listings/new" className="btn-primary">
-          <PlusIcon className="h-4 w-4" /> Tambah listing
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link href="/admin/listings/import" className="rounded-lg border border-black/10 bg-white px-4 py-2 text-sm font-medium text-black hover:bg-black/5 transition-colors">
+            Import Data
+          </Link>
+          <Link href="/admin/listings/new" className="btn-primary">
+            <PlusIcon className="h-4 w-4" /> Tambah listing
+          </Link>
+        </div>
       </div>
       <form action="/admin/listings" className="flex flex-wrap gap-3 items-center bg-white p-3 rounded-xl border border-border shadow-sm">
         <input
