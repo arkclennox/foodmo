@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import fs from 'fs';
+import path from 'path';
 
 const prisma = new PrismaClient();
 
@@ -92,8 +94,16 @@ async function main() {
   }
   console.log(`Seeded ${listingCategories.length + articleCategories.length} categories`);
 
-  const cities: Array<{ slug: string; name: string; province: string; description: string }> = [
-  // Sumatera
+  let cities: Array<{ slug: string; name: string; province: string; description: string }> = [];
+  try {
+    const citiesPath = path.join(process.cwd(), 'prisma', 'indonesia_cities.json');
+    const raw = fs.readFileSync(citiesPath, 'utf-8');
+    cities = JSON.parse(raw);
+    console.log(`Berhasil memuat ${cities.length} kota/kabupaten dari file JSON.`);
+  } catch (e) {
+    console.log("File prisma/indonesia_cities.json tidak ditemukan. Menggunakan data default...");
+    cities = [
+    // Sumatera
   { slug: 'banda-aceh', name: 'Banda Aceh', province: 'Aceh', description: 'Kuliner terbaik di Banda Aceh, Aceh.' },
   { slug: 'lhokseumawe', name: 'Lhokseumawe', province: 'Aceh', description: 'Kuliner terbaik di Lhokseumawe, Aceh.' },
   { slug: 'medan', name: 'Medan', province: 'Sumatera Utara', description: 'Kuliner Melayu-Tionghoa: bihun bebek, soto medan, kopi tiam.' },
