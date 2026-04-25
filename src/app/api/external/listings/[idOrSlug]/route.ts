@@ -1,43 +1,43 @@
+import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
+import { authenticateApiKey } from '@/lib/api-key-guard';
 import { slugify } from '@/lib/slug';
 import { listingPatchSchema } from '@/lib/validators';
 import { toJsonString } from '@/lib/json-fields';
 
-type Ctx = { params: Promise<{ id: string }> };
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: Promise<{ idOrSlug: string }> }
+) {
+  const auth = await authenticateApiKey(req, 'listings:update');
+  if (!auth.ok) return auth.response;
 
-export async function GET(_req: Request, { params }: Ctx) {
-  const { id } = await params;
-  const listing = await prisma.listing.findUnique({ where: { id } });
-  if (!listing) return ERR.notFound('Listing tidak ditemukan');
-  return apiSuccess(listing);
-}
+  const { idOrSlug } = await params;
+  const existing = await prisma.listing.findFirst({
+    where: { OR: [{ id: idOrSlug }, { slug: idOrSlug }] },
+  });
+  if (!existing) return ERR.notFound('Listing tidak ditemukan');
 
-export async function PATCH(req: Request, { params }: Ctx) {
-  const { id } = await params;
   let body: unknown;
   try {
     body = await req.json();
   } catch {
     return ERR.validation('Body harus JSON');
   }
+
   const parsed = listingPatchSchema.safeParse(body);
   if (!parsed.success) {
     return ERR.validation('Data tidak valid', parsed.error.format());
   }
-  const input = parsed.data;
-  const existing = await prisma.listing.findUnique({ where: { id } });
-  if (!existing) return ERR.notFound('Listing tidak ditemukan');
 
-  let slug = existing.slug;
+  const input = parsed.data;
+  let newSlug = existing.slug;
   if (input.slug !== undefined && input.slug !== null) {
-    const newSlug = input.slug.trim() || slugify(input.name ?? existing.name);
+    newSlug = input.slug.trim() || slugify(input.name || existing.name);
     if (newSlug !== existing.slug) {
       const conflict = await prisma.listing.findUnique({ where: { slug: newSlug } });
-      if (conflict && conflict.id !== id) {
-        return ERR.conflict(`Slug "${newSlug}" sudah dipakai`);
-      }
-      slug = newSlug;
+      if (conflict) return ERR.conflict(`Slug "${newSlug}" sudah dipakai`);
     }
   }
 
@@ -45,8 +45,8 @@ export async function PATCH(req: Request, { params }: Ctx) {
   if (input.name !== undefined) data.name = input.name;
   if (input.description !== undefined) data.description = input.description;
   if (input.shortDescription !== undefined) data.shortDescription = input.shortDescription;
-  if (input.categoryId !== undefined) data.categoryId = input.categoryId ?? null;
-  if (input.cityId !== undefined) data.cityId = input.cityId ?? null;
+  if (input.categoryId !== undefined) data.categoryId = input.categoryId;
+  if (input.cityId !== undefined) data.cityId = input.cityId;
   if (input.address !== undefined) data.address = input.address;
   if (input.latitude !== undefined) data.latitude = input.latitude;
   if (input.longitude !== undefined) data.longitude = input.longitude;
@@ -58,7 +58,6 @@ export async function PATCH(req: Request, { params }: Ctx) {
   if (input.tiktokUrl !== undefined) data.tiktokUrl = input.tiktokUrl;
   if (input.googleMapsUrl !== undefined) data.googleMapsUrl = input.googleMapsUrl;
   if (input.priceRange !== undefined) data.priceRange = input.priceRange;
-
   if (input.openingHours !== undefined) data.openingHours = input.openingHours;
   if (input.facilities !== undefined) data.facilities = toJsonString(input.facilities);
   if (input.menuHighlights !== undefined) data.menuHighlights = toJsonString(input.menuHighlights);
@@ -68,16 +67,12 @@ export async function PATCH(req: Request, { params }: Ctx) {
   if (input.isFeatured !== undefined) data.isFeatured = input.isFeatured;
   if (input.metaTitle !== undefined) data.metaTitle = input.metaTitle;
   if (input.metaDescription !== undefined) data.metaDescription = input.metaDescription;
-  data.slug = slug;
+  data.slug = newSlug;
 
-  const updated = await prisma.listing.update({ where: { id }, data });
+  const updated = await prisma.listing.update({
+    where: { id: existing.id },
+    data,
+  });
+
   return apiSuccess(updated);
-}
-
-export async function DELETE(_req: Request, { params }: Ctx) {
-  const { id } = await params;
-  const existing = await prisma.listing.findUnique({ where: { id } });
-  if (!existing) return ERR.notFound('Listing tidak ditemukan');
-  await prisma.listing.delete({ where: { id } });
-  return apiSuccess({ ok: true });
 }

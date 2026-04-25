@@ -1,33 +1,27 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
+import { authenticateApiKey } from '@/lib/api-key-guard';
 import { slugify } from '@/lib/slug';
 import { listingInputSchema } from '@/lib/validators';
 import { toJsonString } from '@/lib/json-fields';
 
-export async function GET() {
-  const listings = await prisma.listing.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 200,
-    include: {
-      category: { select: { name: true, slug: true } },
-      city: { select: { name: true, slug: true } },
-    },
-  });
-  return apiSuccess(listings);
-}
-
 export async function POST(req: NextRequest) {
+  const auth = await authenticateApiKey(req, 'listings:create');
+  if (!auth.ok) return auth.response;
+
   let body: unknown;
   try {
     body = await req.json();
   } catch {
     return ERR.validation('Body harus JSON');
   }
+
   const parsed = listingInputSchema.safeParse(body);
   if (!parsed.success) {
     return ERR.validation('Data tidak valid', parsed.error.format());
   }
+
   const input = parsed.data;
   const slug = input.slug?.trim() || slugify(input.name);
   const existing = await prisma.listing.findUnique({ where: { slug } });
@@ -52,7 +46,6 @@ export async function POST(req: NextRequest) {
       tiktokUrl: input.tiktokUrl ?? null,
       googleMapsUrl: input.googleMapsUrl ?? null,
       priceRange: input.priceRange ?? null,
-
       openingHours: input.openingHours ?? null,
       facilities: toJsonString(input.facilities ?? []),
       menuHighlights: toJsonString(input.menuHighlights ?? []),
@@ -64,5 +57,6 @@ export async function POST(req: NextRequest) {
       metaDescription: input.metaDescription ?? null,
     },
   });
+
   return apiSuccess(created, { status: 201 });
 }

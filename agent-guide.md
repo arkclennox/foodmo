@@ -214,7 +214,27 @@ GET /api/listings?city=yogyakarta&sort=rating&limit=5
 
 ---
 
-## 7. Format Response Error
+## 7. Endpoints Listing (Tempat Makan)
+
+**`POST /api/external/listings`**
+Membuat listing baru. Memerlukan permission `listings:create`.
+
+### Body Request (JSON):
+- `name` (string, wajib)
+- `description` (string, wajib)
+- `address` (string, wajib)
+- `latitude` (number, opsional) - Contoh: -6.2088
+- `longitude` (number, opsional) - Contoh: 106.8456
+- `phone`, `whatsapp`, `websiteUrl`, `instagramUrl`, `shopeeFoodUrl`, `tiktokUrl`, `googleMapsUrl` (string, opsional)
+- `priceRange` (string, opsional) - `murah`, `sedang`, `mahal`, `premium`
+- `status` (string, opsional) - `draft`, `published`, `archived`
+
+**`PATCH /api/external/listings/{id-atau-slug}`**
+Memperbarui listing yang ada. Memerlukan permission `listings:update`. Hanya kirim field yang ingin diubah.
+
+---
+
+## 8. Format Response Error
 
 Semua error menggunakan format:
 ```json
@@ -249,6 +269,21 @@ curl -X POST https://foodmo.id/api/external/articles \
     "title": "Kuliner Terbaik di Jakarta Selatan",
     "content_html": "<p>Jakarta Selatan memiliki banyak pilihan kuliner...</p>",
     "category_slug": "panduan-kuliner",
+    "status": "published"
+  }'
+```
+
+### Membuat listing (dengan koordinat latitude/longitude):
+```bash
+curl -X POST https://foodmo.id/api/external/listings \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: dk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+  -d '{
+    "name": "Nasi Goreng Gila Mentereng",
+    "description": "Nasi goreng porsi besar dengan aneka topping melimpah.",
+    "address": "Jl. Sabang No. 12, Menteng, Jakarta Pusat",
+    "latitude": -6.185265,
+    "longitude": 106.825126,
     "status": "published"
   }'
 ```
