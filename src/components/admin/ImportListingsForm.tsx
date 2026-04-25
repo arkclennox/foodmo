@@ -62,8 +62,11 @@ export function ImportListingsForm() {
       } catch {
         // Abaikan jika bukan JSON
       }
-      // Jika comma separated
-      return c.split(',').map((s) => s.trim()).filter(Boolean);
+      // Deteksi separator (pipe atau koma)
+      if (c.includes('|')) {
+        return c.split('|').map((s: string) => s.trim()).filter(Boolean);
+      }
+      return c.split(',').map((s: string) => s.trim()).filter(Boolean);
     };
 
     return {
