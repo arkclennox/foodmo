@@ -227,7 +227,10 @@ Membuat listing baru. Memerlukan permission `listings:create`.
 - `longitude` (number, opsional) - Contoh: 106.8456
 - `phone`, `whatsapp`, `websiteUrl`, `instagramUrl`, `shopeeFoodUrl`, `tiktokUrl`, `googleMapsUrl` (string, opsional)
 - `priceRange` (string, opsional) - `murah`, `sedang`, `mahal`, `premium`
+- `featuredImageUrl` (string, opsional) - URL gambar utama
+- `galleryImages` (array of string, opsional) - Kumpulan URL gambar galeri
 - `status` (string, opsional) - `draft`, `published`, `archived`
+
 
 **`PATCH /api/external/listings/{id-atau-slug}`**
 Memperbarui listing yang ada. Memerlukan permission `listings:update`. Hanya kirim field yang ingin diubah.
@@ -284,9 +287,15 @@ curl -X POST https://foodmo.id/api/external/listings \
     "address": "Jl. Sabang No. 12, Menteng, Jakarta Pusat",
     "latitude": -6.185265,
     "longitude": 106.825126,
+    "featuredImageUrl": "https://example.com/images/nasi-goreng-main.jpg",
+    "galleryImages": [
+      "https://example.com/images/nasi-goreng-1.jpg",
+      "https://example.com/images/nasi-goreng-2.jpg"
+    ],
     "status": "published"
   }'
 ```
+
 
 ### Update artikel:
 ```bash
