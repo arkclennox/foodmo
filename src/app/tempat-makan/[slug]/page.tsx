@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { ListingCard } from '@/components/ListingCard';
+import { ImageGallery } from '@/components/ImageGallery';
 import {
   ClockIcon,
   GlobeIcon,
@@ -202,18 +203,7 @@ export default async function ListingDetailPage({
             {listing.galleryImagesList.length > 0 && (
               <section className="mt-8">
                 <h2 className="mb-3 text-xl font-semibold text-black">Galeri</h2>
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                  {listing.galleryImagesList.map((src, idx) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={`${src}-${idx}`}
-                      src={src}
-                      alt={`${listing.name} - foto ${idx + 1}`}
-                      className="aspect-square w-full rounded-lg object-cover"
-                      loading="lazy"
-                    />
-                  ))}
-                </div>
+                <ImageGallery images={listing.galleryImagesList} title={listing.name} />
               </section>
             )}
           </div>
