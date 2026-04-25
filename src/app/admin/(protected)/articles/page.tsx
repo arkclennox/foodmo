@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { prisma } from '@/lib/db';
 import { EditIcon, PlusIcon } from '@/components/icons';
 import { DeleteButton } from '@/components/admin/DeleteButton';
+import { ArticleBulkTable } from '@/components/admin/ArticleBulkTable';
+import { Pagination } from '@/components/admin/Pagination';
+
 
 export const dynamic = 'force-dynamic';
 
@@ -17,6 +20,13 @@ export default async function AdminArticlesPage({
   const sp = await searchParams;
   const status = oneOf(sp.status);
   const search = oneOf(sp.search);
+  const limitStr = oneOf(sp.limit);
+  const pageStr = oneOf(sp.page);
+
+  const limit = limitStr ? parseInt(limitStr, 10) : 50;
+  const page = pageStr ? parseInt(pageStr, 10) : 1;
+  const skip = (page - 1) * limit;
+
 
   const where: Record<string, unknown> = {};
   if (status) where.status = status;
@@ -26,12 +36,18 @@ export default async function AdminArticlesPage({
       { slug: { contains: search } },
     ];
   }
-  const articles = await prisma.article.findMany({
-    where,
-    orderBy: { createdAt: 'desc' },
-    take: 100,
-    include: { category: { select: { name: true } } },
-  });
+  const [total, articles, categories] = await Promise.all([
+    prisma.article.count({ where }),
+    prisma.article.findMany({
+      where,
+      orderBy: { createdAt: 'desc' },
+      skip,
+      take: limit,
+      include: { category: { select: { name: true } } },
+    }),
+    prisma.category.findMany({ where: { type: 'article' }, orderBy: { name: 'asc' }, select: { id: true, name: true } })
+  ]);
+
 
   return (
     <div className="space-y-4">
@@ -41,72 +57,36 @@ export default async function AdminArticlesPage({
           <PlusIcon className="h-4 w-4" /> Tambah artikel
         </Link>
       </div>
-      <form action="/admin/articles" className="grid gap-3 sm:grid-cols-[1fr,200px,auto]">
+      <form action="/admin/articles" className="flex flex-wrap gap-3 items-center bg-white p-3 rounded-xl border border-border shadow-sm">
         <input
           name="search"
           defaultValue={search}
           placeholder="Cari judul atau slug…"
-          className="input-base"
+          className="input-base flex-1 min-w-[200px]"
         />
-        <select name="status" defaultValue={status} className="input-base">
+        <select name="status" defaultValue={status} className="input-base w-auto">
           <option value="">Semua status</option>
           <option value="draft">Draft</option>
           <option value="published">Published</option>
           <option value="archived">Archived</option>
         </select>
+        <div className="flex items-center gap-2 text-sm text-black/60 sm:border-l sm:pl-3 sm:ml-1">
+          <span>Tampilkan</span>
+          <select name="limit" defaultValue={limit} className="input-base w-auto py-1">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
         <button className="btn-secondary">Filter</button>
       </form>
-      <div className="card overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="bg-soft text-left text-xs uppercase tracking-wide text-black/60">
-            <tr>
-              <th className="px-4 py-3">Judul</th>
-              <th className="px-4 py-3">Kategori</th>
-              <th className="px-4 py-3">Status</th>
-              <th className="px-4 py-3">Published</th>
-              <th className="px-4 py-3 text-right">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {articles.length === 0 && (
-              <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-black/60">
-                  Belum ada artikel.
-                </td>
-              </tr>
-            )}
-            {articles.map((a) => (
-              <tr key={a.id}>
-                <td className="px-4 py-3">
-                  <div className="font-medium text-black">{a.title}</div>
-                  <div className="text-xs text-black/50">/blog/{a.slug}</div>
-                </td>
-                <td className="px-4 py-3 text-black/70">{a.category?.name ?? '—'}</td>
-                <td className="px-4 py-3">
-                  <span className={statusBadge(a.status)}>{a.status}</span>
-                </td>
-                <td className="px-4 py-3 text-xs text-black/70">
-                  {a.publishedAt ? a.publishedAt.toLocaleDateString('id-ID') : '—'}
-                </td>
-                <td className="px-4 py-3">
-                  <div className="flex justify-end gap-2">
-                    <Link
-                      href={`/admin/articles/${a.id}/edit`}
-                      className="btn-secondary"
-                    >
-                      <EditIcon className="h-4 w-4" /> Edit
-                    </Link>
-                    <DeleteButton
-                      endpoint={`/api/admin/articles/${a.id}`}
-                      confirmText={`Hapus artikel "${a.title}"?`}
-                    />
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+
+      <ArticleBulkTable 
+        articles={articles} 
+        categories={categories} 
+      />
+
+      <Pagination total={total} limit={limit} page={page} />
     </div>
   );
 }

@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { prisma } from '@/lib/db';
 import { EditIcon, PlusIcon } from '@/components/icons';
 import { DeleteButton } from '@/components/admin/DeleteButton';
+import { ListingBulkTable } from '@/components/admin/ListingBulkTable';
+import { Pagination } from '@/components/admin/Pagination';
+
 
 export const dynamic = 'force-dynamic';
 
@@ -17,6 +20,13 @@ export default async function AdminListingsPage({
   const sp = await searchParams;
   const status = oneOf(sp.status);
   const search = oneOf(sp.search);
+  const limitStr = oneOf(sp.limit);
+  const pageStr = oneOf(sp.page);
+
+  const limit = limitStr ? parseInt(limitStr, 10) : 50;
+  const page = pageStr ? parseInt(pageStr, 10) : 1;
+  const skip = (page - 1) * limit;
+
 
   const where: Record<string, unknown> = {};
   if (status) where.status = status;
@@ -26,15 +36,22 @@ export default async function AdminListingsPage({
       { slug: { contains: search } },
     ];
   }
-  const listings = await prisma.listing.findMany({
-    where,
-    orderBy: { createdAt: 'desc' },
-    take: 100,
-    include: {
-      category: { select: { name: true } },
-      city: { select: { name: true } },
-    },
-  });
+  const [total, listings, categories, cities] = await Promise.all([
+    prisma.listing.count({ where }),
+    prisma.listing.findMany({
+      where,
+      orderBy: { createdAt: 'desc' },
+      skip,
+      take: limit,
+      include: {
+        category: { select: { name: true } },
+        city: { select: { name: true } },
+      },
+    }),
+    prisma.category.findMany({ where: { type: 'listing' }, orderBy: { name: 'asc' }, select: { id: true, name: true } }),
+    prisma.city.findMany({ orderBy: { name: 'asc' }, select: { id: true, name: true } })
+  ]);
+
 
   return (
     <div className="space-y-4">
@@ -44,75 +61,41 @@ export default async function AdminListingsPage({
           <PlusIcon className="h-4 w-4" /> Tambah listing
         </Link>
       </div>
-      <form action="/admin/listings" className="grid gap-3 sm:grid-cols-[1fr,200px,auto]">
+      <form action="/admin/listings" className="flex flex-wrap gap-3 items-center bg-white p-3 rounded-xl border border-border shadow-sm">
         <input
           name="search"
           defaultValue={search}
           placeholder="Cari nama atau slug…"
-          className="input-base"
+          className="input-base flex-1 min-w-[200px]"
         />
-        <select name="status" defaultValue={status} className="input-base">
+        <select name="status" defaultValue={status} className="input-base w-auto">
           <option value="">Semua status</option>
           <option value="draft">Draft</option>
           <option value="published">Published</option>
           <option value="archived">Archived</option>
         </select>
+        <div className="flex items-center gap-2 text-sm text-black/60 sm:border-l sm:pl-3 sm:ml-1">
+          <span>Tampilkan</span>
+          <select name="limit" defaultValue={limit} className="input-base w-auto py-1">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
         <button className="btn-secondary">Filter</button>
       </form>
-      <div className="card overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="bg-soft text-left text-xs uppercase tracking-wide text-black/60">
-            <tr>
-              <th className="px-4 py-3">Nama</th>
-              <th className="px-4 py-3">Kategori</th>
-              <th className="px-4 py-3">Kota</th>
-              <th className="px-4 py-3">Status</th>
-              <th className="px-4 py-3">Featured</th>
-              <th className="px-4 py-3 text-right">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {listings.length === 0 && (
-              <tr>
-                <td colSpan={6} className="px-4 py-8 text-center text-black/60">
-                  Belum ada listing.
-                </td>
-              </tr>
-            )}
-            {listings.map((l) => (
-              <tr key={l.id}>
-                <td className="px-4 py-3">
-                  <div className="font-medium text-black">{l.name}</div>
-                  <div className="text-xs text-black/50">/{l.slug}</div>
-                </td>
-                <td className="px-4 py-3 text-black/70">{l.category?.name ?? '—'}</td>
-                <td className="px-4 py-3 text-black/70">{l.city?.name ?? '—'}</td>
-                <td className="px-4 py-3">
-                  <span className={statusBadge(l.status)}>{l.status}</span>
-                </td>
-                <td className="px-4 py-3">{l.isFeatured ? 'Ya' : '—'}</td>
-                <td className="px-4 py-3">
-                  <div className="flex justify-end gap-2">
-                    <Link
-                      href={`/admin/listings/${l.id}/edit`}
-                      className="btn-secondary"
-                    >
-                      <EditIcon className="h-4 w-4" /> Edit
-                    </Link>
-                    <DeleteButton
-                      endpoint={`/api/admin/listings/${l.id}`}
-                      confirmText={`Hapus listing "${l.name}"?`}
-                    />
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      
+      <ListingBulkTable 
+        listings={listings} 
+        categories={categories} 
+        cities={cities} 
+      />
+
+      <Pagination total={total} limit={limit} page={page} />
     </div>
   );
 }
+
 
 function statusBadge(status: string): string {
   switch (status) {
