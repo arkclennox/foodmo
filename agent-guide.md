@@ -47,7 +47,7 @@ x-api-key: dk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | Environment | URL |
 |-------------|-----|
 | Development | `http://localhost:3000` |
-| Production | `https://<domain-anda>.vercel.app` |
+| Production | `https://foodmo.id` |
 
 ---
 
@@ -242,7 +242,7 @@ Semua error menggunakan format:
 
 ### Membuat artikel:
 ```bash
-curl -X POST https://<domain>.vercel.app/api/external/articles \
+curl -X POST https://foodmo.id/api/external/articles \
   -H "Content-Type: application/json" \
   -H "x-api-key: dk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
   -d '{
@@ -255,7 +255,7 @@ curl -X POST https://<domain>.vercel.app/api/external/articles \
 
 ### Update artikel:
 ```bash
-curl -X PATCH https://<domain>.vercel.app/api/external/articles/kuliner-terbaik-jakarta-selatan \
+curl -X PATCH https://foodmo.id/api/external/articles/kuliner-terbaik-jakarta-selatan \
   -H "Content-Type: application/json" \
   -H "x-api-key: dk_xxx..." \
   -d '{"status": "published", "meta_description": "Panduan kuliner Jakarta Selatan terlengkap."}'
@@ -263,7 +263,7 @@ curl -X PATCH https://<domain>.vercel.app/api/external/articles/kuliner-terbaik-
 
 ### Baca listing:
 ```bash
-curl "https://<domain>.vercel.app/api/listings?city=jakarta&sort=rating"
+curl "https://foodmo.id/api/listings?city=jakarta&sort=rating"
 ```
 
 ---
@@ -273,7 +273,7 @@ curl "https://<domain>.vercel.app/api/listings?city=jakarta&sort=rating"
 ```python
 import httpx
 
-BASE_URL = "https://<domain>.vercel.app"
+BASE_URL = "https://foodmo.id"
 API_KEY = "dk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 HEADERS = {
     "Content-Type": "application/json",
