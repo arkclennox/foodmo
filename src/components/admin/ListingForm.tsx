@@ -361,7 +361,7 @@ export function ListingForm({
         <h2 className="text-base font-semibold text-black">Fasilitas</h2>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {FACILITY_OPTIONS.map((f) => {
-            const active = data.facilities.includes(f);
+            const active = data.facilities.some((df) => df.toLowerCase() === f.toLowerCase());
             return (
               <label
                 key={f}
@@ -374,13 +374,41 @@ export function ListingForm({
                 <input
                   type="checkbox"
                   checked={active}
-                  onChange={() => toggleArrayValue('facilities', f)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      update('facilities', [...data.facilities, f]);
+                    } else {
+                      update(
+                        'facilities',
+                        data.facilities.filter((df) => df.toLowerCase() !== f.toLowerCase())
+                      );
+                    }
+                  }}
                   className="h-4 w-4 accent-[color:#01083C]"
                 />
                 {f}
               </label>
             );
           })}
+        </div>
+
+        <div className="mt-4 border-t border-black/5 pt-4">
+          <p className="text-sm font-medium text-black mb-2">Fasilitas Tambahan (Kustom / Import)</p>
+          <p className="text-xs text-black/60 mb-3">
+            Gunakan ini jika ada fasilitas yang tidak masuk dalam daftar standar di atas.
+          </p>
+          <ArrayInput
+            value={data.facilities.filter(
+              (df) => !FACILITY_OPTIONS.some((opt) => opt.toLowerCase() === df.toLowerCase())
+            )}
+            onChange={(newCustom) => {
+              const optionsSelected = data.facilities.filter((df) =>
+                FACILITY_OPTIONS.some((opt) => opt.toLowerCase() === df.toLowerCase())
+              );
+              update('facilities', [...optionsSelected, ...newCustom]);
+            }}
+            placeholder="Tambah fasilitas lain..."
+          />
         </div>
       </div>
 
