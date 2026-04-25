@@ -23,6 +23,15 @@ import { prisma } from '@/lib/db';
 
 export const revalidate = 60;
 
+export async function generateStaticParams() {
+  const items = await prisma.listing.findMany({
+    where: { status: 'published' },
+    select: { slug: true },
+  });
+  return items.map((item) => ({ slug: item.slug }));
+}
+
+
 export async function generateMetadata({
   params,
 }: {

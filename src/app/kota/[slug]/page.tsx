@@ -13,6 +13,14 @@ import { buildMetadata } from '@/lib/seo';
 
 export const revalidate = 60;
 
+export async function generateStaticParams() {
+  const items = await prisma.city.findMany({
+    select: { slug: true },
+  });
+  return items.map((item) => ({ slug: item.slug }));
+}
+
+
 function oneOf(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] ?? '' : value ?? '';
 }

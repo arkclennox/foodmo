@@ -74,7 +74,7 @@ export default async function HomePage() {
         <div className="section py-16 sm:py-20 lg:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white px-3 py-1 text-xs font-medium text-navy">
-              <SparklesIcon className="h-3.5 w-3.5" /> FoodMo — kuliner Indonesia
+              <SparklesIcon className="h-3.5 w-3.5" /> FoodMo Indonesia
             </div>
             <h1 className="text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl">
               Temukan tempat makan <span className="text-navy">favoritmu</span>

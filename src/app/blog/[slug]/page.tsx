@@ -6,8 +6,19 @@ import { ArticleCard } from '@/components/ArticleCard';
 import { ListingCard } from '@/components/ListingCard';
 import { buildMetadata, siteUrl } from '@/lib/seo';
 import { findArticleBySlug, listArticles } from '@/lib/queries';
+import { prisma } from '@/lib/db';
+
 
 export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const items = await prisma.article.findMany({
+    where: { status: 'published' },
+    select: { slug: true },
+  });
+  return items.map((item) => ({ slug: item.slug }));
+}
+
 
 export async function generateMetadata({
   params,
