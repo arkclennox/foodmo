@@ -240,8 +240,9 @@ export default async function ListingDetailPage({
                   className="btn-secondary flex items-center gap-2 justify-start"
                 >
                   <WhatsappIcon className="h-4 w-4 text-navy shrink-0" />
-                  <span>WhatsApp: {listing.whatsapp}</span>
+                  <span>WhatsApp</span>
                 </a>
+
               )}
               {listing.websiteUrl && (
                 <a
