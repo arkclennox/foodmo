@@ -27,6 +27,16 @@ export async function POST(req: NextRequest) {
   const existing = await prisma.listing.findUnique({ where: { slug } });
   if (existing) return ERR.conflict(`Slug "${slug}" sudah dipakai`);
 
+  // Mencegah duplicate berdasar nama dan kota
+  const duplicate = await prisma.listing.findFirst({
+    where: {
+      name: { equals: input.name, mode: 'insensitive' },
+      cityId: input.cityId || null,
+    },
+  });
+  if (duplicate) return ERR.conflict(`Listing dengan nama "${input.name}" di kota tersebut sudah terdaftar`);
+
+
   const created = await prisma.listing.create({
     data: {
       name: input.name,

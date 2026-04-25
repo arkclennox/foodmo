@@ -41,7 +41,23 @@ export async function PATCH(req: Request, { params }: Ctx) {
     }
   }
 
+  // Mencegah perubahan nama/kota menjadi duplikat dengan listing lain
+  if (input.name !== undefined || input.cityId !== undefined) {
+    const checkName = input.name ?? existing.name;
+    const checkCity = input.cityId !== undefined ? input.cityId : existing.cityId;
+    
+    const duplicate = await prisma.listing.findFirst({
+      where: {
+        id: { not: existing.id },
+        name: { equals: checkName, mode: 'insensitive' },
+        cityId: checkCity || null,
+      },
+    });
+    if (duplicate) return ERR.conflict(`Listing dengan nama "${checkName}" di kota tersebut sudah terdaftar`);
+  }
+
   const data: Record<string, unknown> = {};
+
   if (input.name !== undefined) data.name = input.name;
   if (input.description !== undefined) data.description = input.description;
   if (input.shortDescription !== undefined) data.shortDescription = input.shortDescription;
