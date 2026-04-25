@@ -1,29 +1,17 @@
 const fs = require('fs');
-const https = require('https');
-
-async function fetchJson(url) {
-  return new Promise((resolve, reject) => {
-    https.get(url, { headers: { 'User-Agent': 'NodeJS' } }, (res) => {
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return fetchJson(res.headers.location).then(resolve).catch(reject);
-      }
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try { resolve(JSON.parse(data)); } catch (e) { reject(e); }
-      });
-    }).on('error', reject);
-  });
-}
 
 async function run() {
   console.log("Mengambil data provinsi...");
-  const provinces = await fetchJson('https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json');
+  const provRes = await fetch('https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json');
+  if (!provRes.ok) throw new Error("Gagal mengambil provinsi");
+  const provinces = await provRes.json();
   const allCities = [];
 
   for (const prov of provinces) {
     console.log(`Mengambil data kabupaten/kota untuk ${prov.name}...`);
-    const regencies = await fetchJson(`https://emsifa.github.io/api-wilayah-indonesia/api/regencies/${prov.id}.json`);
+    const regRes = await fetch(`https://emsifa.github.io/api-wilayah-indonesia/api/regencies/${prov.id}.json`);
+    if (!regRes.ok) throw new Error(`Gagal mengambil data untuk provinsi ${prov.name}`);
+    const regencies = await regRes.json();
     
     for (const reg of regencies) {
       const toTitleCase = str => str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());

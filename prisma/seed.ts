@@ -198,6 +198,7 @@ async function main() {
   { slug: 'sorong', name: 'Sorong', province: 'Papua Barat Daya', description: 'Kuliner laut segar khas Sorong.' },
   { slug: 'manokwari', name: 'Manokwari', province: 'Papua Barat', description: 'Kuliner khas Papua Barat.' },
   ];
+  }
 
   for (const c of cities) {
     await prisma.city.upsert({
