@@ -8,30 +8,10 @@ import { BuildingIcon, SparklesIcon } from '@/components/icons';
 
 export const revalidate = 60;
 
-const POPULAR_CITIES = [
-  { slug: 'jakarta', name: 'Jakarta' },
-  { slug: 'bandung', name: 'Bandung' },
-  { slug: 'surabaya', name: 'Surabaya' },
-  { slug: 'yogyakarta', name: 'Yogyakarta' },
-  { slug: 'malang', name: 'Malang' },
-  { slug: 'bali', name: 'Bali' },
-  { slug: 'semarang', name: 'Semarang' },
-  { slug: 'medan', name: 'Medan' },
-];
-
-const POPULAR_CATEGORIES = [
-  { slug: 'restoran', name: 'Restoran' },
-  { slug: 'cafe', name: 'Cafe' },
-  { slug: 'warung-makan', name: 'Warung Makan' },
-  { slug: 'seafood', name: 'Seafood' },
-  { slug: 'bakso', name: 'Bakso' },
-  { slug: 'mie-ayam', name: 'Mie Ayam' },
-  { slug: 'nasi-goreng', name: 'Nasi Goreng' },
-  { slug: 'kopi', name: 'Kopi' },
-];
+// Data is now fetched dynamically from the database
 
 export default async function HomePage() {
-  const [latestListings, featuredListings, latestArticles, stats] = await Promise.all([
+  const [latestListings, featuredListings, latestArticles, stats, popularCategories, popularCities] = await Promise.all([
     prisma.listing.findMany({
       where: { status: 'published' },
       orderBy: { createdAt: 'desc' },
@@ -58,9 +38,19 @@ export default async function HomePage() {
     }),
     Promise.all([
       prisma.listing.count({ where: { status: 'published' } }),
-      prisma.city.count(),
-      prisma.category.count(),
+      prisma.city.count({ where: { listings: { some: { status: 'published' } } } }),
+      prisma.category.count({ where: { type: 'listing', listings: { some: { status: 'published' } } } }),
     ]),
+    prisma.category.findMany({
+      where: { type: 'listing', listings: { some: { status: 'published' } } },
+      orderBy: { listings: { _count: 'desc' } },
+      take: 8,
+    }),
+    prisma.city.findMany({
+      where: { listings: { some: { status: 'published' } } },
+      orderBy: { listings: { _count: 'desc' } },
+      take: 8,
+    }),
   ]);
 
   const [listingCount, cityCount, categoryCount] = stats;
@@ -118,7 +108,7 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {POPULAR_CATEGORIES.map((cat) => (
+          {popularCategories.map((cat) => (
             <Link
               key={cat.slug}
               href={`/kategori/${cat.slug}`}
@@ -140,7 +130,7 @@ export default async function HomePage() {
           <p className="text-sm text-black/60">Eksplorasi kuliner dari berbagai kota Indonesia.</p>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {POPULAR_CITIES.map((city) => (
+          {popularCities.map((city) => (
             <Link
               key={city.slug}
               href={`/kota/${city.slug}`}
