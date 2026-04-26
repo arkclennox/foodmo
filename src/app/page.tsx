@@ -31,7 +31,7 @@ const POPULAR_CATEGORIES = [
 ];
 
 export default async function HomePage() {
-  const [latestListings, featuredListings, latestArticles, stats] = await Promise.all([
+  const [latestListings, featuredListings, topRatedListings, latestArticles, stats] = await Promise.all([
     prisma.listing.findMany({
       where: { status: 'published' },
       orderBy: { createdAt: 'desc' },
@@ -44,6 +44,15 @@ export default async function HomePage() {
     prisma.listing.findMany({
       where: { status: 'published', isFeatured: true },
       orderBy: { createdAt: 'desc' },
+      take: 4,
+      include: {
+        category: { select: { name: true, slug: true } },
+        city: { select: { name: true, slug: true } },
+      },
+    }),
+    prisma.listing.findMany({
+      where: { status: 'published' },
+      orderBy: [{ rating: 'desc' }, { reviewCount: 'desc' }],
       take: 4,
       include: {
         category: { select: { name: true, slug: true } },
@@ -64,8 +73,7 @@ export default async function HomePage() {
   ]);
 
   const [listingCount, cityCount, categoryCount] = stats;
-  const recommended =
-    featuredListings.length >= 4 ? featuredListings : latestListings.slice(0, 4);
+  const recommended = featuredListings.length > 0 ? featuredListings : topRatedListings;
 
   return (
     <>

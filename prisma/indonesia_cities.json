@@ -1,0 +1,3086 @@
+[
+  {
+    "slug": "kabupaten-simeulue",
+    "name": "Kabupaten Simeulue",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Simeulue, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-singkil",
+    "name": "Kabupaten Aceh Singkil",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Singkil, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-selatan",
+    "name": "Kabupaten Aceh Selatan",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Selatan, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-tenggara",
+    "name": "Kabupaten Aceh Tenggara",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Tenggara, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-timur",
+    "name": "Kabupaten Aceh Timur",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Timur, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-tengah",
+    "name": "Kabupaten Aceh Tengah",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Tengah, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-barat",
+    "name": "Kabupaten Aceh Barat",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Barat, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-besar",
+    "name": "Kabupaten Aceh Besar",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Besar, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-pidie",
+    "name": "Kabupaten Pidie",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pidie, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-bireuen",
+    "name": "Kabupaten Bireuen",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bireuen, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-utara",
+    "name": "Kabupaten Aceh Utara",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Utara, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-barat-daya",
+    "name": "Kabupaten Aceh Barat Daya",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Barat Daya, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-gayo-lues",
+    "name": "Kabupaten Gayo Lues",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Gayo Lues, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-tamiang",
+    "name": "Kabupaten Aceh Tamiang",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Tamiang, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-nagan-raya",
+    "name": "Kabupaten Nagan Raya",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nagan Raya, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-aceh-jaya",
+    "name": "Kabupaten Aceh Jaya",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Aceh Jaya, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-bener-meriah",
+    "name": "Kabupaten Bener Meriah",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bener Meriah, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-pidie-jaya",
+    "name": "Kabupaten Pidie Jaya",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pidie Jaya, Provinsi Aceh."
+  },
+  {
+    "slug": "kota-banda-aceh",
+    "name": "Kota Banda Aceh",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Banda Aceh, Provinsi Aceh."
+  },
+  {
+    "slug": "kota-sabang",
+    "name": "Kota Sabang",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Sabang, Provinsi Aceh."
+  },
+  {
+    "slug": "kota-langsa",
+    "name": "Kota Langsa",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Langsa, Provinsi Aceh."
+  },
+  {
+    "slug": "kota-lhokseumawe",
+    "name": "Kota Lhokseumawe",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Lhokseumawe, Provinsi Aceh."
+  },
+  {
+    "slug": "kota-subulussalam",
+    "name": "Kota Subulussalam",
+    "province": "Aceh",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Subulussalam, Provinsi Aceh."
+  },
+  {
+    "slug": "kabupaten-nias",
+    "name": "Kabupaten Nias",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nias, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-mandailing-natal",
+    "name": "Kabupaten Mandailing Natal",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mandailing Natal, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-tapanuli-selatan",
+    "name": "Kabupaten Tapanuli Selatan",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tapanuli Selatan, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-tapanuli-tengah",
+    "name": "Kabupaten Tapanuli Tengah",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tapanuli Tengah, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-tapanuli-utara",
+    "name": "Kabupaten Tapanuli Utara",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tapanuli Utara, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-toba-samosir",
+    "name": "Kabupaten Toba Samosir",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Toba Samosir, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-labuhan-batu",
+    "name": "Kabupaten Labuhan Batu",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Labuhan Batu, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-asahan",
+    "name": "Kabupaten Asahan",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Asahan, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-simalungun",
+    "name": "Kabupaten Simalungun",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Simalungun, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-dairi",
+    "name": "Kabupaten Dairi",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Dairi, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-karo",
+    "name": "Kabupaten Karo",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Karo, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-deli-serdang",
+    "name": "Kabupaten Deli Serdang",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Deli Serdang, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-langkat",
+    "name": "Kabupaten Langkat",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Langkat, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-nias-selatan",
+    "name": "Kabupaten Nias Selatan",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nias Selatan, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-humbang-hasundutan",
+    "name": "Kabupaten Humbang Hasundutan",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Humbang Hasundutan, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-pakpak-bharat",
+    "name": "Kabupaten Pakpak Bharat",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pakpak Bharat, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-samosir",
+    "name": "Kabupaten Samosir",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Samosir, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-serdang-bedagai",
+    "name": "Kabupaten Serdang Bedagai",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Serdang Bedagai, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-batu-bara",
+    "name": "Kabupaten Batu Bara",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Batu Bara, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-padang-lawas-utara",
+    "name": "Kabupaten Padang Lawas Utara",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Padang Lawas Utara, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-padang-lawas",
+    "name": "Kabupaten Padang Lawas",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Padang Lawas, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-labuhan-batu-selatan",
+    "name": "Kabupaten Labuhan Batu Selatan",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Labuhan Batu Selatan, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-labuhan-batu-utara",
+    "name": "Kabupaten Labuhan Batu Utara",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Labuhan Batu Utara, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-nias-utara",
+    "name": "Kabupaten Nias Utara",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nias Utara, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-nias-barat",
+    "name": "Kabupaten Nias Barat",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nias Barat, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kota-sibolga",
+    "name": "Kota Sibolga",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Sibolga, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kota-tanjung-balai",
+    "name": "Kota Tanjung Balai",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tanjung Balai, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kota-pematang-siantar",
+    "name": "Kota Pematang Siantar",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Pematang Siantar, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kota-tebing-tinggi",
+    "name": "Kota Tebing Tinggi",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tebing Tinggi, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kota-medan",
+    "name": "Kota Medan",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Medan, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kota-binjai",
+    "name": "Kota Binjai",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Binjai, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kota-padangsidimpuan",
+    "name": "Kota Padangsidimpuan",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Padangsidimpuan, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kota-gunungsitoli",
+    "name": "Kota Gunungsitoli",
+    "province": "Sumatera Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Gunungsitoli, Provinsi Sumatera Utara."
+  },
+  {
+    "slug": "kabupaten-kepulauan-mentawai",
+    "name": "Kabupaten Kepulauan Mentawai",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Mentawai, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-pesisir-selatan",
+    "name": "Kabupaten Pesisir Selatan",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pesisir Selatan, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-solok",
+    "name": "Kabupaten Solok",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Solok, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-sijunjung",
+    "name": "Kabupaten Sijunjung",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sijunjung, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-tanah-datar",
+    "name": "Kabupaten Tanah Datar",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tanah Datar, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-padang-pariaman",
+    "name": "Kabupaten Padang Pariaman",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Padang Pariaman, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-agam",
+    "name": "Kabupaten Agam",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Agam, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-lima-puluh-kota",
+    "name": "Kabupaten Lima Puluh Kota",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lima Puluh Kota, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-pasaman",
+    "name": "Kabupaten Pasaman",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pasaman, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-solok-selatan",
+    "name": "Kabupaten Solok Selatan",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Solok Selatan, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-dharmasraya",
+    "name": "Kabupaten Dharmasraya",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Dharmasraya, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-pasaman-barat",
+    "name": "Kabupaten Pasaman Barat",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pasaman Barat, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kota-padang",
+    "name": "Kota Padang",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Padang, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kota-solok",
+    "name": "Kota Solok",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Solok, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kota-sawah-lunto",
+    "name": "Kota Sawah Lunto",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Sawah Lunto, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kota-padang-panjang",
+    "name": "Kota Padang Panjang",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Padang Panjang, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kota-bukittinggi",
+    "name": "Kota Bukittinggi",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bukittinggi, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kota-payakumbuh",
+    "name": "Kota Payakumbuh",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Payakumbuh, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kota-pariaman",
+    "name": "Kota Pariaman",
+    "province": "Sumatera Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Pariaman, Provinsi Sumatera Barat."
+  },
+  {
+    "slug": "kabupaten-kuantan-singingi",
+    "name": "Kabupaten Kuantan Singingi",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kuantan Singingi, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-indragiri-hulu",
+    "name": "Kabupaten Indragiri Hulu",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Indragiri Hulu, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-indragiri-hilir",
+    "name": "Kabupaten Indragiri Hilir",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Indragiri Hilir, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-pelalawan",
+    "name": "Kabupaten Pelalawan",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pelalawan, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-s-i-a-k",
+    "name": "Kabupaten S I A K",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten S I A K, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-kampar",
+    "name": "Kabupaten Kampar",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kampar, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-rokan-hulu",
+    "name": "Kabupaten Rokan Hulu",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Rokan Hulu, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-bengkalis",
+    "name": "Kabupaten Bengkalis",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bengkalis, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-rokan-hilir",
+    "name": "Kabupaten Rokan Hilir",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Rokan Hilir, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-kepulauan-meranti",
+    "name": "Kabupaten Kepulauan Meranti",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Meranti, Provinsi Riau."
+  },
+  {
+    "slug": "kota-pekanbaru",
+    "name": "Kota Pekanbaru",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Pekanbaru, Provinsi Riau."
+  },
+  {
+    "slug": "kota-d-u-m-a-i",
+    "name": "Kota D U M A I",
+    "province": "Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota D U M A I, Provinsi Riau."
+  },
+  {
+    "slug": "kabupaten-kerinci",
+    "name": "Kabupaten Kerinci",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kerinci, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-merangin",
+    "name": "Kabupaten Merangin",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Merangin, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-sarolangun",
+    "name": "Kabupaten Sarolangun",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sarolangun, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-batang-hari",
+    "name": "Kabupaten Batang Hari",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Batang Hari, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-muaro-jambi",
+    "name": "Kabupaten Muaro Jambi",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Muaro Jambi, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-tanjung-jabung-timur",
+    "name": "Kabupaten Tanjung Jabung Timur",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tanjung Jabung Timur, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-tanjung-jabung-barat",
+    "name": "Kabupaten Tanjung Jabung Barat",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tanjung Jabung Barat, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-tebo",
+    "name": "Kabupaten Tebo",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tebo, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-bungo",
+    "name": "Kabupaten Bungo",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bungo, Provinsi Jambi."
+  },
+  {
+    "slug": "kota-jambi",
+    "name": "Kota Jambi",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Jambi, Provinsi Jambi."
+  },
+  {
+    "slug": "kota-sungai-penuh",
+    "name": "Kota Sungai Penuh",
+    "province": "Jambi",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Sungai Penuh, Provinsi Jambi."
+  },
+  {
+    "slug": "kabupaten-ogan-komering-ulu",
+    "name": "Kabupaten Ogan Komering Ulu",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ogan Komering Ulu, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-ogan-komering-ilir",
+    "name": "Kabupaten Ogan Komering Ilir",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ogan Komering Ilir, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-muara-enim",
+    "name": "Kabupaten Muara Enim",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Muara Enim, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-lahat",
+    "name": "Kabupaten Lahat",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lahat, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-musi-rawas",
+    "name": "Kabupaten Musi Rawas",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Musi Rawas, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-musi-banyuasin",
+    "name": "Kabupaten Musi Banyuasin",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Musi Banyuasin, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-banyu-asin",
+    "name": "Kabupaten Banyu Asin",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Banyu Asin, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-ogan-komering-ulu-selatan",
+    "name": "Kabupaten Ogan Komering Ulu Selatan",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ogan Komering Ulu Selatan, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-ogan-komering-ulu-timur",
+    "name": "Kabupaten Ogan Komering Ulu Timur",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ogan Komering Ulu Timur, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-ogan-ilir",
+    "name": "Kabupaten Ogan Ilir",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ogan Ilir, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-empat-lawang",
+    "name": "Kabupaten Empat Lawang",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Empat Lawang, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-penukal-abab-lematang-ilir",
+    "name": "Kabupaten Penukal Abab Lematang Ilir",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Penukal Abab Lematang Ilir, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-musi-rawas-utara",
+    "name": "Kabupaten Musi Rawas Utara",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Musi Rawas Utara, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kota-palembang",
+    "name": "Kota Palembang",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Palembang, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kota-prabumulih",
+    "name": "Kota Prabumulih",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Prabumulih, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kota-pagar-alam",
+    "name": "Kota Pagar Alam",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Pagar Alam, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kota-lubuklinggau",
+    "name": "Kota Lubuklinggau",
+    "province": "Sumatera Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Lubuklinggau, Provinsi Sumatera Selatan."
+  },
+  {
+    "slug": "kabupaten-bengkulu-selatan",
+    "name": "Kabupaten Bengkulu Selatan",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bengkulu Selatan, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-rejang-lebong",
+    "name": "Kabupaten Rejang Lebong",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Rejang Lebong, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-bengkulu-utara",
+    "name": "Kabupaten Bengkulu Utara",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bengkulu Utara, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-kaur",
+    "name": "Kabupaten Kaur",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kaur, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-seluma",
+    "name": "Kabupaten Seluma",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Seluma, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-mukomuko",
+    "name": "Kabupaten Mukomuko",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mukomuko, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-lebong",
+    "name": "Kabupaten Lebong",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lebong, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-kepahiang",
+    "name": "Kabupaten Kepahiang",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepahiang, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-bengkulu-tengah",
+    "name": "Kabupaten Bengkulu Tengah",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bengkulu Tengah, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kota-bengkulu",
+    "name": "Kota Bengkulu",
+    "province": "Bengkulu",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bengkulu, Provinsi Bengkulu."
+  },
+  {
+    "slug": "kabupaten-lampung-barat",
+    "name": "Kabupaten Lampung Barat",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lampung Barat, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-tanggamus",
+    "name": "Kabupaten Tanggamus",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tanggamus, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-lampung-selatan",
+    "name": "Kabupaten Lampung Selatan",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lampung Selatan, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-lampung-timur",
+    "name": "Kabupaten Lampung Timur",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lampung Timur, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-lampung-tengah",
+    "name": "Kabupaten Lampung Tengah",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lampung Tengah, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-lampung-utara",
+    "name": "Kabupaten Lampung Utara",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lampung Utara, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-way-kanan",
+    "name": "Kabupaten Way Kanan",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Way Kanan, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-tulangbawang",
+    "name": "Kabupaten Tulangbawang",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tulangbawang, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-pesawaran",
+    "name": "Kabupaten Pesawaran",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pesawaran, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-pringsewu",
+    "name": "Kabupaten Pringsewu",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pringsewu, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-mesuji",
+    "name": "Kabupaten Mesuji",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mesuji, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-tulang-bawang-barat",
+    "name": "Kabupaten Tulang Bawang Barat",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tulang Bawang Barat, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-pesisir-barat",
+    "name": "Kabupaten Pesisir Barat",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pesisir Barat, Provinsi Lampung."
+  },
+  {
+    "slug": "kota-bandar-lampung",
+    "name": "Kota Bandar Lampung",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bandar Lampung, Provinsi Lampung."
+  },
+  {
+    "slug": "kota-metro",
+    "name": "Kota Metro",
+    "province": "Lampung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Metro, Provinsi Lampung."
+  },
+  {
+    "slug": "kabupaten-bangka",
+    "name": "Kabupaten Bangka",
+    "province": "Kepulauan Bangka Belitung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bangka, Provinsi Kepulauan Bangka Belitung."
+  },
+  {
+    "slug": "kabupaten-belitung",
+    "name": "Kabupaten Belitung",
+    "province": "Kepulauan Bangka Belitung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Belitung, Provinsi Kepulauan Bangka Belitung."
+  },
+  {
+    "slug": "kabupaten-bangka-barat",
+    "name": "Kabupaten Bangka Barat",
+    "province": "Kepulauan Bangka Belitung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bangka Barat, Provinsi Kepulauan Bangka Belitung."
+  },
+  {
+    "slug": "kabupaten-bangka-tengah",
+    "name": "Kabupaten Bangka Tengah",
+    "province": "Kepulauan Bangka Belitung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bangka Tengah, Provinsi Kepulauan Bangka Belitung."
+  },
+  {
+    "slug": "kabupaten-bangka-selatan",
+    "name": "Kabupaten Bangka Selatan",
+    "province": "Kepulauan Bangka Belitung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bangka Selatan, Provinsi Kepulauan Bangka Belitung."
+  },
+  {
+    "slug": "kabupaten-belitung-timur",
+    "name": "Kabupaten Belitung Timur",
+    "province": "Kepulauan Bangka Belitung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Belitung Timur, Provinsi Kepulauan Bangka Belitung."
+  },
+  {
+    "slug": "kota-pangkal-pinang",
+    "name": "Kota Pangkal Pinang",
+    "province": "Kepulauan Bangka Belitung",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Pangkal Pinang, Provinsi Kepulauan Bangka Belitung."
+  },
+  {
+    "slug": "kabupaten-karimun",
+    "name": "Kabupaten Karimun",
+    "province": "Kepulauan Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Karimun, Provinsi Kepulauan Riau."
+  },
+  {
+    "slug": "kabupaten-bintan",
+    "name": "Kabupaten Bintan",
+    "province": "Kepulauan Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bintan, Provinsi Kepulauan Riau."
+  },
+  {
+    "slug": "kabupaten-natuna",
+    "name": "Kabupaten Natuna",
+    "province": "Kepulauan Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Natuna, Provinsi Kepulauan Riau."
+  },
+  {
+    "slug": "kabupaten-lingga",
+    "name": "Kabupaten Lingga",
+    "province": "Kepulauan Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lingga, Provinsi Kepulauan Riau."
+  },
+  {
+    "slug": "kabupaten-kepulauan-anambas",
+    "name": "Kabupaten Kepulauan Anambas",
+    "province": "Kepulauan Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Anambas, Provinsi Kepulauan Riau."
+  },
+  {
+    "slug": "kota-b-a-t-a-m",
+    "name": "Kota B A T A M",
+    "province": "Kepulauan Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota B A T A M, Provinsi Kepulauan Riau."
+  },
+  {
+    "slug": "kota-tanjung-pinang",
+    "name": "Kota Tanjung Pinang",
+    "province": "Kepulauan Riau",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tanjung Pinang, Provinsi Kepulauan Riau."
+  },
+  {
+    "slug": "kabupaten-kepulauan-seribu",
+    "name": "Kabupaten Kepulauan Seribu",
+    "province": "Dki Jakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Seribu, Provinsi Dki Jakarta."
+  },
+  {
+    "slug": "kota-jakarta-selatan",
+    "name": "Kota Jakarta Selatan",
+    "province": "Dki Jakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Jakarta Selatan, Provinsi Dki Jakarta."
+  },
+  {
+    "slug": "kota-jakarta-timur",
+    "name": "Kota Jakarta Timur",
+    "province": "Dki Jakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Jakarta Timur, Provinsi Dki Jakarta."
+  },
+  {
+    "slug": "kota-jakarta-pusat",
+    "name": "Kota Jakarta Pusat",
+    "province": "Dki Jakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Jakarta Pusat, Provinsi Dki Jakarta."
+  },
+  {
+    "slug": "kota-jakarta-barat",
+    "name": "Kota Jakarta Barat",
+    "province": "Dki Jakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Jakarta Barat, Provinsi Dki Jakarta."
+  },
+  {
+    "slug": "kota-jakarta-utara",
+    "name": "Kota Jakarta Utara",
+    "province": "Dki Jakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Jakarta Utara, Provinsi Dki Jakarta."
+  },
+  {
+    "slug": "kabupaten-bogor",
+    "name": "Kabupaten Bogor",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bogor, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-sukabumi",
+    "name": "Kabupaten Sukabumi",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sukabumi, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-cianjur",
+    "name": "Kabupaten Cianjur",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Cianjur, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-bandung",
+    "name": "Kabupaten Bandung",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bandung, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-garut",
+    "name": "Kabupaten Garut",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Garut, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-tasikmalaya",
+    "name": "Kabupaten Tasikmalaya",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tasikmalaya, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-ciamis",
+    "name": "Kabupaten Ciamis",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ciamis, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-kuningan",
+    "name": "Kabupaten Kuningan",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kuningan, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-cirebon",
+    "name": "Kabupaten Cirebon",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Cirebon, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-majalengka",
+    "name": "Kabupaten Majalengka",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Majalengka, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-sumedang",
+    "name": "Kabupaten Sumedang",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sumedang, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-indramayu",
+    "name": "Kabupaten Indramayu",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Indramayu, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-subang",
+    "name": "Kabupaten Subang",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Subang, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-purwakarta",
+    "name": "Kabupaten Purwakarta",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Purwakarta, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-karawang",
+    "name": "Kabupaten Karawang",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Karawang, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-bekasi",
+    "name": "Kabupaten Bekasi",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bekasi, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-bandung-barat",
+    "name": "Kabupaten Bandung Barat",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bandung Barat, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-pangandaran",
+    "name": "Kabupaten Pangandaran",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pangandaran, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-bogor",
+    "name": "Kota Bogor",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bogor, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-sukabumi",
+    "name": "Kota Sukabumi",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Sukabumi, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-bandung",
+    "name": "Kota Bandung",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bandung, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-cirebon",
+    "name": "Kota Cirebon",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Cirebon, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-bekasi",
+    "name": "Kota Bekasi",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bekasi, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-depok",
+    "name": "Kota Depok",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Depok, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-cimahi",
+    "name": "Kota Cimahi",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Cimahi, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-tasikmalaya",
+    "name": "Kota Tasikmalaya",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tasikmalaya, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kota-banjar",
+    "name": "Kota Banjar",
+    "province": "Jawa Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Banjar, Provinsi Jawa Barat."
+  },
+  {
+    "slug": "kabupaten-cilacap",
+    "name": "Kabupaten Cilacap",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Cilacap, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-banyumas",
+    "name": "Kabupaten Banyumas",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Banyumas, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-purbalingga",
+    "name": "Kabupaten Purbalingga",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Purbalingga, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-banjarnegara",
+    "name": "Kabupaten Banjarnegara",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Banjarnegara, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-kebumen",
+    "name": "Kabupaten Kebumen",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kebumen, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-purworejo",
+    "name": "Kabupaten Purworejo",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Purworejo, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-wonosobo",
+    "name": "Kabupaten Wonosobo",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Wonosobo, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-magelang",
+    "name": "Kabupaten Magelang",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Magelang, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-boyolali",
+    "name": "Kabupaten Boyolali",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Boyolali, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-klaten",
+    "name": "Kabupaten Klaten",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Klaten, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-sukoharjo",
+    "name": "Kabupaten Sukoharjo",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sukoharjo, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-wonogiri",
+    "name": "Kabupaten Wonogiri",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Wonogiri, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-karanganyar",
+    "name": "Kabupaten Karanganyar",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Karanganyar, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-sragen",
+    "name": "Kabupaten Sragen",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sragen, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-grobogan",
+    "name": "Kabupaten Grobogan",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Grobogan, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-blora",
+    "name": "Kabupaten Blora",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Blora, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-rembang",
+    "name": "Kabupaten Rembang",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Rembang, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-pati",
+    "name": "Kabupaten Pati",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pati, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-kudus",
+    "name": "Kabupaten Kudus",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kudus, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-jepara",
+    "name": "Kabupaten Jepara",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Jepara, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-demak",
+    "name": "Kabupaten Demak",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Demak, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-semarang",
+    "name": "Kabupaten Semarang",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Semarang, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-temanggung",
+    "name": "Kabupaten Temanggung",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Temanggung, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-kendal",
+    "name": "Kabupaten Kendal",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kendal, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-batang",
+    "name": "Kabupaten Batang",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Batang, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-pekalongan",
+    "name": "Kabupaten Pekalongan",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pekalongan, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-pemalang",
+    "name": "Kabupaten Pemalang",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pemalang, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-tegal",
+    "name": "Kabupaten Tegal",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tegal, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-brebes",
+    "name": "Kabupaten Brebes",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Brebes, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kota-magelang",
+    "name": "Kota Magelang",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Magelang, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kota-surakarta",
+    "name": "Kota Surakarta",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Surakarta, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kota-salatiga",
+    "name": "Kota Salatiga",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Salatiga, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kota-semarang",
+    "name": "Kota Semarang",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Semarang, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kota-pekalongan",
+    "name": "Kota Pekalongan",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Pekalongan, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kota-tegal",
+    "name": "Kota Tegal",
+    "province": "Jawa Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tegal, Provinsi Jawa Tengah."
+  },
+  {
+    "slug": "kabupaten-kulon-progo",
+    "name": "Kabupaten Kulon Progo",
+    "province": "Di Yogyakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kulon Progo, Provinsi Di Yogyakarta."
+  },
+  {
+    "slug": "kabupaten-bantul",
+    "name": "Kabupaten Bantul",
+    "province": "Di Yogyakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bantul, Provinsi Di Yogyakarta."
+  },
+  {
+    "slug": "kabupaten-gunung-kidul",
+    "name": "Kabupaten Gunung Kidul",
+    "province": "Di Yogyakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Gunung Kidul, Provinsi Di Yogyakarta."
+  },
+  {
+    "slug": "kabupaten-sleman",
+    "name": "Kabupaten Sleman",
+    "province": "Di Yogyakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sleman, Provinsi Di Yogyakarta."
+  },
+  {
+    "slug": "kota-yogyakarta",
+    "name": "Kota Yogyakarta",
+    "province": "Di Yogyakarta",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Yogyakarta, Provinsi Di Yogyakarta."
+  },
+  {
+    "slug": "kabupaten-pacitan",
+    "name": "Kabupaten Pacitan",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pacitan, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-ponorogo",
+    "name": "Kabupaten Ponorogo",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ponorogo, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-trenggalek",
+    "name": "Kabupaten Trenggalek",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Trenggalek, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-tulungagung",
+    "name": "Kabupaten Tulungagung",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tulungagung, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-blitar",
+    "name": "Kabupaten Blitar",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Blitar, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-kediri",
+    "name": "Kabupaten Kediri",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kediri, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-malang",
+    "name": "Kabupaten Malang",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Malang, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-lumajang",
+    "name": "Kabupaten Lumajang",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lumajang, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-jember",
+    "name": "Kabupaten Jember",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Jember, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-banyuwangi",
+    "name": "Kabupaten Banyuwangi",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Banyuwangi, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-bondowoso",
+    "name": "Kabupaten Bondowoso",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bondowoso, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-situbondo",
+    "name": "Kabupaten Situbondo",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Situbondo, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-probolinggo",
+    "name": "Kabupaten Probolinggo",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Probolinggo, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-pasuruan",
+    "name": "Kabupaten Pasuruan",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pasuruan, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-sidoarjo",
+    "name": "Kabupaten Sidoarjo",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sidoarjo, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-mojokerto",
+    "name": "Kabupaten Mojokerto",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mojokerto, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-jombang",
+    "name": "Kabupaten Jombang",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Jombang, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-nganjuk",
+    "name": "Kabupaten Nganjuk",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nganjuk, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-madiun",
+    "name": "Kabupaten Madiun",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Madiun, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-magetan",
+    "name": "Kabupaten Magetan",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Magetan, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-ngawi",
+    "name": "Kabupaten Ngawi",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ngawi, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-bojonegoro",
+    "name": "Kabupaten Bojonegoro",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bojonegoro, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-tuban",
+    "name": "Kabupaten Tuban",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tuban, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-lamongan",
+    "name": "Kabupaten Lamongan",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lamongan, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-gresik",
+    "name": "Kabupaten Gresik",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Gresik, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-bangkalan",
+    "name": "Kabupaten Bangkalan",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bangkalan, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-sampang",
+    "name": "Kabupaten Sampang",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sampang, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-pamekasan",
+    "name": "Kabupaten Pamekasan",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pamekasan, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-sumenep",
+    "name": "Kabupaten Sumenep",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sumenep, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-kediri",
+    "name": "Kota Kediri",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Kediri, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-blitar",
+    "name": "Kota Blitar",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Blitar, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-malang",
+    "name": "Kota Malang",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Malang, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-probolinggo",
+    "name": "Kota Probolinggo",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Probolinggo, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-pasuruan",
+    "name": "Kota Pasuruan",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Pasuruan, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-mojokerto",
+    "name": "Kota Mojokerto",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Mojokerto, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-madiun",
+    "name": "Kota Madiun",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Madiun, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-surabaya",
+    "name": "Kota Surabaya",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Surabaya, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kota-batu",
+    "name": "Kota Batu",
+    "province": "Jawa Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Batu, Provinsi Jawa Timur."
+  },
+  {
+    "slug": "kabupaten-pandeglang",
+    "name": "Kabupaten Pandeglang",
+    "province": "Banten",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pandeglang, Provinsi Banten."
+  },
+  {
+    "slug": "kabupaten-lebak",
+    "name": "Kabupaten Lebak",
+    "province": "Banten",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lebak, Provinsi Banten."
+  },
+  {
+    "slug": "kabupaten-tangerang",
+    "name": "Kabupaten Tangerang",
+    "province": "Banten",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tangerang, Provinsi Banten."
+  },
+  {
+    "slug": "kabupaten-serang",
+    "name": "Kabupaten Serang",
+    "province": "Banten",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Serang, Provinsi Banten."
+  },
+  {
+    "slug": "kota-tangerang",
+    "name": "Kota Tangerang",
+    "province": "Banten",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tangerang, Provinsi Banten."
+  },
+  {
+    "slug": "kota-cilegon",
+    "name": "Kota Cilegon",
+    "province": "Banten",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Cilegon, Provinsi Banten."
+  },
+  {
+    "slug": "kota-serang",
+    "name": "Kota Serang",
+    "province": "Banten",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Serang, Provinsi Banten."
+  },
+  {
+    "slug": "kota-tangerang-selatan",
+    "name": "Kota Tangerang Selatan",
+    "province": "Banten",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tangerang Selatan, Provinsi Banten."
+  },
+  {
+    "slug": "kabupaten-jembrana",
+    "name": "Kabupaten Jembrana",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Jembrana, Provinsi Bali."
+  },
+  {
+    "slug": "kabupaten-tabanan",
+    "name": "Kabupaten Tabanan",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tabanan, Provinsi Bali."
+  },
+  {
+    "slug": "kabupaten-badung",
+    "name": "Kabupaten Badung",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Badung, Provinsi Bali."
+  },
+  {
+    "slug": "kabupaten-gianyar",
+    "name": "Kabupaten Gianyar",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Gianyar, Provinsi Bali."
+  },
+  {
+    "slug": "kabupaten-klungkung",
+    "name": "Kabupaten Klungkung",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Klungkung, Provinsi Bali."
+  },
+  {
+    "slug": "kabupaten-bangli",
+    "name": "Kabupaten Bangli",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bangli, Provinsi Bali."
+  },
+  {
+    "slug": "kabupaten-karang-asem",
+    "name": "Kabupaten Karang Asem",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Karang Asem, Provinsi Bali."
+  },
+  {
+    "slug": "kabupaten-buleleng",
+    "name": "Kabupaten Buleleng",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Buleleng, Provinsi Bali."
+  },
+  {
+    "slug": "kota-denpasar",
+    "name": "Kota Denpasar",
+    "province": "Bali",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Denpasar, Provinsi Bali."
+  },
+  {
+    "slug": "kabupaten-lombok-barat",
+    "name": "Kabupaten Lombok Barat",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lombok Barat, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kabupaten-lombok-tengah",
+    "name": "Kabupaten Lombok Tengah",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lombok Tengah, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kabupaten-lombok-timur",
+    "name": "Kabupaten Lombok Timur",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lombok Timur, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kabupaten-sumbawa",
+    "name": "Kabupaten Sumbawa",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sumbawa, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kabupaten-dompu",
+    "name": "Kabupaten Dompu",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Dompu, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kabupaten-bima",
+    "name": "Kabupaten Bima",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bima, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kabupaten-sumbawa-barat",
+    "name": "Kabupaten Sumbawa Barat",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sumbawa Barat, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kabupaten-lombok-utara",
+    "name": "Kabupaten Lombok Utara",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lombok Utara, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kota-mataram",
+    "name": "Kota Mataram",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Mataram, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kota-bima",
+    "name": "Kota Bima",
+    "province": "Nusa Tenggara Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bima, Provinsi Nusa Tenggara Barat."
+  },
+  {
+    "slug": "kabupaten-sumba-barat",
+    "name": "Kabupaten Sumba Barat",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sumba Barat, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-sumba-timur",
+    "name": "Kabupaten Sumba Timur",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sumba Timur, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-kupang",
+    "name": "Kabupaten Kupang",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kupang, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-timor-tengah-selatan",
+    "name": "Kabupaten Timor Tengah Selatan",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Timor Tengah Selatan, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-timor-tengah-utara",
+    "name": "Kabupaten Timor Tengah Utara",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Timor Tengah Utara, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-belu",
+    "name": "Kabupaten Belu",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Belu, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-alor",
+    "name": "Kabupaten Alor",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Alor, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-lembata",
+    "name": "Kabupaten Lembata",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lembata, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-flores-timur",
+    "name": "Kabupaten Flores Timur",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Flores Timur, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-sikka",
+    "name": "Kabupaten Sikka",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sikka, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-ende",
+    "name": "Kabupaten Ende",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ende, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-ngada",
+    "name": "Kabupaten Ngada",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ngada, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-manggarai",
+    "name": "Kabupaten Manggarai",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Manggarai, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-rote-ndao",
+    "name": "Kabupaten Rote Ndao",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Rote Ndao, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-manggarai-barat",
+    "name": "Kabupaten Manggarai Barat",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Manggarai Barat, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-sumba-tengah",
+    "name": "Kabupaten Sumba Tengah",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sumba Tengah, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-sumba-barat-daya",
+    "name": "Kabupaten Sumba Barat Daya",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sumba Barat Daya, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-nagekeo",
+    "name": "Kabupaten Nagekeo",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nagekeo, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-manggarai-timur",
+    "name": "Kabupaten Manggarai Timur",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Manggarai Timur, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-sabu-raijua",
+    "name": "Kabupaten Sabu Raijua",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sabu Raijua, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-malaka",
+    "name": "Kabupaten Malaka",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Malaka, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kota-kupang",
+    "name": "Kota Kupang",
+    "province": "Nusa Tenggara Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Kupang, Provinsi Nusa Tenggara Timur."
+  },
+  {
+    "slug": "kabupaten-sambas",
+    "name": "Kabupaten Sambas",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sambas, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-bengkayang",
+    "name": "Kabupaten Bengkayang",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bengkayang, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-landak",
+    "name": "Kabupaten Landak",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Landak, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-mempawah",
+    "name": "Kabupaten Mempawah",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mempawah, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-sanggau",
+    "name": "Kabupaten Sanggau",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sanggau, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-ketapang",
+    "name": "Kabupaten Ketapang",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Ketapang, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-sintang",
+    "name": "Kabupaten Sintang",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sintang, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-kapuas-hulu",
+    "name": "Kabupaten Kapuas Hulu",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kapuas Hulu, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-sekadau",
+    "name": "Kabupaten Sekadau",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sekadau, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-melawi",
+    "name": "Kabupaten Melawi",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Melawi, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-kayong-utara",
+    "name": "Kabupaten Kayong Utara",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kayong Utara, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-kubu-raya",
+    "name": "Kabupaten Kubu Raya",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kubu Raya, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kota-pontianak",
+    "name": "Kota Pontianak",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Pontianak, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kota-singkawang",
+    "name": "Kota Singkawang",
+    "province": "Kalimantan Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Singkawang, Provinsi Kalimantan Barat."
+  },
+  {
+    "slug": "kabupaten-kotawaringin-barat",
+    "name": "Kabupaten Kotawaringin Barat",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kotawaringin Barat, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-kotawaringin-timur",
+    "name": "Kabupaten Kotawaringin Timur",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kotawaringin Timur, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-kapuas",
+    "name": "Kabupaten Kapuas",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kapuas, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-barito-selatan",
+    "name": "Kabupaten Barito Selatan",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Barito Selatan, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-barito-utara",
+    "name": "Kabupaten Barito Utara",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Barito Utara, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-sukamara",
+    "name": "Kabupaten Sukamara",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sukamara, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-lamandau",
+    "name": "Kabupaten Lamandau",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lamandau, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-seruyan",
+    "name": "Kabupaten Seruyan",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Seruyan, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-katingan",
+    "name": "Kabupaten Katingan",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Katingan, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-pulang-pisau",
+    "name": "Kabupaten Pulang Pisau",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pulang Pisau, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-gunung-mas",
+    "name": "Kabupaten Gunung Mas",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Gunung Mas, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-barito-timur",
+    "name": "Kabupaten Barito Timur",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Barito Timur, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-murung-raya",
+    "name": "Kabupaten Murung Raya",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Murung Raya, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kota-palangka-raya",
+    "name": "Kota Palangka Raya",
+    "province": "Kalimantan Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Palangka Raya, Provinsi Kalimantan Tengah."
+  },
+  {
+    "slug": "kabupaten-tanah-laut",
+    "name": "Kabupaten Tanah Laut",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tanah Laut, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-kota-baru",
+    "name": "Kabupaten Kota Baru",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kota Baru, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-banjar",
+    "name": "Kabupaten Banjar",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Banjar, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-barito-kuala",
+    "name": "Kabupaten Barito Kuala",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Barito Kuala, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-tapin",
+    "name": "Kabupaten Tapin",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tapin, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-hulu-sungai-selatan",
+    "name": "Kabupaten Hulu Sungai Selatan",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Hulu Sungai Selatan, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-hulu-sungai-tengah",
+    "name": "Kabupaten Hulu Sungai Tengah",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Hulu Sungai Tengah, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-hulu-sungai-utara",
+    "name": "Kabupaten Hulu Sungai Utara",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Hulu Sungai Utara, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-tabalong",
+    "name": "Kabupaten Tabalong",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tabalong, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-tanah-bumbu",
+    "name": "Kabupaten Tanah Bumbu",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tanah Bumbu, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-balangan",
+    "name": "Kabupaten Balangan",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Balangan, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kota-banjarmasin",
+    "name": "Kota Banjarmasin",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Banjarmasin, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kota-banjar-baru",
+    "name": "Kota Banjar Baru",
+    "province": "Kalimantan Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Banjar Baru, Provinsi Kalimantan Selatan."
+  },
+  {
+    "slug": "kabupaten-paser",
+    "name": "Kabupaten Paser",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Paser, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kabupaten-kutai-barat",
+    "name": "Kabupaten Kutai Barat",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kutai Barat, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kabupaten-kutai-kartanegara",
+    "name": "Kabupaten Kutai Kartanegara",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kutai Kartanegara, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kabupaten-kutai-timur",
+    "name": "Kabupaten Kutai Timur",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kutai Timur, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kabupaten-berau",
+    "name": "Kabupaten Berau",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Berau, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kabupaten-penajam-paser-utara",
+    "name": "Kabupaten Penajam Paser Utara",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Penajam Paser Utara, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kabupaten-mahakam-hulu",
+    "name": "Kabupaten Mahakam Hulu",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mahakam Hulu, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kota-balikpapan",
+    "name": "Kota Balikpapan",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Balikpapan, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kota-samarinda",
+    "name": "Kota Samarinda",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Samarinda, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kota-bontang",
+    "name": "Kota Bontang",
+    "province": "Kalimantan Timur",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bontang, Provinsi Kalimantan Timur."
+  },
+  {
+    "slug": "kabupaten-malinau",
+    "name": "Kabupaten Malinau",
+    "province": "Kalimantan Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Malinau, Provinsi Kalimantan Utara."
+  },
+  {
+    "slug": "kabupaten-bulungan",
+    "name": "Kabupaten Bulungan",
+    "province": "Kalimantan Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bulungan, Provinsi Kalimantan Utara."
+  },
+  {
+    "slug": "kabupaten-tana-tidung",
+    "name": "Kabupaten Tana Tidung",
+    "province": "Kalimantan Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tana Tidung, Provinsi Kalimantan Utara."
+  },
+  {
+    "slug": "kabupaten-nunukan",
+    "name": "Kabupaten Nunukan",
+    "province": "Kalimantan Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nunukan, Provinsi Kalimantan Utara."
+  },
+  {
+    "slug": "kota-tarakan",
+    "name": "Kota Tarakan",
+    "province": "Kalimantan Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tarakan, Provinsi Kalimantan Utara."
+  },
+  {
+    "slug": "kabupaten-bolaang-mongondow",
+    "name": "Kabupaten Bolaang Mongondow",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bolaang Mongondow, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-minahasa",
+    "name": "Kabupaten Minahasa",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Minahasa, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-kepulauan-sangihe",
+    "name": "Kabupaten Kepulauan Sangihe",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Sangihe, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-kepulauan-talaud",
+    "name": "Kabupaten Kepulauan Talaud",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Talaud, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-minahasa-selatan",
+    "name": "Kabupaten Minahasa Selatan",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Minahasa Selatan, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-minahasa-utara",
+    "name": "Kabupaten Minahasa Utara",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Minahasa Utara, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-bolaang-mongondow-utara",
+    "name": "Kabupaten Bolaang Mongondow Utara",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bolaang Mongondow Utara, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-siau-tagulandang-biaro",
+    "name": "Kabupaten Siau Tagulandang Biaro",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Siau Tagulandang Biaro, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-minahasa-tenggara",
+    "name": "Kabupaten Minahasa Tenggara",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Minahasa Tenggara, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-bolaang-mongondow-selatan",
+    "name": "Kabupaten Bolaang Mongondow Selatan",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bolaang Mongondow Selatan, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-bolaang-mongondow-timur",
+    "name": "Kabupaten Bolaang Mongondow Timur",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bolaang Mongondow Timur, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kota-manado",
+    "name": "Kota Manado",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Manado, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kota-bitung",
+    "name": "Kota Bitung",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Bitung, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kota-tomohon",
+    "name": "Kota Tomohon",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tomohon, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kota-kotamobagu",
+    "name": "Kota Kotamobagu",
+    "province": "Sulawesi Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Kotamobagu, Provinsi Sulawesi Utara."
+  },
+  {
+    "slug": "kabupaten-banggai-kepulauan",
+    "name": "Kabupaten Banggai Kepulauan",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Banggai Kepulauan, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-banggai",
+    "name": "Kabupaten Banggai",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Banggai, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-morowali",
+    "name": "Kabupaten Morowali",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Morowali, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-poso",
+    "name": "Kabupaten Poso",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Poso, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-donggala",
+    "name": "Kabupaten Donggala",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Donggala, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-toli-toli",
+    "name": "Kabupaten Toli-toli",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Toli-toli, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-buol",
+    "name": "Kabupaten Buol",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Buol, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-parigi-moutong",
+    "name": "Kabupaten Parigi Moutong",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Parigi Moutong, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-tojo-una-una",
+    "name": "Kabupaten Tojo Una-una",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tojo Una-una, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-sigi",
+    "name": "Kabupaten Sigi",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sigi, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-banggai-laut",
+    "name": "Kabupaten Banggai Laut",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Banggai Laut, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-morowali-utara",
+    "name": "Kabupaten Morowali Utara",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Morowali Utara, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kota-palu",
+    "name": "Kota Palu",
+    "province": "Sulawesi Tengah",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Palu, Provinsi Sulawesi Tengah."
+  },
+  {
+    "slug": "kabupaten-kepulauan-selayar",
+    "name": "Kabupaten Kepulauan Selayar",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Selayar, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-bulukumba",
+    "name": "Kabupaten Bulukumba",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bulukumba, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-bantaeng",
+    "name": "Kabupaten Bantaeng",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bantaeng, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-jeneponto",
+    "name": "Kabupaten Jeneponto",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Jeneponto, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-takalar",
+    "name": "Kabupaten Takalar",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Takalar, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-gowa",
+    "name": "Kabupaten Gowa",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Gowa, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-sinjai",
+    "name": "Kabupaten Sinjai",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sinjai, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-maros",
+    "name": "Kabupaten Maros",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Maros, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-pangkajene-dan-kepulauan",
+    "name": "Kabupaten Pangkajene Dan Kepulauan",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pangkajene Dan Kepulauan, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-barru",
+    "name": "Kabupaten Barru",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Barru, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-bone",
+    "name": "Kabupaten Bone",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bone, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-soppeng",
+    "name": "Kabupaten Soppeng",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Soppeng, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-wajo",
+    "name": "Kabupaten Wajo",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Wajo, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-sidenreng-rappang",
+    "name": "Kabupaten Sidenreng Rappang",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sidenreng Rappang, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-pinrang",
+    "name": "Kabupaten Pinrang",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pinrang, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-enrekang",
+    "name": "Kabupaten Enrekang",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Enrekang, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-luwu",
+    "name": "Kabupaten Luwu",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Luwu, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-tana-toraja",
+    "name": "Kabupaten Tana Toraja",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tana Toraja, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-luwu-utara",
+    "name": "Kabupaten Luwu Utara",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Luwu Utara, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-luwu-timur",
+    "name": "Kabupaten Luwu Timur",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Luwu Timur, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-toraja-utara",
+    "name": "Kabupaten Toraja Utara",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Toraja Utara, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kota-makassar",
+    "name": "Kota Makassar",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Makassar, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kota-parepare",
+    "name": "Kota Parepare",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Parepare, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kota-palopo",
+    "name": "Kota Palopo",
+    "province": "Sulawesi Selatan",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Palopo, Provinsi Sulawesi Selatan."
+  },
+  {
+    "slug": "kabupaten-buton",
+    "name": "Kabupaten Buton",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Buton, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-muna",
+    "name": "Kabupaten Muna",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Muna, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-konawe",
+    "name": "Kabupaten Konawe",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Konawe, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-kolaka",
+    "name": "Kabupaten Kolaka",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kolaka, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-konawe-selatan",
+    "name": "Kabupaten Konawe Selatan",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Konawe Selatan, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-bombana",
+    "name": "Kabupaten Bombana",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bombana, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-wakatobi",
+    "name": "Kabupaten Wakatobi",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Wakatobi, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-kolaka-utara",
+    "name": "Kabupaten Kolaka Utara",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kolaka Utara, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-buton-utara",
+    "name": "Kabupaten Buton Utara",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Buton Utara, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-konawe-utara",
+    "name": "Kabupaten Konawe Utara",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Konawe Utara, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-kolaka-timur",
+    "name": "Kabupaten Kolaka Timur",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kolaka Timur, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-konawe-kepulauan",
+    "name": "Kabupaten Konawe Kepulauan",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Konawe Kepulauan, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-muna-barat",
+    "name": "Kabupaten Muna Barat",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Muna Barat, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-buton-tengah",
+    "name": "Kabupaten Buton Tengah",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Buton Tengah, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-buton-selatan",
+    "name": "Kabupaten Buton Selatan",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Buton Selatan, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kota-kendari",
+    "name": "Kota Kendari",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Kendari, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kota-baubau",
+    "name": "Kota Baubau",
+    "province": "Sulawesi Tenggara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Baubau, Provinsi Sulawesi Tenggara."
+  },
+  {
+    "slug": "kabupaten-boalemo",
+    "name": "Kabupaten Boalemo",
+    "province": "Gorontalo",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Boalemo, Provinsi Gorontalo."
+  },
+  {
+    "slug": "kabupaten-gorontalo",
+    "name": "Kabupaten Gorontalo",
+    "province": "Gorontalo",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Gorontalo, Provinsi Gorontalo."
+  },
+  {
+    "slug": "kabupaten-pohuwato",
+    "name": "Kabupaten Pohuwato",
+    "province": "Gorontalo",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pohuwato, Provinsi Gorontalo."
+  },
+  {
+    "slug": "kabupaten-bone-bolango",
+    "name": "Kabupaten Bone Bolango",
+    "province": "Gorontalo",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Bone Bolango, Provinsi Gorontalo."
+  },
+  {
+    "slug": "kabupaten-gorontalo-utara",
+    "name": "Kabupaten Gorontalo Utara",
+    "province": "Gorontalo",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Gorontalo Utara, Provinsi Gorontalo."
+  },
+  {
+    "slug": "kota-gorontalo",
+    "name": "Kota Gorontalo",
+    "province": "Gorontalo",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Gorontalo, Provinsi Gorontalo."
+  },
+  {
+    "slug": "kabupaten-majene",
+    "name": "Kabupaten Majene",
+    "province": "Sulawesi Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Majene, Provinsi Sulawesi Barat."
+  },
+  {
+    "slug": "kabupaten-polewali-mandar",
+    "name": "Kabupaten Polewali Mandar",
+    "province": "Sulawesi Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Polewali Mandar, Provinsi Sulawesi Barat."
+  },
+  {
+    "slug": "kabupaten-mamasa",
+    "name": "Kabupaten Mamasa",
+    "province": "Sulawesi Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mamasa, Provinsi Sulawesi Barat."
+  },
+  {
+    "slug": "kabupaten-mamuju",
+    "name": "Kabupaten Mamuju",
+    "province": "Sulawesi Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mamuju, Provinsi Sulawesi Barat."
+  },
+  {
+    "slug": "kabupaten-mamuju-utara",
+    "name": "Kabupaten Mamuju Utara",
+    "province": "Sulawesi Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mamuju Utara, Provinsi Sulawesi Barat."
+  },
+  {
+    "slug": "kabupaten-mamuju-tengah",
+    "name": "Kabupaten Mamuju Tengah",
+    "province": "Sulawesi Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mamuju Tengah, Provinsi Sulawesi Barat."
+  },
+  {
+    "slug": "kabupaten-maluku-tenggara-barat",
+    "name": "Kabupaten Maluku Tenggara Barat",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Maluku Tenggara Barat, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-maluku-tenggara",
+    "name": "Kabupaten Maluku Tenggara",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Maluku Tenggara, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-maluku-tengah",
+    "name": "Kabupaten Maluku Tengah",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Maluku Tengah, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-buru",
+    "name": "Kabupaten Buru",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Buru, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-kepulauan-aru",
+    "name": "Kabupaten Kepulauan Aru",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Aru, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-seram-bagian-barat",
+    "name": "Kabupaten Seram Bagian Barat",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Seram Bagian Barat, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-seram-bagian-timur",
+    "name": "Kabupaten Seram Bagian Timur",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Seram Bagian Timur, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-maluku-barat-daya",
+    "name": "Kabupaten Maluku Barat Daya",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Maluku Barat Daya, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-buru-selatan",
+    "name": "Kabupaten Buru Selatan",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Buru Selatan, Provinsi Maluku."
+  },
+  {
+    "slug": "kota-ambon",
+    "name": "Kota Ambon",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Ambon, Provinsi Maluku."
+  },
+  {
+    "slug": "kota-tual",
+    "name": "Kota Tual",
+    "province": "Maluku",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tual, Provinsi Maluku."
+  },
+  {
+    "slug": "kabupaten-halmahera-barat",
+    "name": "Kabupaten Halmahera Barat",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Halmahera Barat, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kabupaten-halmahera-tengah",
+    "name": "Kabupaten Halmahera Tengah",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Halmahera Tengah, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kabupaten-kepulauan-sula",
+    "name": "Kabupaten Kepulauan Sula",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Sula, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kabupaten-halmahera-selatan",
+    "name": "Kabupaten Halmahera Selatan",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Halmahera Selatan, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kabupaten-halmahera-utara",
+    "name": "Kabupaten Halmahera Utara",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Halmahera Utara, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kabupaten-halmahera-timur",
+    "name": "Kabupaten Halmahera Timur",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Halmahera Timur, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kabupaten-pulau-morotai",
+    "name": "Kabupaten Pulau Morotai",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pulau Morotai, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kabupaten-pulau-taliabu",
+    "name": "Kabupaten Pulau Taliabu",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pulau Taliabu, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kota-ternate",
+    "name": "Kota Ternate",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Ternate, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kota-tidore-kepulauan",
+    "name": "Kota Tidore Kepulauan",
+    "province": "Maluku Utara",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Tidore Kepulauan, Provinsi Maluku Utara."
+  },
+  {
+    "slug": "kabupaten-fakfak",
+    "name": "Kabupaten Fakfak",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Fakfak, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-kaimana",
+    "name": "Kabupaten Kaimana",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kaimana, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-teluk-wondama",
+    "name": "Kabupaten Teluk Wondama",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Teluk Wondama, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-teluk-bintuni",
+    "name": "Kabupaten Teluk Bintuni",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Teluk Bintuni, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-manokwari",
+    "name": "Kabupaten Manokwari",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Manokwari, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-sorong-selatan",
+    "name": "Kabupaten Sorong Selatan",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sorong Selatan, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-sorong",
+    "name": "Kabupaten Sorong",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sorong, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-raja-ampat",
+    "name": "Kabupaten Raja Ampat",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Raja Ampat, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-tambrauw",
+    "name": "Kabupaten Tambrauw",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tambrauw, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-maybrat",
+    "name": "Kabupaten Maybrat",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Maybrat, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-manokwari-selatan",
+    "name": "Kabupaten Manokwari Selatan",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Manokwari Selatan, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-pegunungan-arfak",
+    "name": "Kabupaten Pegunungan Arfak",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pegunungan Arfak, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kota-sorong",
+    "name": "Kota Sorong",
+    "province": "Papua Barat",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Sorong, Provinsi Papua Barat."
+  },
+  {
+    "slug": "kabupaten-merauke",
+    "name": "Kabupaten Merauke",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Merauke, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-jayawijaya",
+    "name": "Kabupaten Jayawijaya",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Jayawijaya, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-jayapura",
+    "name": "Kabupaten Jayapura",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Jayapura, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-nabire",
+    "name": "Kabupaten Nabire",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nabire, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-kepulauan-yapen",
+    "name": "Kabupaten Kepulauan Yapen",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Kepulauan Yapen, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-biak-numfor",
+    "name": "Kabupaten Biak Numfor",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Biak Numfor, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-paniai",
+    "name": "Kabupaten Paniai",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Paniai, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-puncak-jaya",
+    "name": "Kabupaten Puncak Jaya",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Puncak Jaya, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-mimika",
+    "name": "Kabupaten Mimika",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mimika, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-boven-digoel",
+    "name": "Kabupaten Boven Digoel",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Boven Digoel, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-mappi",
+    "name": "Kabupaten Mappi",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mappi, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-asmat",
+    "name": "Kabupaten Asmat",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Asmat, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-yahukimo",
+    "name": "Kabupaten Yahukimo",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Yahukimo, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-pegunungan-bintang",
+    "name": "Kabupaten Pegunungan Bintang",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Pegunungan Bintang, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-tolikara",
+    "name": "Kabupaten Tolikara",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Tolikara, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-sarmi",
+    "name": "Kabupaten Sarmi",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Sarmi, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-keerom",
+    "name": "Kabupaten Keerom",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Keerom, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-waropen",
+    "name": "Kabupaten Waropen",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Waropen, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-supiori",
+    "name": "Kabupaten Supiori",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Supiori, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-mamberamo-raya",
+    "name": "Kabupaten Mamberamo Raya",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mamberamo Raya, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-nduga",
+    "name": "Kabupaten Nduga",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Nduga, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-lanny-jaya",
+    "name": "Kabupaten Lanny Jaya",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Lanny Jaya, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-mamberamo-tengah",
+    "name": "Kabupaten Mamberamo Tengah",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Mamberamo Tengah, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-yalimo",
+    "name": "Kabupaten Yalimo",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Yalimo, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-puncak",
+    "name": "Kabupaten Puncak",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Puncak, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-dogiyai",
+    "name": "Kabupaten Dogiyai",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Dogiyai, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-intan-jaya",
+    "name": "Kabupaten Intan Jaya",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Intan Jaya, Provinsi Papua."
+  },
+  {
+    "slug": "kabupaten-deiyai",
+    "name": "Kabupaten Deiyai",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kabupaten Deiyai, Provinsi Papua."
+  },
+  {
+    "slug": "kota-jayapura",
+    "name": "Kota Jayapura",
+    "province": "Papua",
+    "description": "Jelajahi rekomendasi tempat makan dan kuliner terbaik di Kota Jayapura, Provinsi Papua."
+  }
+]
