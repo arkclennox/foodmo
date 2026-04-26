@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { PRICE_RANGES, PRICE_RANGE_LABEL, FACILITY_OPTIONS } from '@/lib/constants';
+import { PRICE_RANGES, PRICE_RANGE_LABEL } from '@/lib/constants';
 
 type CategoryOption = { slug: string; name: string };
 type CityOption = { slug: string; name: string };
@@ -27,6 +27,7 @@ export function ListingFilter({
   state,
   categories,
   cities,
+  facilities,
   hideCategory = false,
   hideCity = false,
 }: {
@@ -34,6 +35,7 @@ export function ListingFilter({
   state: ListingFilterState;
   categories: CategoryOption[];
   cities: CityOption[];
+  facilities: string[];
   hideCategory?: boolean;
   hideCity?: boolean;
 }) {
@@ -118,7 +120,7 @@ export function ListingFilter({
             className="input-base"
           >
             <option value="">Semua fasilitas</option>
-            {FACILITY_OPTIONS.map((f) => (
+            {facilities.map((f) => (
               <option key={f} value={f}>
                 {f}
               </option>

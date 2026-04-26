@@ -5,7 +5,7 @@ import { ListingCard } from '@/components/ListingCard';
 import { ListingFilter } from '@/components/ListingFilter';
 import { Pagination } from '@/components/Pagination';
 import { buildMetadata } from '@/lib/seo';
-import { listCategories, listCities, listListings } from '@/lib/queries';
+import { listCategories, listCities, listFacilities, listListings } from '@/lib/queries';
 import { DEFAULT_PAGE_SIZE } from '@/lib/constants';
 import { parsePagination } from '@/lib/pagination';
 
@@ -39,9 +39,10 @@ export default async function DirectoryPage({
   };
   const { page, limit } = parsePagination(params, { limit: DEFAULT_PAGE_SIZE });
 
-  const [categories, cities, result] = await Promise.all([
+  const [categories, cities, facilities, result] = await Promise.all([
     listCategories('listing'),
     listCities(),
+    listFacilities(),
     listListings({
       search: state.search,
       categorySlug: state.category,
@@ -79,6 +80,7 @@ export default async function DirectoryPage({
           state={state}
           categories={categories}
           cities={cities}
+          facilities={facilities}
         />
         <div>
           {result.items.length === 0 ? (

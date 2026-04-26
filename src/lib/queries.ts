@@ -165,11 +165,33 @@ export async function findArticleBySlug(slug: string, includeDrafts = false) {
 
 export async function listCategories(type?: 'listing' | 'article') {
   return prisma.category.findMany({
-    where: type ? { type } : undefined,
+    where: {
+      type: type || undefined,
+      ...(type === 'listing' ? { listings: { some: { status: 'published' } } } : {}),
+      ...(type === 'article' ? { articles: { some: { status: 'published' } } } : {}),
+    },
     orderBy: { name: 'asc' },
   });
 }
 
 export async function listCities() {
-  return prisma.city.findMany({ orderBy: { name: 'asc' } });
+  return prisma.city.findMany({
+    where: { listings: { some: { status: 'published' } } },
+    orderBy: { name: 'asc' },
+  });
+}
+
+export async function listFacilities() {
+  const listings = await prisma.listing.findMany({
+    where: { status: 'published' },
+    select: { facilities: true },
+  });
+  const set = new Set<string>();
+  for (const l of listings) {
+    const arr = parseJsonArray<string>(l.facilities);
+    for (const f of arr) {
+      if (f.trim()) set.add(f.trim());
+    }
+  }
+  return Array.from(set).sort();
 }

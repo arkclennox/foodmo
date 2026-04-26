@@ -6,7 +6,7 @@ import { ListingCard } from '@/components/ListingCard';
 import { ListingFilter } from '@/components/ListingFilter';
 import { Pagination } from '@/components/Pagination';
 import { prisma } from '@/lib/db';
-import { listCategories, listListings } from '@/lib/queries';
+import { listCategories, listFacilities, listListings } from '@/lib/queries';
 import { DEFAULT_PAGE_SIZE } from '@/lib/constants';
 import { parsePagination } from '@/lib/pagination';
 import { buildMetadata } from '@/lib/seo';
@@ -64,8 +64,9 @@ export default async function CityPage({
   };
   const { page, limit } = parsePagination(sp, { limit: DEFAULT_PAGE_SIZE });
 
-  const [categories, result, popularCategories] = await Promise.all([
+  const [categories, facilities, result, popularCategories] = await Promise.all([
     listCategories('listing'),
+    listFacilities(),
     listListings({
       search: state.search,
       categorySlug: state.category,
@@ -129,6 +130,7 @@ export default async function CityPage({
           state={state}
           categories={categories}
           cities={[]}
+          facilities={facilities}
           hideCity
         />
         <div>
