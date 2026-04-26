@@ -52,7 +52,7 @@ export default async function HomePage() {
     }),
     prisma.listing.findMany({
       where: { status: 'published' },
-      orderBy: [{ rating: 'desc' }, { reviewCount: 'desc' }],
+      orderBy: [{ rating: 'desc' }, { createdAt: 'desc' }],
       take: 4,
       include: {
         category: { select: { name: true, slug: true } },
