@@ -13,6 +13,14 @@ export const ARTICLE_STATUSES = ['draft', 'published', 'archived'] as const;
 
 export const DEFAULT_PAGE_SIZE = 12;
 
+// Threshold for auto-noindex: pages with content thinner than this
+// are marked noindex,follow to keep Google's quality signal high.
+export const THIN_CONTENT_THRESHOLDS = {
+  listingDescriptionChars: 100,
+  cityMinListings: 3,
+  categoryMinListings: 3,
+};
+
 export const FACILITY_OPTIONS = [
   'WiFi',
   'Parkir',

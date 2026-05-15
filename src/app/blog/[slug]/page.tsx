@@ -6,6 +6,7 @@ import { Breadcrumb } from '@/components/Breadcrumb';
 import { ArticleCard } from '@/components/ArticleCard';
 import { ListingCard } from '@/components/ListingCard';
 import { buildMetadata, siteUrl } from '@/lib/seo';
+import { breadcrumbSchema, jsonLdScript } from '@/lib/schema';
 import { findArticleBySlug, listArticles } from '@/lib/queries';
 import { prisma } from '@/lib/db';
 
@@ -86,9 +87,19 @@ export default async function ArticleDetailPage({
     dateModified: toIsoString(article.updatedAt),
     author: article.authorName
       ? { '@type': 'Person', name: article.authorName }
-      : undefined,
+      : { '@type': 'Organization', name: 'FoodMo' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'FoodMo',
+      url: siteUrl(),
+    },
     mainEntityOfPage: siteUrl(`/blog/${article.slug}`),
   };
+  const breadcrumbs = breadcrumbSchema([
+    { name: 'Beranda', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: article.title },
+  ]);
 
   return (
     <div className="section py-8">
@@ -171,7 +182,12 @@ export default async function ArticleDetailPage({
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbs) }}
       />
     </div>
   );

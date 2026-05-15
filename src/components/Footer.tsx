@@ -4,11 +4,17 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="mt-16 border-t border-border bg-soft">
-      <div className="section grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
+      <div className="section grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="lg:col-span-2">
           <div className="mb-3 text-lg font-semibold text-navy">FoodMo</div>
           <p className="text-sm text-black/70">
-            Temukan restoran, cafe, dan warung makan terbaik di seluruh Indonesia.
+            Platform informasi kuliner lokal Indonesia. Setiap listing dikurasi tim editorial —
+            bukan scraper otomatis.
+          </p>
+          <p className="mt-3 text-sm text-black/70">
+            <a href="mailto:hello@foodmo.id" className="text-navy hover:underline">
+              hello@foodmo.id
+            </a>
           </p>
         </div>
         <div>
@@ -20,43 +26,23 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/kota" className="hover:text-navy">
+                Semua Kota
+              </Link>
+            </li>
+            <li>
+              <Link href="/kategori" className="hover:text-navy">
+                Semua Kategori
+              </Link>
+            </li>
+            <li>
               <Link href="/blog" className="hover:text-navy">
                 Blog Kuliner
               </Link>
             </li>
             <li>
-              <Link href="/kategori/cafe" className="hover:text-navy">
-                Cafe
-              </Link>
-            </li>
-            <li>
-              <Link href="/kategori/warung-makan" className="hover:text-navy">
-                Warung Makan
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <div className="mb-3 text-sm font-semibold text-navy">Kota Populer</div>
-          <ul className="space-y-2 text-sm text-black/80">
-            <li>
-              <Link href="/kota/jakarta" className="hover:text-navy">
-                Jakarta
-              </Link>
-            </li>
-            <li>
-              <Link href="/kota/bandung" className="hover:text-navy">
-                Bandung
-              </Link>
-            </li>
-            <li>
-              <Link href="/kota/surabaya" className="hover:text-navy">
-                Surabaya
-              </Link>
-            </li>
-            <li>
-              <Link href="/kota/yogyakarta" className="hover:text-navy">
-                Yogyakarta
+              <Link href="/peta-situs" className="hover:text-navy">
+                Peta Situs
               </Link>
             </li>
           </ul>
@@ -75,13 +61,33 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/editorial" className="hover:text-navy">
+                Pedoman Editorial
+              </Link>
+            </li>
+            <li>
+              <Link href="/koreksi-data" className="hover:text-navy">
+                Kebijakan Koreksi Data
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div className="mb-3 text-sm font-semibold text-navy">Legal</div>
+          <ul className="space-y-2 text-sm text-black/80">
+            <li>
               <Link href="/privacy-policy" className="hover:text-navy">
                 Kebijakan Privasi
               </Link>
             </li>
             <li>
               <Link href="/terms-of-service" className="hover:text-navy">
-                Syarat & Ketentuan
+                Syarat &amp; Ketentuan
+              </Link>
+            </li>
+            <li>
+              <Link href="/disclaimer" className="hover:text-navy">
+                Disclaimer
               </Link>
             </li>
           </ul>

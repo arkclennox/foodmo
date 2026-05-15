@@ -11,12 +11,23 @@ import { parsePagination } from '@/lib/pagination';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = buildMetadata({
-  title: 'Direktori Tempat Makan',
-  description:
-    'Jelajahi direktori restoran, cafe, dan warung makan di seluruh Indonesia — filter berdasarkan kota, kategori, harga, dan fasilitas.',
-  path: '/tempat-makan',
-});
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+  const hasFilter = Boolean(
+    sp.search || sp.category || sp.city || sp.price || sp.facility || sp.sort || sp.page,
+  );
+  return buildMetadata({
+    title: 'Direktori Tempat Makan',
+    description:
+      'Jelajahi direktori restoran, cafe, dan warung makan di seluruh Indonesia — filter berdasarkan kota, kategori, harga, dan fasilitas.',
+    path: '/tempat-makan',
+    noindex: hasFilter,
+  });
+}
 
 function oneOf(value: string | string[] | undefined): string {
   if (Array.isArray(value)) return value[0] ?? '';

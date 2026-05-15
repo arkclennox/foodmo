@@ -3,6 +3,8 @@ import { UtensilsIcon } from './icons';
 
 const NAV = [
   { href: '/tempat-makan', label: 'Direktori' },
+  { href: '/kota', label: 'Kota' },
+  { href: '/kategori', label: 'Kategori' },
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'Tentang' },
   { href: '/contact', label: 'Kontak' },
@@ -18,7 +20,7 @@ export function Header() {
           </span>
           <span className="text-base sm:text-lg">FoodMo</span>
         </Link>
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
@@ -32,9 +34,31 @@ export function Header() {
             Cari Tempat Makan
           </Link>
         </nav>
-        <Link href="/tempat-makan" className="btn-primary md:hidden">
-          Cari
-        </Link>
+        <details className="relative lg:hidden">
+          <summary className="btn-secondary flex h-10 cursor-pointer list-none items-center gap-2 px-3 [&::-webkit-details-marker]:hidden">
+            <span aria-hidden>☰</span>
+            <span className="text-sm font-medium">Menu</span>
+          </summary>
+          <div className="absolute right-0 z-40 mt-2 w-56 rounded-lg border border-border bg-white p-2 shadow-card">
+            <nav className="flex flex-col">
+              {NAV.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-md px-3 py-2 text-sm font-medium text-black/80 transition hover:bg-soft hover:text-navy"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link
+                href="/tempat-makan"
+                className="btn-primary mt-2 justify-center"
+              >
+                Cari Tempat Makan
+              </Link>
+            </nav>
+          </div>
+        </details>
       </div>
     </header>
   );

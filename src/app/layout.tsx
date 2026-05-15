@@ -6,6 +6,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { SITE_DESCRIPTION, SITE_NAME, siteUrl } from '@/lib/seo';
+import { jsonLdScript, organizationSchema, websiteSchema } from '@/lib/schema';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
@@ -76,6 +77,16 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(websiteSchema()) }}
+        />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       </body>
     </html>

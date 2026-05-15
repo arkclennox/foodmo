@@ -9,12 +9,21 @@ import { parsePagination } from '@/lib/pagination';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = buildMetadata({
-  title: 'Blog Kuliner',
-  description:
-    'Artikel dan berita kuliner terbaru — tips, rekomendasi, dan rangkuman tempat makan pilihan.',
-  path: '/blog',
-});
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+  const hasFilter = Boolean(sp.search || sp.category || sp.page);
+  return buildMetadata({
+    title: 'Blog Kuliner',
+    description:
+      'Artikel dan berita kuliner terbaru — tips, rekomendasi, dan rangkuman tempat makan pilihan.',
+    path: '/blog',
+    noindex: hasFilter,
+  });
+}
 
 function oneOf(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] ?? '' : value ?? '';

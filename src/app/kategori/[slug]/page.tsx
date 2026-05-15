@@ -7,9 +7,10 @@ import { ListingFilter } from '@/components/ListingFilter';
 import { Pagination } from '@/components/Pagination';
 import { prisma } from '@/lib/db';
 import { listCities, listFacilities, listListings } from '@/lib/queries';
-import { DEFAULT_PAGE_SIZE } from '@/lib/constants';
+import { DEFAULT_PAGE_SIZE, THIN_CONTENT_THRESHOLDS } from '@/lib/constants';
 import { parsePagination } from '@/lib/pagination';
 import { buildMetadata } from '@/lib/seo';
+import { breadcrumbSchema, jsonLdScript } from '@/lib/schema';
 
 export const revalidate = 60;
 
@@ -31,16 +32,22 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const category = await prisma.category.findUnique({ where: { slug } });
-  if (!category) return buildMetadata({ title: 'Kategori tidak ditemukan' });
+  const category = await prisma.category.findUnique({
+    where: { slug },
+    include: {
+      _count: { select: { listings: { where: { status: 'published' } } } },
+    },
+  });
+  if (!category) return buildMetadata({ title: 'Kategori tidak ditemukan', noindex: true });
+  const thin = category._count.listings < THIN_CONTENT_THRESHOLDS.categoryMinListings;
   return buildMetadata({
     title: category.metaTitle || `Kategori ${category.name}`,
     description:
       category.metaDescription ||
       category.description ||
       `Jelajahi tempat makan kategori ${category.name} di FoodMo.`,
-
     path: `/kategori/${category.slug}`,
+    noindex: thin,
   });
 }
 
@@ -95,12 +102,23 @@ export default async function CategoryPage({
     return s ? `/kategori/${slug}?${s}` : `/kategori/${slug}`;
   };
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: 'Beranda', url: '/' },
+    { name: 'Kategori', url: '/kategori' },
+    { name: category.name },
+  ]);
+
   return (
     <div className="section py-8">
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbs) }}
+      />
       <Breadcrumb
         items={[
           { label: 'Beranda', href: '/' },
-          { label: 'Kategori' },
+          { label: 'Kategori', href: '/kategori' },
           { label: category.name },
         ]}
       />

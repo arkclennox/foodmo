@@ -19,8 +19,9 @@ import {
 } from '@/components/icons';
 import { findListingBySlug, listListings } from '@/lib/queries';
 import { parseJsonObject } from '@/lib/json-fields';
-import { PRICE_RANGE_LABEL } from '@/lib/constants';
+import { PRICE_RANGE_LABEL, THIN_CONTENT_THRESHOLDS } from '@/lib/constants';
 import { buildMetadata, siteUrl } from '@/lib/seo';
+import { breadcrumbSchema, jsonLdScript } from '@/lib/schema';
 import { prisma } from '@/lib/db';
 
 export const revalidate = 60;
@@ -44,7 +45,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const listing = await findListingBySlug(slug);
-  if (!listing) return buildMetadata({ title: 'Tempat makan tidak ditemukan' });
+  if (!listing) {
+    return buildMetadata({ title: 'Tempat makan tidak ditemukan', noindex: true });
+  }
+  const thin =
+    (listing.description?.trim().length ?? 0) <
+    THIN_CONTENT_THRESHOLDS.listingDescriptionChars;
   return buildMetadata({
     title: listing.metaTitle || `${listing.name}${listing.city ? ` — ${listing.city.name}` : ''}`,
     description:
@@ -54,6 +60,7 @@ export async function generateMetadata({
     path: `/tempat-makan/${listing.slug}`,
     image: listing.featuredImageUrl || undefined,
     type: 'website',
+    noindex: thin,
   });
 }
 
@@ -94,6 +101,12 @@ export default async function ListingDetailPage({
   ]);
   const relatedItems = related.items.filter((i) => i.id !== listing.id).slice(0, 3);
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: 'Beranda', url: '/' },
+    { name: 'Direktori', url: '/tempat-makan' },
+    ...(listing.city ? [{ name: listing.city.name, url: `/kota/${listing.city.slug}` }] : []),
+    { name: listing.name },
+  ]);
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
@@ -385,7 +398,12 @@ export default async function ListingDetailPage({
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbs) }}
       />
     </div>
   );
