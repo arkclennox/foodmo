@@ -7,17 +7,19 @@ export type ArticleCardData = {
   slug: string;
   excerpt: string | null;
   featuredImageUrl: string | null;
-  publishedAt: Date | null;
+  publishedAt: Date | string | null;
   category: { name: string; slug: string } | null;
 };
 
-function formatDate(date: Date | null): string {
-  if (!date) return '';
+function formatDate(value: Date | string | null): string {
+  if (!value) return '';
+  const d = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(d.getTime())) return '';
   return new Intl.DateTimeFormat('id-ID', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-  }).format(date);
+  }).format(d);
 }
 
 export function ArticleCard({ article }: { article: ArticleCardData }) {

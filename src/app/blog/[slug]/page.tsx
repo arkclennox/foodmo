@@ -44,13 +44,21 @@ export async function generateMetadata({
   });
 }
 
-function formatDate(date: Date | null): string {
-  if (!date) return '';
+function toIsoString(value: Date | string | null | undefined): string | undefined {
+  if (!value) return undefined;
+  const d = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(d.getTime()) ? undefined : d.toISOString();
+}
+
+function formatDate(value: Date | string | null): string {
+  if (!value) return '';
+  const d = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(d.getTime())) return '';
   return new Intl.DateTimeFormat('id-ID', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-  }).format(date);
+  }).format(d);
 }
 
 export default async function ArticleDetailPage({
@@ -74,8 +82,8 @@ export default async function ArticleDetailPage({
     headline: article.title,
     description: article.excerpt || undefined,
     image: article.featuredImageUrl || undefined,
-    datePublished: (article.publishedAt ?? article.createdAt).toISOString(),
-    dateModified: article.updatedAt.toISOString(),
+    datePublished: toIsoString(article.publishedAt ?? article.createdAt),
+    dateModified: toIsoString(article.updatedAt),
     author: article.authorName
       ? { '@type': 'Person', name: article.authorName }
       : undefined,
