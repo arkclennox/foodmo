@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export function ImageGallery({ images, title }: { images: string[]; title: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,11 +52,12 @@ export function ImageGallery({ images, title }: { images: string[]; title: strin
               className="relative aspect-square w-full cursor-pointer group overflow-hidden rounded-lg"
               onClick={() => openLightbox(idx)}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={src}
                 alt={`${title} - foto ${idx + 1}`}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                fill
+                sizes="(max-width: 640px) 50vw, 33vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
               {showOverlay && (
@@ -96,11 +98,14 @@ export function ImageGallery({ images, title }: { images: string[]; title: strin
               </button>
             )}
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={images[currentIndex]}
               alt={`${title} - foto ${currentIndex + 1} dari ${images.length}`}
-              className="max-h-full max-w-full object-contain select-none"
+              width={1600}
+              height={1200}
+              sizes="100vw"
+              className="max-h-full max-w-full object-contain select-none h-auto w-auto"
+              priority
               onClick={(e) => e.stopPropagation()}
             />
 

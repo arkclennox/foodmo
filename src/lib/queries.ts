@@ -1,5 +1,6 @@
 import { prisma } from './db';
 import { parseJsonArray } from './json-fields';
+import { unstable_cache } from 'next/cache';
 
 export type ListingQueryOptions = {
   search?: string;
@@ -13,7 +14,7 @@ export type ListingQueryOptions = {
   includeDrafts?: boolean;
 };
 
-export async function listListings(opts: ListingQueryOptions) {
+async function listListingsUncached(opts: ListingQueryOptions) {
   const {
     search,
     categorySlug,
@@ -81,7 +82,20 @@ export async function listListings(opts: ListingQueryOptions) {
   };
 }
 
-export async function findListingBySlug(slug: string, includeDrafts = false) {
+const cachedListListings = unstable_cache(
+  (opts: ListingQueryOptions) => listListingsUncached(opts),
+  ['list-listings'],
+  { revalidate: 300, tags: ['listings'] },
+);
+
+export async function listListings(opts: ListingQueryOptions) {
+  if (opts.includeDrafts) {
+    return listListingsUncached(opts);
+  }
+  return cachedListListings(opts);
+}
+
+async function findListingBySlugUncached(slug: string, includeDrafts = false) {
   const listing = await prisma.listing.findUnique({
     where: { slug },
     include: {
@@ -99,7 +113,20 @@ export async function findListingBySlug(slug: string, includeDrafts = false) {
   };
 }
 
-export async function listArticles(opts: {
+const cachedFindListingBySlug = unstable_cache(
+  (slug: string) => findListingBySlugUncached(slug, false),
+  ['find-listing-by-slug'],
+  { revalidate: 300, tags: ['listings'] },
+);
+
+export async function findListingBySlug(slug: string, includeDrafts = false) {
+  if (includeDrafts) {
+    return findListingBySlugUncached(slug, true);
+  }
+  return cachedFindListingBySlug(slug);
+}
+
+async function listArticlesUncached(opts: {
   search?: string;
   categorySlug?: string;
   page?: number;
@@ -142,7 +169,20 @@ export async function listArticles(opts: {
   };
 }
 
-export async function findArticleBySlug(slug: string, includeDrafts = false) {
+const cachedListArticles = unstable_cache(
+  (opts: Parameters<typeof listArticlesUncached>[0]) => listArticlesUncached(opts),
+  ['list-articles'],
+  { revalidate: 300, tags: ['articles'] },
+);
+
+export async function listArticles(opts: Parameters<typeof listArticlesUncached>[0]) {
+  if (opts.includeDrafts) {
+    return listArticlesUncached(opts);
+  }
+  return cachedListArticles(opts);
+}
+
+async function findArticleBySlugUncached(slug: string, includeDrafts = false) {
   const article = await prisma.article.findUnique({
     where: { slug },
     include: { category: { select: { name: true, slug: true } } },
@@ -163,35 +203,146 @@ export async function findArticleBySlug(slug: string, includeDrafts = false) {
   return { ...article, tags, relatedListings };
 }
 
-export async function listCategories(type?: 'listing' | 'article') {
-  return prisma.category.findMany({
-    where: {
-      type: type || undefined,
-      ...(type === 'listing' ? { listings: { some: { status: 'published' } } } : {}),
-      ...(type === 'article' ? { articles: { some: { status: 'published' } } } : {}),
-    },
-    orderBy: { name: 'asc' },
-  });
-}
+const cachedFindArticleBySlug = unstable_cache(
+  (slug: string) => findArticleBySlugUncached(slug, false),
+  ['find-article-by-slug'],
+  { revalidate: 300, tags: ['articles'] },
+);
 
-export async function listCities() {
-  return prisma.city.findMany({
-    where: { listings: { some: { status: 'published' } } },
-    orderBy: { name: 'asc' },
-  });
-}
-
-export async function listFacilities() {
-  const listings = await prisma.listing.findMany({
-    where: { status: 'published' },
-    select: { facilities: true },
-  });
-  const set = new Set<string>();
-  for (const l of listings) {
-    const arr = parseJsonArray<string>(l.facilities);
-    for (const f of arr) {
-      if (f.trim()) set.add(f.trim());
-    }
+export async function findArticleBySlug(slug: string, includeDrafts = false) {
+  if (includeDrafts) {
+    return findArticleBySlugUncached(slug, true);
   }
-  return Array.from(set).sort();
+  return cachedFindArticleBySlug(slug);
 }
+
+export const listCategories = unstable_cache(
+  async (type?: 'listing' | 'article') => {
+    return prisma.category.findMany({
+      where: {
+        type: type || undefined,
+        ...(type === 'listing' ? { listings: { some: { status: 'published' } } } : {}),
+        ...(type === 'article' ? { articles: { some: { status: 'published' } } } : {}),
+      },
+      orderBy: { name: 'asc' },
+    });
+  },
+  ['categories-list'],
+  { revalidate: 3600, tags: ['categories'] }
+);
+
+export const listCities = unstable_cache(
+  async () => {
+    return prisma.city.findMany({
+      where: { listings: { some: { status: 'published' } } },
+      orderBy: { name: 'asc' },
+    });
+  },
+  ['cities-list'],
+  { revalidate: 3600, tags: ['cities'] }
+);
+
+export const listFacilities = unstable_cache(
+  async () => {
+    const rows = await prisma.listing.findMany({
+      where: {
+        status: 'published',
+        facilities: { not: null },
+      },
+      select: { facilities: true },
+    });
+    const set = new Set<string>();
+    for (const r of rows) {
+      for (const f of parseJsonArray<string>(r.facilities)) {
+        const v = f.trim();
+        if (v) set.add(v);
+      }
+    }
+    return Array.from(set).sort();
+  },
+  ['facilities-list'],
+  { revalidate: 86400, tags: ['facilities', 'listings'] }
+);
+
+// --- HOMEPAGE CACHED QUERIES ---
+
+export const getHomepageLatestListings = unstable_cache(
+  async () => {
+    return prisma.listing.findMany({
+      where: { status: 'published' },
+      orderBy: { createdAt: 'desc' },
+      take: 8,
+      include: {
+        category: { select: { name: true, slug: true } },
+        city: { select: { name: true, slug: true } },
+      },
+    });
+  },
+  ['homepage-latest-listings'],
+  { revalidate: 1800, tags: ['listings'] }
+);
+
+export const getHomepageFeaturedListings = unstable_cache(
+  async () => {
+    return prisma.listing.findMany({
+      where: { status: 'published', isFeatured: true },
+      orderBy: { createdAt: 'desc' },
+      take: 4,
+      include: {
+        category: { select: { name: true, slug: true } },
+        city: { select: { name: true, slug: true } },
+      },
+    });
+  },
+  ['homepage-featured-listings'],
+  { revalidate: 1800, tags: ['listings'] }
+);
+
+export const getHomepageLatestArticles = unstable_cache(
+  async () => {
+    return prisma.article.findMany({
+      where: { status: 'published' },
+      orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+      take: 3,
+      include: { category: { select: { name: true, slug: true } } },
+    });
+  },
+  ['homepage-latest-articles'],
+  { revalidate: 1800, tags: ['articles'] }
+);
+
+export const getHomepageStats = unstable_cache(
+  async () => {
+    return Promise.all([
+      prisma.listing.count({ where: { status: 'published' } }),
+      prisma.city.count({ where: { listings: { some: { status: 'published' } } } }),
+      prisma.category.count({ where: { type: 'listing', listings: { some: { status: 'published' } } } }),
+    ]);
+  },
+  ['homepage-stats'],
+  { revalidate: 3600, tags: ['listings', 'cities', 'categories'] }
+);
+
+export const getHomepagePopularCategories = unstable_cache(
+  async () => {
+    return prisma.category.findMany({
+      where: { type: 'listing', listings: { some: { status: 'published' } } },
+      orderBy: { listings: { _count: 'desc' } },
+      take: 8,
+    });
+  },
+  ['homepage-popular-categories'],
+  { revalidate: 3600, tags: ['categories', 'listings'] }
+);
+
+export const getHomepagePopularCities = unstable_cache(
+  async () => {
+    return prisma.city.findMany({
+      where: { listings: { some: { status: 'published' } } },
+      orderBy: { listings: { _count: 'desc' } },
+      take: 8,
+    });
+  },
+  ['homepage-popular-cities'],
+  { revalidate: 3600, tags: ['cities', 'listings'] }
+);

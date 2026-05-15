@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { ArticleCard } from '@/components/ArticleCard';
 import { ListingCard } from '@/components/ListingCard';
@@ -10,10 +11,13 @@ import { prisma } from '@/lib/db';
 
 
 export const revalidate = 60;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const items = await prisma.article.findMany({
     where: { status: 'published' },
+    orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+    take: 30,
     select: { slug: true },
   });
   return items.map((item) => ({ slug: item.slug }));
@@ -106,12 +110,16 @@ export default async function ArticleDetailPage({
           <p className="mt-3 text-lg text-black/70">{article.excerpt}</p>
         )}
         {article.featuredImageUrl && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={article.featuredImageUrl}
-            alt={article.title}
-            className="mt-6 aspect-[16/9] w-full rounded-xl object-cover"
-          />
+          <div className="relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-xl">
+            <Image
+              src={article.featuredImageUrl}
+              alt={article.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 800px"
+              className="object-cover"
+              priority
+            />
+          </div>
         )}
         <div
           className="prose prose-navy mt-8 max-w-none text-black/85"

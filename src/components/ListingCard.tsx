@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPinIcon, StarIcon } from './icons';
 import { PRICE_RANGE_LABEL } from '@/lib/constants';
 
@@ -17,25 +18,34 @@ export type ListingCardData = {
   city: { name: string; slug: string } | null;
 };
 
-export function ListingCard({ listing }: { listing: ListingCardData }) {
-  const image =
-    listing.featuredImageUrl ||
-    'data:image/svg+xml;utf8,' +
-      encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23F8FAFC" width="400" height="300"/><text x="50%25" y="50%25" text-anchor="middle" dy=".3em" font-family="Arial" font-size="18" fill="%2301083C">FoodMo</text></svg>',
-      );
+const PLACEHOLDER =
+  'data:image/svg+xml;utf8,' +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23F8FAFC" width="400" height="300"/><text x="50%25" y="50%25" text-anchor="middle" dy=".3em" font-family="Arial" font-size="18" fill="%2301083C">FoodMo</text></svg>',
+  );
+
+export function ListingCard({
+  listing,
+  priority = false,
+}: {
+  listing: ListingCardData;
+  priority?: boolean;
+}) {
+  const image = listing.featuredImageUrl || PLACEHOLDER;
   const excerpt = listing.shortDescription || listing.description?.slice(0, 120);
 
   return (
     <article className="card group overflow-hidden transition hover:shadow-md">
       <Link href={`/tempat-makan/${listing.slug}`} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-soft">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={image}
             alt={listing.name}
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-            loading="lazy"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover transition duration-300 group-hover:scale-105"
+            priority={priority}
+            loading={priority ? undefined : 'lazy'}
           />
           {listing.isFeatured && (
             <span className="absolute left-3 top-3 rounded-full bg-navy px-2.5 py-1 text-xs font-medium text-white">

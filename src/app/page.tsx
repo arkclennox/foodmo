@@ -1,56 +1,30 @@
 import Link from 'next/link';
-import { prisma } from '@/lib/db';
 import { ListingCard } from '@/components/ListingCard';
 import { ArticleCard } from '@/components/ArticleCard';
 import { SearchBar, CategoryQuickLinks } from '@/components/SearchBar';
 import { CTASection } from '@/components/CTASection';
 import { BuildingIcon, SparklesIcon } from '@/components/icons';
+import {
+  getHomepageLatestListings,
+  getHomepageFeaturedListings,
+  getHomepageLatestArticles,
+  getHomepageStats,
+  getHomepagePopularCategories,
+  getHomepagePopularCities,
+} from '@/lib/queries';
 
 export const revalidate = 60;
 
-// Data is now fetched dynamically from the database
+// Data is now fetched dynamically from the database using cached queries
 
 export default async function HomePage() {
   const [latestListings, featuredListings, latestArticles, stats, popularCategories, popularCities] = await Promise.all([
-    prisma.listing.findMany({
-      where: { status: 'published' },
-      orderBy: { createdAt: 'desc' },
-      take: 8,
-      include: {
-        category: { select: { name: true, slug: true } },
-        city: { select: { name: true, slug: true } },
-      },
-    }),
-    prisma.listing.findMany({
-      where: { status: 'published', isFeatured: true },
-      orderBy: { createdAt: 'desc' },
-      take: 4,
-      include: {
-        category: { select: { name: true, slug: true } },
-        city: { select: { name: true, slug: true } },
-      },
-    }),
-    prisma.article.findMany({
-      where: { status: 'published' },
-      orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
-      take: 3,
-      include: { category: { select: { name: true, slug: true } } },
-    }),
-    Promise.all([
-      prisma.listing.count({ where: { status: 'published' } }),
-      prisma.city.count({ where: { listings: { some: { status: 'published' } } } }),
-      prisma.category.count({ where: { type: 'listing', listings: { some: { status: 'published' } } } }),
-    ]),
-    prisma.category.findMany({
-      where: { type: 'listing', listings: { some: { status: 'published' } } },
-      orderBy: { listings: { _count: 'desc' } },
-      take: 8,
-    }),
-    prisma.city.findMany({
-      where: { listings: { some: { status: 'published' } } },
-      orderBy: { listings: { _count: 'desc' } },
-      take: 8,
-    }),
+    getHomepageLatestListings(),
+    getHomepageFeaturedListings(),
+    getHomepageLatestArticles(),
+    getHomepageStats(),
+    getHomepagePopularCategories(),
+    getHomepagePopularCities(),
   ]);
 
   const [listingCount, cityCount, categoryCount] = stats;
@@ -157,8 +131,8 @@ export default async function HomePage() {
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {recommended.map((l) => (
-              <ListingCard key={l.id} listing={l} />
+            {recommended.map((l, i) => (
+              <ListingCard key={l.id} listing={l} priority={i === 0} />
             ))}
           </div>
         </section>

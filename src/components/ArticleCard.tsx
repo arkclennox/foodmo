@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export type ArticleCardData = {
   id: string;
@@ -31,11 +32,12 @@ export function ArticleCard({ article }: { article: ArticleCardData }) {
     <article className="card group overflow-hidden transition hover:shadow-md">
       <Link href={`/blog/${article.slug}`} className="block">
         <div className="relative aspect-[16/9] overflow-hidden bg-soft">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={image}
             alt={article.title}
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition duration-300 group-hover:scale-105"
             loading="lazy"
           />
         </div>

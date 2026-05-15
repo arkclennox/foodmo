@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { ListingCard } from '@/components/ListingCard';
@@ -23,10 +24,13 @@ import { buildMetadata, siteUrl } from '@/lib/seo';
 import { prisma } from '@/lib/db';
 
 export const revalidate = 60;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const items = await prisma.listing.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', isFeatured: true },
+    orderBy: { createdAt: 'desc' },
+    take: 50,
     select: { slug: true },
   });
   return items.map((item) => ({ slug: item.slug }));
@@ -73,11 +77,21 @@ export default async function ListingDetailPage({
   if (!listing) notFound();
 
   const openingHours = parseJsonObject<Record<string, string>>(listing.openingHours);
-  const related = await listListings({
-    categorySlug: listing.category?.slug,
-    citySlug: listing.city?.slug,
-    limit: 4,
-  });
+  const [related, relatedArticles] = await Promise.all([
+    listListings({
+      categorySlug: listing.category?.slug,
+      citySlug: listing.city?.slug,
+      limit: 4,
+    }),
+    prisma.article.findMany({
+      where: {
+        status: 'published',
+        relatedListingIds: { contains: `"${listing.id}"` },
+      },
+      orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+      take: 3,
+    }),
+  ]);
   const relatedItems = related.items.filter((i) => i.id !== listing.id).slice(0, 3);
 
   const structuredData = {
@@ -119,12 +133,16 @@ export default async function ListingDetailPage({
         <div>
           <div className="card overflow-hidden">
             {listing.featuredImageUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={listing.featuredImageUrl}
-                alt={listing.name}
-                className="aspect-[16/9] w-full object-cover"
-              />
+              <div className="relative aspect-[16/9] w-full">
+                <Image
+                  src={listing.featuredImageUrl}
+                  alt={listing.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             ) : (
               <div className="flex aspect-[16/9] items-center justify-center bg-soft text-navy">
                 <span className="text-lg font-medium">{listing.name}</span>
@@ -345,7 +363,24 @@ export default async function ListingDetailPage({
         </section>
       )}
 
-      <RelatedArticles listingId={listing.id} />
+      {relatedArticles.length > 0 && (
+        <section className="mt-12">
+          <h2 className="mb-4 text-xl font-semibold text-black">Artikel terkait</h2>
+          <ul className="space-y-2">
+            {relatedArticles.map((a) => (
+              <li key={a.id}>
+                <Link
+                  href={`/blog/${a.slug}`}
+                  className="flex items-center justify-between rounded-lg border border-border bg-white p-4 transition hover:border-navy"
+                >
+                  <span className="font-medium text-black">{a.title}</span>
+                  <span className="text-sm text-navy">Baca →</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <script
         type="application/ld+json"
@@ -353,35 +388,5 @@ export default async function ListingDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
     </div>
-  );
-}
-
-async function RelatedArticles({ listingId }: { listingId: string }) {
-  const articles = await prisma.article.findMany({
-    where: {
-      status: 'published',
-      relatedListingIds: { contains: `"${listingId}"` },
-    },
-    orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
-    take: 3,
-  });
-  if (articles.length === 0) return null;
-  return (
-    <section className="mt-12">
-      <h2 className="mb-4 text-xl font-semibold text-black">Artikel terkait</h2>
-      <ul className="space-y-2">
-        {articles.map((a) => (
-          <li key={a.id}>
-            <Link
-              href={`/blog/${a.slug}`}
-              className="flex items-center justify-between rounded-lg border border-border bg-white p-4 transition hover:border-navy"
-            >
-              <span className="font-medium text-black">{a.title}</span>
-              <span className="text-sm text-navy">Baca →</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
   );
 }
