@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { SITE_DESCRIPTION, SITE_NAME, siteUrl } from '@/lib/seo';
 import { jsonLdScript, organizationSchema, websiteSchema } from '@/lib/schema';
 import Script from 'next/script';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
@@ -88,6 +89,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(websiteSchema()) }}
         />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <SpeedInsights />
       </body>
     </html>
   );
