@@ -22,6 +22,11 @@ import { parseJsonObject } from '@/lib/json-fields';
 import { PRICE_RANGE_LABEL, THIN_CONTENT_THRESHOLDS } from '@/lib/constants';
 import { buildMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbSchema, jsonLdScript } from '@/lib/schema';
+import {
+  classifyFacilities,
+  FACILITY_SECTION_LABELS,
+  FACILITY_SECTION_ORDER,
+} from '@/lib/facilities';
 import { prisma } from '@/lib/db';
 
 export const revalidate = 60;
@@ -218,18 +223,35 @@ export default async function ListingDetailPage({
               </section>
             )}
 
-            {listing.facilitiesList.length > 0 && (
-              <section className="mt-8">
-                <h2 className="mb-3 text-xl font-semibold text-black">Fasilitas</h2>
-                <div className="flex flex-wrap gap-2">
-                  {listing.facilitiesList.map((item) => (
-                    <span key={item} className="badge-outline">
-                      {item}
-                    </span>
+            {(() => {
+              const classified = classifyFacilities(listing.facilitiesList);
+              const sections = FACILITY_SECTION_ORDER.filter(
+                (cat) => classified[cat].length > 0,
+              );
+              if (sections.length === 0) return null;
+              return (
+                <section className="mt-8 space-y-5">
+                  {sections.map((cat) => (
+                    <div key={cat}>
+                      <h2 className="mb-2 text-base font-semibold text-black">
+                        {FACILITY_SECTION_LABELS[cat]}
+                      </h2>
+                      <div className="flex flex-wrap gap-2">
+                        {classified[cat].map((item) => (
+                          <span key={item} className="badge-outline">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   ))}
-                </div>
-              </section>
-            )}
+                  <p className="text-xs text-black/50">
+                    Informasi fasilitas dirangkum dari data publik dan dapat berubah. Konfirmasi
+                    langsung dengan pemilik untuk kepastian.
+                  </p>
+                </section>
+              );
+            })()}
 
             {listing.galleryImagesList.length > 0 && (
               <section className="mt-8">
