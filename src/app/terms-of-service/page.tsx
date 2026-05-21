@@ -24,7 +24,7 @@ export default function TermsPage() {
       <div className="prose prose-navy max-w-none text-black/80">
         <p>
           Dengan mengakses atau menggunakan website{' '}
-          <a href="https://foodmo.id">foodmo.id</a> (&quot;Situs&quot;), Anda setuju terikat
+          <a href="https://www.foodmo.id">www.foodmo.id</a> (&quot;Situs&quot;), Anda setuju terikat
           pada syarat dan ketentuan di bawah ini. Jika Anda tidak setuju, mohon tidak
           menggunakan Situs.
         </p>

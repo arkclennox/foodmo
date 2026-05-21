@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <p>
           Kebijakan ini menjelaskan bagaimana <strong>FoodMo</strong> (selanjutnya
           &quot;kami&quot;) mengumpulkan, menggunakan, menyimpan, dan melindungi data pengunjung
-          situs <a href="https://foodmo.id">foodmo.id</a> (selanjutnya &quot;Situs&quot;).
+          situs <a href="https://www.foodmo.id">www.foodmo.id</a> (selanjutnya &quot;Situs&quot;).
           Dengan mengakses Situs, Anda dianggap menyetujui ketentuan di bawah ini.
         </p>
 
