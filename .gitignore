@@ -15,3 +15,7 @@ prisma/dev.db-journal
 .npm-cache/
 .tmp-home/
 .npmrc
+
+# Database dumps
+*.dump
+*.sql.gz
