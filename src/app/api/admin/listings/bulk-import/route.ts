@@ -40,8 +40,42 @@ export async function POST(req: NextRequest) {
   }
 
   let imported = 0;
+  let merged = 0;
   let skipped = 0;
   const errors: Array<{ row: number; name?: string; reason: string }> = [];
+
+  function isEmpty(v: unknown): boolean {
+    if (v == null) return true;
+    if (typeof v === 'string') return v.trim() === '';
+    return false;
+  }
+
+  function parseArrayField(raw: string | null | undefined): string[] {
+    if (!raw || raw === '' || raw === '[]') return [];
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed.map(String).filter(Boolean) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function mergeStringArrays(
+    existing: string[],
+    incoming: string[],
+    cap?: number,
+  ): { merged: string[]; changed: boolean } {
+    const seen = new Set<string>();
+    const out: string[] = [];
+    for (const v of [...existing, ...incoming]) {
+      const t = (v || '').trim();
+      if (!t || seen.has(t)) continue;
+      seen.add(t);
+      out.push(t);
+      if (cap && out.length >= cap) break;
+    }
+    return { merged: out, changed: out.length !== existing.length };
+  }
 
   try {
     for (let i = 0; i < data.length; i++) {
@@ -77,12 +111,103 @@ export async function POST(req: NextRequest) {
           cityId = city.id;
         }
 
-        // 3. Check duplicate by (name, cityId)
+        // 3. Check duplicate by (name, cityId). If found, smart-merge:
+        //    only fill empty fields and append (dedup, cap) to arrays.
         const existing = await prisma.listing.findFirst({
           where: { name: { equals: name, mode: 'insensitive' }, cityId },
         });
         if (existing) {
-          skipped++;
+          const updates: Record<string, unknown> = {};
+
+          // Text/scalar fields: only set when existing value is empty.
+          const textPairs: Array<[string, string, unknown]> = [
+            ['description', 'description', row.description],
+            ['shortDescription', 'shortDescription', row.shortDescription],
+            ['address', 'address', row.address],
+            ['phone', 'phone', row.phone],
+            ['whatsapp', 'whatsapp', row.whatsapp],
+            ['websiteUrl', 'websiteUrl', row.websiteUrl],
+            ['instagramUrl', 'instagramUrl', row.instagramUrl],
+            ['shopeeFoodUrl', 'shopeeFoodUrl', row.shopeeFoodUrl],
+            ['tiktokUrl', 'tiktokUrl', row.tiktokUrl],
+            ['googleMapsUrl', 'googleMapsUrl', row.googleMapsUrl],
+            ['priceRange', 'priceRange', row.priceRange],
+            ['metaTitle', 'metaTitle', row.metaTitle],
+            ['metaDescription', 'metaDescription', row.metaDescription],
+          ];
+          for (const [key, existingKey, newVal] of textPairs) {
+            if (
+              isEmpty((existing as Record<string, unknown>)[existingKey]) &&
+              !isEmpty(newVal)
+            ) {
+              updates[key] = String(newVal).trim();
+            }
+          }
+
+          // Numeric fields
+          if (
+            (existing.rating === 0 || existing.rating == null) &&
+            typeof row.rating === 'number' &&
+            row.rating > 0
+          ) {
+            updates.rating = row.rating;
+          }
+          if (existing.latitude == null && typeof row.latitude === 'number') {
+            updates.latitude = row.latitude;
+          }
+          if (existing.longitude == null && typeof row.longitude === 'number') {
+            updates.longitude = row.longitude;
+          }
+
+          // Featured image: only set if empty.
+          if (
+            isEmpty(existing.featuredImageUrl) &&
+            !isEmpty(row.featuredImageUrl)
+          ) {
+            updates.featuredImageUrl = String(row.featuredImageUrl).trim();
+          }
+
+          // Gallery: union + dedup + cap. Keep existing order first so
+          // already-R2 URLs stay at the front.
+          const existingGallery = parseArrayField(existing.galleryImages);
+          const incomingGallery = dedupGallery(row.galleryImages);
+          const galleryMerge = mergeStringArrays(
+            existingGallery,
+            incomingGallery,
+            MAX_GALLERY,
+          );
+          if (galleryMerge.changed) {
+            updates.galleryImages = JSON.stringify(galleryMerge.merged);
+          }
+
+          // Facilities & menuHighlights: union + dedup (no cap).
+          const existingFac = parseArrayField(existing.facilities);
+          const incomingFac = Array.isArray(row.facilities)
+            ? row.facilities.map(String)
+            : [];
+          const facMerge = mergeStringArrays(existingFac, incomingFac);
+          if (facMerge.changed) {
+            updates.facilities = JSON.stringify(facMerge.merged);
+          }
+
+          const existingMenu = parseArrayField(existing.menuHighlights);
+          const incomingMenu = Array.isArray(row.menuHighlights)
+            ? row.menuHighlights.map(String)
+            : [];
+          const menuMerge = mergeStringArrays(existingMenu, incomingMenu);
+          if (menuMerge.changed) {
+            updates.menuHighlights = JSON.stringify(menuMerge.merged);
+          }
+
+          if (Object.keys(updates).length > 0) {
+            await prisma.listing.update({
+              where: { id: existing.id },
+              data: updates,
+            });
+            merged++;
+          } else {
+            skipped++;
+          }
           continue;
         }
 
@@ -136,10 +261,8 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return apiSuccess({ imported, skipped, errors: errors.slice(0, 10) });
+    return apiSuccess({ imported, merged, skipped, errors: errors.slice(0, 10) });
   } catch (e) {
-    // Always return JSON so the client's res.json() doesn't choke on an
-    // HTML error page.
     return NextResponse.json(
       {
         success: false,
@@ -147,7 +270,7 @@ export async function POST(req: NextRequest) {
           code: 'BULK_IMPORT_ERROR',
           message: (e as Error).message ?? 'Bulk import failed',
         },
-        partial: { imported, skipped, errors },
+        partial: { imported, merged, skipped, errors },
       },
       { status: 500 },
     );

@@ -133,7 +133,10 @@ export function ImportListingsForm() {
       // Server may return HTML on timeout/crash; read text first then try
       // to parse so we surface a useful message either way.
       const rawText = await res.text();
-      let result: { data?: { imported?: number; skipped?: number }; error?: { message?: string } } = {};
+      let result: {
+        data?: { imported?: number; merged?: number; skipped?: number };
+        error?: { message?: string };
+      } = {};
       try {
         result = JSON.parse(rawText);
       } catch {
@@ -151,7 +154,9 @@ export function ImportListingsForm() {
       }
 
       setSuccess(
-        `Berhasil mengimpor ${result.data?.imported || 0} data. ${result.data?.skipped || 0} data dilewati. Memindahkan gambar ke R2…`,
+        `Berhasil: ${result.data?.imported || 0} listing baru, ${
+          result.data?.merged || 0
+        } listing lama dilengkapi, ${result.data?.skipped || 0} dilewati. Memindahkan gambar ke R2…`,
       );
       setFile(null);
       setPreview([]);
