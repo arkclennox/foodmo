@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { prisma } from '@/lib/db';
 import { PlusIcon } from '@/components/icons';
+import { SyncImagesButton } from '@/components/admin/SyncImagesButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -43,6 +44,7 @@ export default async function AdminOverviewPage() {
 
   return (
     <div className="space-y-8">
+      <SyncImagesButton />
       <section>
         <div className="mb-3 flex items-center justify-between">
           <h1 className="text-xl font-semibold text-black">Overview</h1>

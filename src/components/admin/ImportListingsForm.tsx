@@ -11,6 +11,7 @@ export function ImportListingsForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [syncProgress, setSyncProgress] = useState<string | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
@@ -150,16 +151,63 @@ export function ImportListingsForm() {
       }
 
       setSuccess(
-        `Berhasil mengimpor ${result.data?.imported || 0} data. ${result.data?.skipped || 0} data dilewati. Untuk pindahkan image ke R2, jalankan script migrate-images-to-r2 di terminal.`,
+        `Berhasil mengimpor ${result.data?.imported || 0} data. ${result.data?.skipped || 0} data dilewati. Memindahkan gambar ke R2…`,
       );
       setFile(null);
       setPreview([]);
-      
+
+      // Auto-sync images to R2 in batches. Keeps each request under the
+      // 60s Vercel function timeout and loops client-side until done.
+      try {
+        let totalProcessed = 0;
+        let totalOk = 0;
+        let totalFail = 0;
+        let iterations = 0;
+        const HARD_STOP = 200; // safety cap on iterations (~3K listing)
+        while (iterations < HARD_STOP) {
+          const syncRes = await fetch('/api/admin/sync-images?limit=15', {
+            method: 'POST',
+          });
+          const syncJson = (await syncRes.json()) as {
+            success: boolean;
+            processed?: number;
+            images?: { ok: number; fail: number };
+            remaining?: number;
+            totalPending?: number;
+            error?: { message?: string };
+          };
+          if (!syncJson.success) {
+            setSyncProgress(
+              `Sync error: ${syncJson.error?.message ?? 'unknown'} — kamu bisa coba klik "Sync Gambar" di /admin nanti.`,
+            );
+            break;
+          }
+          totalProcessed += syncJson.processed ?? 0;
+          totalOk += syncJson.images?.ok ?? 0;
+          totalFail += syncJson.images?.fail ?? 0;
+          iterations++;
+          const remaining = syncJson.remaining ?? 0;
+          setSyncProgress(
+            `Memindah gambar ke R2 — ${totalProcessed} listing diproses, ${totalOk} image OK, ${totalFail} gagal, sisa ${remaining} listing…`,
+          );
+          if (remaining === 0 || (syncJson.processed ?? 0) === 0) break;
+        }
+        setSyncProgress(
+          `Selesai. ${totalProcessed} listing disinkron — ${totalOk} image di R2, ${totalFail} URL gagal (di-drop).`,
+        );
+      } catch (syncErr) {
+        setSyncProgress(
+          `Sinkron gambar terhenti: ${
+            syncErr instanceof Error ? syncErr.message : 'unknown'
+          }. Buka /admin → tombol "Sync Gambar" untuk lanjutkan.`,
+        );
+      }
+
       // Refresh setelah beberapa detik
       setTimeout(() => {
         router.push('/admin/listings');
         router.refresh();
-      }, 3000);
+      }, 4000);
     } catch (err: any) {
       setError(err.message || 'Terjadi kesalahan saat mengimpor');
     } finally {
@@ -199,6 +247,12 @@ export function ImportListingsForm() {
         {success && (
           <div className="p-3 bg-green-50 text-green-700 rounded-lg text-sm border border-green-100">
             {success}
+          </div>
+        )}
+
+        {syncProgress && (
+          <div className="p-3 bg-blue-50 text-blue-700 rounded-lg text-sm border border-blue-100">
+            {syncProgress}
           </div>
         )}
 
