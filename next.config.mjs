@@ -1,15 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // Skip Vercel image optimization: the bulk of listing photos already
-    // come from Google's CDN (googleusercontent.com) which serves
-    // browser-appropriate formats. Re-optimizing burns Vercel's transform
-    // quota with negligible gain. Browsers still benefit from Image
-    // component's lazy loading and CLS-safe aspect ratios.
-    unoptimized: true,
+    // Vercel image optimization stays ON because it doubles as a permanent
+    // proxy-cache: Google's `gps-cs-s` photo URLs are token-protected and
+    // expire silently, so once we lose the cached version we cannot
+    // re-fetch the source. Settings below minimise transformation usage
+    // to stay inside the Hobby tier:
+    //  - WebP only (skipping AVIF halves the transform count per image)
+    //  - 3 deviceSizes + 2 imageSizes = max 5 variants per source URL
+    //  - 1-year TTL so cached variants are not re-transformed
     remotePatterns: [
       { protocol: 'https', hostname: '**' },
     ],
+    formats: ['image/webp'],
+    deviceSizes: [640, 1024, 1600],
+    imageSizes: [96, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 365,
   },
   compress: true,
   poweredByHeader: false,
