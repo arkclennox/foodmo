@@ -414,21 +414,29 @@ export function ListingForm({
 
       <div className="card space-y-4 p-5">
         <h2 className="text-base font-semibold text-black">Gambar</h2>
+        <p className="text-xs text-black/60">
+          Upload file dari perangkat, atau tempel URL eksternal — file/URL akan otomatis
+          di-compress (WebP, max 1280px) dan disimpan di Cloudflare R2 milik FoodMo.
+        </p>
+
         <div>
-          <label className="label-base">URL gambar utama</label>
-          <input
-            type="url"
+          <label className="label-base">Gambar utama</label>
+          <SingleImagePicker
             value={data.featuredImageUrl}
-            onChange={(e) => update('featuredImageUrl', e.target.value)}
-            className="input-base"
+            slug={data.slug || autoSlug || 'listing'}
+            prefix="listings/featured"
+            onChange={(v) => update('featuredImageUrl', v)}
           />
         </div>
+
         <div>
-          <label className="label-base">URL gambar galeri</label>
-          <ArrayInput
+          <label className="label-base">Galeri (max 10)</label>
+          <MultiImagePicker
             value={data.galleryImages}
+            slug={data.slug || autoSlug || 'listing'}
+            prefix="listings/gallery"
+            max={10}
             onChange={(v) => update('galleryImages', v)}
-            placeholder="https://…/foto.jpg"
           />
         </div>
       </div>
@@ -487,6 +495,258 @@ export function ListingForm({
         </button>
       </div>
     </form>
+  );
+}
+
+async function uploadImage(opts: {
+  file?: File;
+  url?: string;
+  prefix: string;
+  slug: string;
+}): Promise<string> {
+  const q = new URLSearchParams({ prefix: opts.prefix, slug: opts.slug });
+  const endpoint = `/api/admin/upload?${q.toString()}`;
+  let res: Response;
+  if (opts.file) {
+    const fd = new FormData();
+    fd.append('file', opts.file);
+    res = await fetch(endpoint, { method: 'POST', body: fd });
+  } else if (opts.url) {
+    res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ url: opts.url }),
+    });
+  } else {
+    throw new Error('No file or url');
+  }
+  const body = (await res.json()) as {
+    success: boolean;
+    url?: string;
+    error?: { message?: string };
+  };
+  if (!res.ok || !body.success || !body.url) {
+    throw new Error(body.error?.message ?? 'Upload gagal');
+  }
+  return body.url;
+}
+
+function SingleImagePicker({
+  value,
+  slug,
+  prefix,
+  onChange,
+}: {
+  value: string;
+  slug: string;
+  prefix: string;
+  onChange: (url: string) => void;
+}) {
+  const [busy, setBusy] = useState(false);
+  const [draft, setDraft] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleFile(file: File) {
+    setBusy(true);
+    setError(null);
+    try {
+      const url = await uploadImage({ file, prefix, slug });
+      onChange(url);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Upload gagal');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function handleUrl() {
+    if (!draft.trim()) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const url = await uploadImage({ url: draft.trim(), prefix, slug });
+      onChange(url);
+      setDraft('');
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Upload gagal');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="space-y-3">
+      {value && (
+        <div className="flex items-start gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={value}
+            alt="Preview"
+            className="h-24 w-32 rounded-md border border-border object-cover"
+          />
+          <div className="flex-1 space-y-1">
+            <p className="break-all text-xs text-black/60">{value}</p>
+            <button
+              type="button"
+              className="text-xs text-red-600 hover:underline"
+              onClick={() => onChange('')}
+            >
+              Hapus
+            </button>
+          </div>
+        </div>
+      )}
+      <div className="flex flex-wrap items-center gap-2">
+        <label className="btn-secondary cursor-pointer">
+          {busy ? 'Mengunggah…' : 'Pilih file'}
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            disabled={busy}
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) handleFile(f);
+              e.target.value = '';
+            }}
+          />
+        </label>
+        <span className="text-xs text-black/40">atau</span>
+        <input
+          type="url"
+          placeholder="Tempel URL gambar"
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          className="input-base flex-1 min-w-[200px]"
+          disabled={busy}
+        />
+        <button
+          type="button"
+          className="btn-secondary"
+          disabled={busy || !draft.trim()}
+          onClick={handleUrl}
+        >
+          Ingest
+        </button>
+      </div>
+      {error && <p className="text-xs text-red-600">{error}</p>}
+    </div>
+  );
+}
+
+function MultiImagePicker({
+  value,
+  slug,
+  prefix,
+  max,
+  onChange,
+}: {
+  value: string[];
+  slug: string;
+  prefix: string;
+  max: number;
+  onChange: (urls: string[]) => void;
+}) {
+  const [busy, setBusy] = useState(false);
+  const [draft, setDraft] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleFiles(files: FileList) {
+    setBusy(true);
+    setError(null);
+    const next = [...value];
+    try {
+      for (const file of Array.from(files)) {
+        if (next.length >= max) break;
+        const url = await uploadImage({ file, prefix, slug });
+        next.push(url);
+      }
+      onChange(next);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Upload gagal');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function handleUrl() {
+    if (!draft.trim() || value.length >= max) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const url = await uploadImage({ url: draft.trim(), prefix, slug });
+      onChange([...value, url]);
+      setDraft('');
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Upload gagal');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function remove(idx: number) {
+    onChange(value.filter((_, i) => i !== idx));
+  }
+
+  return (
+    <div className="space-y-3">
+      {value.length > 0 && (
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {value.map((url, i) => (
+            <div key={url} className="relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={url}
+                alt={`Galeri ${i + 1}`}
+                className="aspect-square w-full rounded-md border border-border object-cover"
+              />
+              <button
+                type="button"
+                aria-label="Hapus"
+                className="absolute right-1 top-1 rounded-full bg-white/90 px-2 py-0.5 text-xs text-red-600 shadow"
+                onClick={() => remove(i)}
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="flex flex-wrap items-center gap-2">
+        <label className="btn-secondary cursor-pointer">
+          {busy ? 'Mengunggah…' : `Pilih file (${value.length}/${max})`}
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            className="hidden"
+            disabled={busy || value.length >= max}
+            onChange={(e) => {
+              if (e.target.files?.length) handleFiles(e.target.files);
+              e.target.value = '';
+            }}
+          />
+        </label>
+        <span className="text-xs text-black/40">atau</span>
+        <input
+          type="url"
+          placeholder="Tempel URL"
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          className="input-base flex-1 min-w-[200px]"
+          disabled={busy || value.length >= max}
+        />
+        <button
+          type="button"
+          className="btn-secondary"
+          disabled={busy || !draft.trim() || value.length >= max}
+          onClick={handleUrl}
+        >
+          Ingest
+        </button>
+      </div>
+      {error && <p className="text-xs text-red-600">{error}</p>}
+    </div>
   );
 }
 

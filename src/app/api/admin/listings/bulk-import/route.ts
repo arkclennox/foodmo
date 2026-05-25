@@ -3,6 +3,49 @@ import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
 import { toJsonString } from '@/lib/json-fields';
+import { ingestImage } from '@/lib/image-ingest';
+import { isR2Url } from '@/lib/r2';
+
+const MAX_GALLERY = 10;
+
+async function ingestUrlOrNull(
+  src: string | null | undefined,
+  slug: string,
+  prefix: string,
+): Promise<string | null> {
+  if (!src) return null;
+  const trimmed = src.trim();
+  if (!trimmed) return null;
+  if (isR2Url(trimmed)) return trimmed;
+  try {
+    const { url } = await ingestImage({ source: trimmed, slug, prefix });
+    return url;
+  } catch {
+    return null;
+  }
+}
+
+async function ingestGalleryUrls(
+  raw: unknown,
+  slug: string,
+): Promise<string[]> {
+  if (!Array.isArray(raw)) return [];
+  const dedup: string[] = [];
+  const seen = new Set<string>();
+  for (const item of raw) {
+    const s = String(item ?? '').trim();
+    if (!s || seen.has(s)) continue;
+    seen.add(s);
+    dedup.push(s);
+    if (dedup.length >= MAX_GALLERY) break;
+  }
+  const out: string[] = [];
+  for (const src of dedup) {
+    const url = await ingestUrlOrNull(src, slug, 'listings/gallery');
+    if (url) out.push(url);
+  }
+  return out;
+}
 
 export async function POST(req: NextRequest) {
   let body: any;
@@ -74,7 +117,15 @@ export async function POST(req: NextRequest) {
       slug = `${slug}-${Math.floor(Math.random() * 10000)}`;
     }
 
-    // 4. Create Listing
+    // 4. Ingest images to R2 so we never depend on the upstream source
+    const featuredUrl = await ingestUrlOrNull(
+      row.featuredImageUrl,
+      slug,
+      'listings/featured',
+    );
+    const gallery = await ingestGalleryUrls(row.galleryImages, slug);
+
+    // 5. Create Listing
     await prisma.listing.create({
       data: {
         name: row.name,
@@ -97,8 +148,8 @@ export async function POST(req: NextRequest) {
         cityId,
         facilities: row.facilities ? toJsonString(row.facilities) : '[]',
         menuHighlights: row.menuHighlights ? toJsonString(row.menuHighlights) : '[]',
-        galleryImages: row.galleryImages ? toJsonString(row.galleryImages) : '[]',
-        featuredImageUrl: row.featuredImageUrl || null,
+        galleryImages: gallery.length > 0 ? JSON.stringify(gallery) : '[]',
+        featuredImageUrl: featuredUrl,
         status: 'published',
         isFeatured: false,
       },
