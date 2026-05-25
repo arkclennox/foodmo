@@ -1,21 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // Vercel image optimization stays ON because it doubles as a permanent
-    // proxy-cache: Google's `gps-cs-s` photo URLs are token-protected and
-    // expire silently, so once we lose the cached version we cannot
-    // re-fetch the source. Settings below minimise transformation usage
-    // to stay inside the Hobby tier:
-    //  - WebP only (skipping AVIF halves the transform count per image)
-    //  - 3 deviceSizes + 2 imageSizes = max 5 variants per source URL
-    //  - 1-year TTL so cached variants are not re-transformed
+    // Vercel image optimization quota is exhausted this billing cycle.
+    // Any cache-miss triggers a 400 from /_next/image, so we bypass the
+    // optimizer entirely until we migrate sources to Supabase Storage.
+    // Roughly 40% of source URLs are still alive (Google's gps-cs-s
+    // tokens that haven't expired yet); the rest will fall back to the
+    // SVG placeholder until migrated.
+    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: '**' },
     ],
-    formats: ['image/webp'],
-    deviceSizes: [640, 1024, 1600],
-    imageSizes: [96, 384],
-    minimumCacheTTL: 60 * 60 * 24 * 365,
   },
   compress: true,
   poweredByHeader: false,
