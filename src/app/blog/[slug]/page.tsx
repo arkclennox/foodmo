@@ -11,7 +11,7 @@ import { findArticleBySlug, listArticles } from '@/lib/queries';
 import { prisma } from '@/lib/db';
 
 
-export const revalidate = 60;
+export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

@@ -1,13 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Skip Vercel image optimization: the bulk of listing photos already
+    // come from Google's CDN (googleusercontent.com) which serves
+    // browser-appropriate formats. Re-optimizing burns Vercel's transform
+    // quota with negligible gain. Browsers still benefit from Image
+    // component's lazy loading and CLS-safe aspect ratios.
+    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: '**' },
     ],
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [360, 480, 640, 768, 1024, 1280, 1600],
-    imageSizes: [16, 32, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   compress: true,
   poweredByHeader: false,

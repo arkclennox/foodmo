@@ -7,7 +7,7 @@ import { buildMetadata } from '@/lib/seo';
 import { listArticles, listCategories } from '@/lib/queries';
 import { parsePagination } from '@/lib/pagination';
 
-export const revalidate = 60;
+export const revalidate = 600;
 
 export async function generateMetadata({
   searchParams,

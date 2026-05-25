@@ -13,7 +13,7 @@ import {
   getHomepagePopularCities,
 } from '@/lib/queries';
 
-export const revalidate = 60;
+export const revalidate = 600;
 
 // Data is now fetched dynamically from the database using cached queries
 

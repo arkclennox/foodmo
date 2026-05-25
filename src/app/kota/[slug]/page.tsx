@@ -12,7 +12,7 @@ import { parsePagination } from '@/lib/pagination';
 import { buildMetadata } from '@/lib/seo';
 import { breadcrumbSchema, jsonLdScript } from '@/lib/schema';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const items = await prisma.city.findMany({

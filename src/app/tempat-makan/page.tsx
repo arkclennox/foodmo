@@ -9,7 +9,7 @@ import { listCategories, listCities, listFacilities, listListings } from '@/lib/
 import { DEFAULT_PAGE_SIZE } from '@/lib/constants';
 import { parsePagination } from '@/lib/pagination';
 
-export const revalidate = 60;
+export const revalidate = 600;
 
 export async function generateMetadata({
   searchParams,
