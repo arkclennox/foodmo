@@ -6,7 +6,7 @@ export function organizationSchema() {
     '@type': 'Organization',
     name: SITE_NAME,
     url: siteUrl(),
-    logo: siteUrl('/icon.png'),
+    logo: siteUrl('/logo.png'),
     description: SITE_DESCRIPTION,
     contactPoint: [
       {

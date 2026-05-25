@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { UtensilsIcon } from './icons';
+import Image from 'next/image';
 
 const NAV = [
   { href: '/tempat-makan', label: 'Direktori' },
@@ -15,9 +15,14 @@ export function Header() {
     <header className="sticky top-0 z-30 border-b border-border bg-white/90 backdrop-blur">
       <div className="section flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 font-semibold text-navy">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-navy text-white">
-            <UtensilsIcon className="h-5 w-5" />
-          </span>
+          <Image
+            src="/logo.png"
+            alt="FoodMo"
+            width={36}
+            height={36}
+            className="h-9 w-9 rounded-md"
+            priority
+          />
           <span className="text-base sm:text-lg">FoodMo</span>
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
