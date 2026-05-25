@@ -1,162 +1,155 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
 import { toJsonString } from '@/lib/json-fields';
-import { ingestImage } from '@/lib/image-ingest';
-import { isR2Url } from '@/lib/r2';
+
+// Vercel function timeout (Hobby tier allows up to 60s with Fluid Compute).
+// Bulk-import stays synchronous DB-only — image ingest to R2 runs as a
+// separate step (scripts/migrate-images-to-r2.ts) because per-row fetch +
+// sharp + upload is far too slow to fit in a single request.
+export const maxDuration = 60;
 
 const MAX_GALLERY = 10;
 
-async function ingestUrlOrNull(
-  src: string | null | undefined,
-  slug: string,
-  prefix: string,
-): Promise<string | null> {
-  if (!src) return null;
-  const trimmed = src.trim();
-  if (!trimmed) return null;
-  if (isR2Url(trimmed)) return trimmed;
-  try {
-    const { url } = await ingestImage({ source: trimmed, slug, prefix });
-    return url;
-  } catch {
-    return null;
-  }
-}
-
-async function ingestGalleryUrls(
-  raw: unknown,
-  slug: string,
-): Promise<string[]> {
+function dedupGallery(raw: unknown): string[] {
   if (!Array.isArray(raw)) return [];
-  const dedup: string[] = [];
   const seen = new Set<string>();
+  const out: string[] = [];
   for (const item of raw) {
     const s = String(item ?? '').trim();
     if (!s || seen.has(s)) continue;
     seen.add(s);
-    dedup.push(s);
-    if (dedup.length >= MAX_GALLERY) break;
-  }
-  const out: string[] = [];
-  for (const src of dedup) {
-    const url = await ingestUrlOrNull(src, slug, 'listings/gallery');
-    if (url) out.push(url);
+    out.push(s);
+    if (out.length >= MAX_GALLERY) break;
   }
   return out;
 }
 
 export async function POST(req: NextRequest) {
-  let body: any;
+  let body: { data?: unknown } = {};
   try {
     body = await req.json();
   } catch {
     return ERR.validation('Body harus JSON');
   }
 
-  const { data } = body;
+  const data = body.data;
   if (!Array.isArray(data)) {
     return ERR.validation('Format data salah. Harus berupa array.');
   }
 
   let imported = 0;
   let skipped = 0;
+  const errors: Array<{ row: number; name?: string; reason: string }> = [];
 
-  for (const row of data) {
-    if (!row.name) {
-      skipped++;
-      continue;
-    }
-
-    // 1. Resolve Category
-    let categoryId = null;
-    if (row.categoryName) {
-      const catSlug = slugify(row.categoryName);
-      let cat = await prisma.category.findUnique({ where: { slug: catSlug } });
-      if (!cat) {
-        cat = await prisma.category.create({
-          data: { name: row.categoryName, slug: catSlug, type: 'listing' },
-        });
+  try {
+    for (let i = 0; i < data.length; i++) {
+      const row = data[i] as Record<string, unknown>;
+      const name = typeof row.name === 'string' ? row.name.trim() : '';
+      if (!name) {
+        skipped++;
+        continue;
       }
-      categoryId = cat.id;
-    }
 
-    // 2. Resolve City
-    let cityId = null;
-    if (row.cityName) {
-      const citySlug = slugify(row.cityName);
-      let city = await prisma.city.findUnique({ where: { slug: citySlug } });
-      if (!city) {
-        city = await prisma.city.create({
-          data: { name: row.cityName, slug: citySlug },
+      try {
+        // 1. Resolve Category
+        let categoryId: string | null = null;
+        if (typeof row.categoryName === 'string' && row.categoryName.trim()) {
+          const catSlug = slugify(row.categoryName);
+          const cat = await prisma.category.upsert({
+            where: { slug: catSlug },
+            update: {},
+            create: { name: row.categoryName, slug: catSlug, type: 'listing' },
+          });
+          categoryId = cat.id;
+        }
+
+        // 2. Resolve City
+        let cityId: string | null = null;
+        if (typeof row.cityName === 'string' && row.cityName.trim()) {
+          const citySlug = slugify(row.cityName);
+          const city = await prisma.city.upsert({
+            where: { slug: citySlug },
+            update: {},
+            create: { name: row.cityName, slug: citySlug },
+          });
+          cityId = city.id;
+        }
+
+        // 3. Check duplicate by (name, cityId)
+        const existing = await prisma.listing.findFirst({
+          where: { name: { equals: name, mode: 'insensitive' }, cityId },
         });
+        if (existing) {
+          skipped++;
+          continue;
+        }
+
+        // 4. Slug
+        let slug =
+          typeof row.slug === 'string' && row.slug.trim()
+            ? slugify(row.slug)
+            : slugify(name);
+        const collision = await prisma.listing.findUnique({ where: { slug } });
+        if (collision) slug = `${slug}-${Math.floor(Math.random() * 10000)}`;
+
+        // 5. Insert — images stored AS-IS. Run the migrate-images-to-r2
+        //    script afterwards to push them to R2.
+        const galleryRaw = dedupGallery(row.galleryImages);
+        await prisma.listing.create({
+          data: {
+            name,
+            slug,
+            description: (row.description as string) || '',
+            shortDescription: (row.shortDescription as string) || null,
+            address: (row.address as string) || '',
+            phone: (row.phone as string) || null,
+            whatsapp: (row.whatsapp as string) || null,
+            websiteUrl: (row.websiteUrl as string) || null,
+            instagramUrl: (row.instagramUrl as string) || null,
+            shopeeFoodUrl: (row.shopeeFoodUrl as string) || null,
+            tiktokUrl: (row.tiktokUrl as string) || null,
+            googleMapsUrl: (row.googleMapsUrl as string) || null,
+            priceRange: (row.priceRange as string) || null,
+            rating: typeof row.rating === 'number' ? row.rating : 0,
+            latitude: typeof row.latitude === 'number' ? row.latitude : null,
+            longitude: typeof row.longitude === 'number' ? row.longitude : null,
+            categoryId,
+            cityId,
+            facilities: row.facilities ? toJsonString(row.facilities) : '[]',
+            menuHighlights: row.menuHighlights ? toJsonString(row.menuHighlights) : '[]',
+            galleryImages: galleryRaw.length > 0 ? JSON.stringify(galleryRaw) : '[]',
+            featuredImageUrl: (row.featuredImageUrl as string) || null,
+            status: 'published',
+            isFeatured: false,
+          },
+        });
+        imported++;
+      } catch (rowErr) {
+        errors.push({
+          row: i + 1,
+          name,
+          reason: (rowErr as Error).message ?? 'unknown',
+        });
+        skipped++;
       }
-      cityId = city.id;
     }
 
-    // 3. Check Duplicate
-    const existing = await prisma.listing.findFirst({
-      where: {
-        name: { equals: row.name, mode: 'insensitive' },
-        cityId: cityId,
+    return apiSuccess({ imported, skipped, errors: errors.slice(0, 10) });
+  } catch (e) {
+    // Always return JSON so the client's res.json() doesn't choke on an
+    // HTML error page.
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          code: 'BULK_IMPORT_ERROR',
+          message: (e as Error).message ?? 'Bulk import failed',
+        },
+        partial: { imported, skipped, errors },
       },
-    });
-
-    if (existing) {
-      skipped++;
-      continue; // Lewati jika sudah ada
-    }
-
-    // Check slug collision
-    let slug = row.slug ? slugify(row.slug) : slugify(row.name);
-    let slugCollision = await prisma.listing.findUnique({ where: { slug } });
-    if (slugCollision) {
-      // Jika slug tabrakan tapi bukan di kota yang sama (karena sudah lewat cek di atas), 
-      // tambahkan random string agar tetap bisa masuk
-      slug = `${slug}-${Math.floor(Math.random() * 10000)}`;
-    }
-
-    // 4. Ingest images to R2 so we never depend on the upstream source
-    const featuredUrl = await ingestUrlOrNull(
-      row.featuredImageUrl,
-      slug,
-      'listings/featured',
+      { status: 500 },
     );
-    const gallery = await ingestGalleryUrls(row.galleryImages, slug);
-
-    // 5. Create Listing
-    await prisma.listing.create({
-      data: {
-        name: row.name,
-        slug: slug,
-        description: row.description || '',
-        shortDescription: row.shortDescription || null,
-        address: row.address || '',
-        phone: row.phone || null,
-        whatsapp: row.whatsapp || null,
-        websiteUrl: row.websiteUrl || null,
-        instagramUrl: row.instagramUrl || null,
-        shopeeFoodUrl: row.shopeeFoodUrl || null,
-        tiktokUrl: row.tiktokUrl || null,
-        googleMapsUrl: row.googleMapsUrl || null,
-        priceRange: row.priceRange || null,
-        rating: row.rating || 0,
-        latitude: row.latitude || null,
-        longitude: row.longitude || null,
-        categoryId,
-        cityId,
-        facilities: row.facilities ? toJsonString(row.facilities) : '[]',
-        menuHighlights: row.menuHighlights ? toJsonString(row.menuHighlights) : '[]',
-        galleryImages: gallery.length > 0 ? JSON.stringify(gallery) : '[]',
-        featuredImageUrl: featuredUrl,
-        status: 'published',
-        isFeatured: false,
-      },
-    });
-
-    imported++;
   }
-
-  return apiSuccess({ imported, skipped });
 }

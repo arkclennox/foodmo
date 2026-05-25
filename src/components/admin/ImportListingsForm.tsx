@@ -129,12 +129,29 @@ export function ImportListingsForm() {
         body: JSON.stringify({ data: processedData }),
       });
 
-      const result = await res.json();
+      // Server may return HTML on timeout/crash; read text first then try
+      // to parse so we surface a useful message either way.
+      const rawText = await res.text();
+      let result: { data?: { imported?: number; skipped?: number }; error?: { message?: string } } = {};
+      try {
+        result = JSON.parse(rawText);
+      } catch {
+        if (res.status === 504 || rawText.toLowerCase().includes('timeout')) {
+          throw new Error(
+            `Server timeout. Coba pecah CSV jadi batch lebih kecil (saat ini ${processedData.length} baris).`,
+          );
+        }
+        throw new Error(
+          `Server tidak mengembalikan JSON (HTTP ${res.status}). Cek logs Vercel atau coba lagi.`,
+        );
+      }
       if (!res.ok) {
-        throw new Error(result.error?.message || 'Gagal import data');
+        throw new Error(result.error?.message || `Gagal import (HTTP ${res.status})`);
       }
 
-      setSuccess(`Berhasil mengimpor ${result.data?.imported || 0} data. ${result.data?.skipped || 0} data dilewati (duplikat).`);
+      setSuccess(
+        `Berhasil mengimpor ${result.data?.imported || 0} data. ${result.data?.skipped || 0} data dilewati. Untuk pindahkan image ke R2, jalankan script migrate-images-to-r2 di terminal.`,
+      );
       setFile(null);
       setPreview([]);
       
