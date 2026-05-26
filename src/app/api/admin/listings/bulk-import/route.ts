@@ -4,10 +4,10 @@ import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
 import { toJsonString } from '@/lib/json-fields';
 
-// Vercel function timeout (Hobby tier allows up to 60s with Fluid Compute).
-// Bulk-import stays synchronous DB-only — image ingest to R2 runs as a
-// separate step (scripts/migrate-images-to-r2.ts) because per-row fetch +
-// sharp + upload is far too slow to fit in a single request.
+// Vercel Hobby allows up to 60s function duration with Fluid Compute.
+// Bulk-import stays DB-only and is heavily batched so the 60s window
+// is enough for ~25-50 rows. Image ingest to R2 runs separately via
+// /api/admin/sync-images.
 export const maxDuration = 60;
 
 const MAX_GALLERY = 10;
@@ -24,6 +24,39 @@ function dedupGallery(raw: unknown): string[] {
     if (out.length >= MAX_GALLERY) break;
   }
   return out;
+}
+
+function isEmpty(v: unknown): boolean {
+  if (v == null) return true;
+  if (typeof v === 'string') return v.trim() === '';
+  return false;
+}
+
+function parseArrayField(raw: string | null | undefined): string[] {
+  if (!raw || raw === '' || raw === '[]') return [];
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.map(String).filter(Boolean) : [];
+  } catch {
+    return [];
+  }
+}
+
+function mergeStringArrays(
+  existing: string[],
+  incoming: string[],
+  cap?: number,
+): { merged: string[]; changed: boolean } {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const v of [...existing, ...incoming]) {
+    const t = (v || '').trim();
+    if (!t || seen.has(t)) continue;
+    seen.add(t);
+    out.push(t);
+    if (cap && out.length >= cap) break;
+  }
+  return { merged: out, changed: out.length !== existing.length };
 }
 
 export async function POST(req: NextRequest) {
@@ -44,76 +77,119 @@ export async function POST(req: NextRequest) {
   let skipped = 0;
   const errors: Array<{ row: number; name?: string; reason: string }> = [];
 
-  // Per-request memoisation: many CSV rows share the same category /
-  // city. Without this each duplicate name triggers another upsert
-  // round-trip which dominates time on a pooled connection.
-  const categoryCache = new Map<string, string>();
-  const cityCache = new Map<string, string>();
-
-  async function resolveCategoryId(rawName: unknown): Promise<string | null> {
-    if (typeof rawName !== 'string' || !rawName.trim()) return null;
-    const slug = slugify(rawName);
-    const cached = categoryCache.get(slug);
-    if (cached) return cached;
-    const cat = await prisma.category.upsert({
-      where: { slug },
-      update: {},
-      create: { name: rawName, slug, type: 'listing' },
-    });
-    categoryCache.set(slug, cat.id);
-    return cat.id;
-  }
-
-  async function resolveCityId(rawName: unknown): Promise<string | null> {
-    if (typeof rawName !== 'string' || !rawName.trim()) return null;
-    const slug = slugify(rawName);
-    const cached = cityCache.get(slug);
-    if (cached) return cached;
-    const city = await prisma.city.upsert({
-      where: { slug },
-      update: {},
-      create: { name: rawName, slug },
-    });
-    cityCache.set(slug, city.id);
-    return city.id;
-  }
-
-  function isEmpty(v: unknown): boolean {
-    if (v == null) return true;
-    if (typeof v === 'string') return v.trim() === '';
-    return false;
-  }
-
-  function parseArrayField(raw: string | null | undefined): string[] {
-    if (!raw || raw === '' || raw === '[]') return [];
-    try {
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed.map(String).filter(Boolean) : [];
-    } catch {
-      return [];
-    }
-  }
-
-  function mergeStringArrays(
-    existing: string[],
-    incoming: string[],
-    cap?: number,
-  ): { merged: string[]; changed: boolean } {
-    const seen = new Set<string>();
-    const out: string[] = [];
-    for (const v of [...existing, ...incoming]) {
-      const t = (v || '').trim();
-      if (!t || seen.has(t)) continue;
-      seen.add(t);
-      out.push(t);
-      if (cap && out.length >= cap) break;
-    }
-    return { merged: out, changed: out.length !== existing.length };
-  }
-
   try {
-    for (let i = 0; i < data.length; i++) {
-      const row = data[i] as Record<string, unknown>;
+    // ---------- PREFETCH PHASE ----------
+    // Resolve all unique categories/cities in one batch of upserts
+    // instead of per-row lookups. Then fetch ALL potentially-duplicate
+    // listings for the batch in a single query so the row loop only
+    // does Map lookups + the single write per row.
+
+    const rows = data.map((r) => r as Record<string, unknown>);
+
+    // Collect unique category/city names appearing in the batch.
+    const uniqueCategoryNames = new Set<string>();
+    const uniqueCityNames = new Set<string>();
+    for (const r of rows) {
+      if (typeof r.categoryName === 'string' && r.categoryName.trim())
+        uniqueCategoryNames.add(r.categoryName.trim());
+      if (typeof r.cityName === 'string' && r.cityName.trim())
+        uniqueCityNames.add(r.cityName.trim());
+    }
+
+    const categoryIdMap = new Map<string, string>(); // slug -> id
+    const cityIdMap = new Map<string, string>();
+
+    // Upsert categories sequentially (small N, usually <30).
+    for (const rawName of uniqueCategoryNames) {
+      const slug = slugify(rawName);
+      const cat = await prisma.category.upsert({
+        where: { slug },
+        update: {},
+        create: { name: rawName, slug, type: 'listing' },
+      });
+      categoryIdMap.set(slug, cat.id);
+    }
+    for (const rawName of uniqueCityNames) {
+      const slug = slugify(rawName);
+      const city = await prisma.city.upsert({
+        where: { slug },
+        update: {},
+        create: { name: rawName, slug },
+      });
+      cityIdMap.set(slug, city.id);
+    }
+
+    const resolvedCityIds = new Set<string>();
+    for (const r of rows) {
+      if (typeof r.cityName === 'string' && r.cityName.trim()) {
+        const id = cityIdMap.get(slugify(r.cityName.trim()));
+        if (id) resolvedCityIds.add(id);
+      }
+    }
+
+    // Single query: pull every published listing in the batch's cities.
+    // Typical case: a CSV touches ~5-20 cities, this returns at most
+    // a few thousand rows which is fine.
+    const candidateListings = resolvedCityIds.size
+      ? await prisma.listing.findMany({
+          where: { cityId: { in: Array.from(resolvedCityIds) } },
+          select: {
+            id: true,
+            name: true,
+            cityId: true,
+            description: true,
+            shortDescription: true,
+            address: true,
+            phone: true,
+            whatsapp: true,
+            websiteUrl: true,
+            instagramUrl: true,
+            shopeeFoodUrl: true,
+            tiktokUrl: true,
+            googleMapsUrl: true,
+            priceRange: true,
+            metaTitle: true,
+            metaDescription: true,
+            rating: true,
+            latitude: true,
+            longitude: true,
+            featuredImageUrl: true,
+            galleryImages: true,
+            facilities: true,
+            menuHighlights: true,
+          },
+        })
+      : [];
+
+    // Map by (lowerName|cityId) for O(1) duplicate lookup.
+    type Existing = (typeof candidateListings)[number];
+    const existingMap = new Map<string, Existing>();
+    for (const l of candidateListings) {
+      existingMap.set(`${l.name.toLowerCase()}|${l.cityId ?? ''}`, l);
+    }
+
+    // Pre-fetch all candidate slugs to detect collisions in O(1).
+    const proposedSlugs: string[] = [];
+    for (const r of rows) {
+      const name = typeof r.name === 'string' ? r.name.trim() : '';
+      if (!name) continue;
+      proposedSlugs.push(
+        typeof r.slug === 'string' && r.slug.trim()
+          ? slugify(r.slug)
+          : slugify(name),
+      );
+    }
+    const slugCollisionRows = proposedSlugs.length
+      ? await prisma.listing.findMany({
+          where: { slug: { in: proposedSlugs } },
+          select: { slug: true },
+        })
+      : [];
+    const takenSlugs = new Set(slugCollisionRows.map((s) => s.slug));
+
+    // ---------- ROW LOOP ----------
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
       const name = typeof row.name === 'string' ? row.name.trim() : '';
       if (!name) {
         skipped++;
@@ -121,18 +197,20 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        const categoryId = await resolveCategoryId(row.categoryName);
-        const cityId = await resolveCityId(row.cityName);
+        const categoryId =
+          typeof row.categoryName === 'string' && row.categoryName.trim()
+            ? categoryIdMap.get(slugify(row.categoryName.trim())) ?? null
+            : null;
+        const cityId =
+          typeof row.cityName === 'string' && row.cityName.trim()
+            ? cityIdMap.get(slugify(row.cityName.trim())) ?? null
+            : null;
 
-        // 3. Check duplicate by (name, cityId). If found, smart-merge:
-        //    only fill empty fields and append (dedup, cap) to arrays.
-        const existing = await prisma.listing.findFirst({
-          where: { name: { equals: name, mode: 'insensitive' }, cityId },
-        });
+        const existing = existingMap.get(`${name.toLowerCase()}|${cityId ?? ''}`);
+
         if (existing) {
+          // ---- MERGE PATH ----
           const updates: Record<string, unknown> = {};
-
-          // Text/scalar fields: only set when existing value is empty.
           const textPairs: Array<[string, string, unknown]> = [
             ['description', 'description', row.description],
             ['shortDescription', 'shortDescription', row.shortDescription],
@@ -156,8 +234,6 @@ export async function POST(req: NextRequest) {
               updates[key] = String(newVal).trim();
             }
           }
-
-          // Numeric fields
           if (
             (existing.rating === 0 || existing.rating == null) &&
             typeof row.rating === 'number' &&
@@ -171,8 +247,6 @@ export async function POST(req: NextRequest) {
           if (existing.longitude == null && typeof row.longitude === 'number') {
             updates.longitude = row.longitude;
           }
-
-          // Featured image: only set if empty.
           if (
             isEmpty(existing.featuredImageUrl) &&
             !isEmpty(row.featuredImageUrl)
@@ -180,34 +254,27 @@ export async function POST(req: NextRequest) {
             updates.featuredImageUrl = String(row.featuredImageUrl).trim();
           }
 
-          // Gallery: union + dedup + cap. Keep existing order first so
-          // already-R2 URLs stay at the front.
-          const existingGallery = parseArrayField(existing.galleryImages);
-          const incomingGallery = dedupGallery(row.galleryImages);
           const galleryMerge = mergeStringArrays(
-            existingGallery,
-            incomingGallery,
+            parseArrayField(existing.galleryImages),
+            dedupGallery(row.galleryImages),
             MAX_GALLERY,
           );
           if (galleryMerge.changed) {
             updates.galleryImages = JSON.stringify(galleryMerge.merged);
           }
-
-          // Facilities & menuHighlights: union + dedup (no cap).
-          const existingFac = parseArrayField(existing.facilities);
-          const incomingFac = Array.isArray(row.facilities)
-            ? row.facilities.map(String)
-            : [];
-          const facMerge = mergeStringArrays(existingFac, incomingFac);
+          const facMerge = mergeStringArrays(
+            parseArrayField(existing.facilities),
+            Array.isArray(row.facilities) ? row.facilities.map(String) : [],
+          );
           if (facMerge.changed) {
             updates.facilities = JSON.stringify(facMerge.merged);
           }
-
-          const existingMenu = parseArrayField(existing.menuHighlights);
-          const incomingMenu = Array.isArray(row.menuHighlights)
-            ? row.menuHighlights.map(String)
-            : [];
-          const menuMerge = mergeStringArrays(existingMenu, incomingMenu);
+          const menuMerge = mergeStringArrays(
+            parseArrayField(existing.menuHighlights),
+            Array.isArray(row.menuHighlights)
+              ? row.menuHighlights.map(String)
+              : [],
+          );
           if (menuMerge.changed) {
             updates.menuHighlights = JSON.stringify(menuMerge.merged);
           }
@@ -224,16 +291,16 @@ export async function POST(req: NextRequest) {
           continue;
         }
 
-        // 4. Slug
+        // ---- CREATE PATH ----
         let slug =
           typeof row.slug === 'string' && row.slug.trim()
             ? slugify(row.slug)
             : slugify(name);
-        const collision = await prisma.listing.findUnique({ where: { slug } });
-        if (collision) slug = `${slug}-${Math.floor(Math.random() * 10000)}`;
+        if (takenSlugs.has(slug)) {
+          slug = `${slug}-${Math.floor(Math.random() * 10000)}`;
+        }
+        takenSlugs.add(slug); // mark as taken so later rows in same batch don't reuse
 
-        // 5. Insert — images stored AS-IS. Run the migrate-images-to-r2
-        //    script afterwards to push them to R2.
         const galleryRaw = dedupGallery(row.galleryImages);
         await prisma.listing.create({
           data: {
@@ -256,8 +323,11 @@ export async function POST(req: NextRequest) {
             categoryId,
             cityId,
             facilities: row.facilities ? toJsonString(row.facilities) : '[]',
-            menuHighlights: row.menuHighlights ? toJsonString(row.menuHighlights) : '[]',
-            galleryImages: galleryRaw.length > 0 ? JSON.stringify(galleryRaw) : '[]',
+            menuHighlights: row.menuHighlights
+              ? toJsonString(row.menuHighlights)
+              : '[]',
+            galleryImages:
+              galleryRaw.length > 0 ? JSON.stringify(galleryRaw) : '[]',
             featuredImageUrl: (row.featuredImageUrl as string) || null,
             status: 'published',
             isFeatured: false,
@@ -274,7 +344,12 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return apiSuccess({ imported, merged, skipped, errors: errors.slice(0, 10) });
+    return apiSuccess({
+      imported,
+      merged,
+      skipped,
+      errors: errors.slice(0, 10),
+    });
   } catch (e) {
     return NextResponse.json(
       {

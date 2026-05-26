@@ -124,9 +124,10 @@ export function ImportListingsForm() {
         throw new Error("Tidak ada data valid yang ditemukan (kolom 'name' wajib ada).");
       }
 
-      // Auto-chunk untuk hindari Vercel 60s function timeout. 50 row per
-      // chunk biasanya selesai ~10-20 detik tergantung jumlah upsert.
-      const CHUNK_SIZE = 50;
+      // Auto-chunk untuk hindari Vercel 60s function timeout. Lebih
+      // konservatif (25 row) supaya tetap aman walau Fluid CPU quota
+      // habis (function jadi lebih lambat) atau pooler latency tinggi.
+      const CHUNK_SIZE = 25;
       let totalImported = 0;
       let totalMerged = 0;
       let totalSkipped = 0;
