@@ -2,14 +2,15 @@
  * Batched image-to-R2 sync endpoint.
  *
  * Finds listings whose featuredImageUrl or galleryImages still contain
- * external URLs, ingests up to `limit` of them into R2, and returns the
- * remaining count so the client can keep calling until done.
+ * external URLs, ingests them into R2, and returns the remaining count
+ * so the client can keep calling until done.
  *
- * Designed to stay under Vercel's serverless timeout — default batch
- * size of 15 leaves headroom even if every image is fetched + sharp
- * processed + uploaded.
- *
- * Admin auth is enforced by middleware (matcher: /api/admin/*).
+ * To stay under Vercel's 60s function limit even when individual images
+ * are slow:
+ *   - default batch size of 5 listings per call (hard cap 10);
+ *   - image fetches WITHIN a listing run in parallel (Promise.all);
+ *   - a soft time budget short-circuits the loop and returns whatever
+ *     was processed so the client never sees a 504 / HTML error page.
  */
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
@@ -21,8 +22,9 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 const MAX_GALLERY = 10;
-const DEFAULT_LIMIT = 15;
-const HARD_CAP_LIMIT = 30;
+const DEFAULT_LIMIT = 5;
+const HARD_CAP_LIMIT = 10;
+const SOFT_TIME_BUDGET_MS = 45_000; // leave ~15s safety from the 60s hard cap
 
 type Candidate = {
   id: string;
@@ -95,7 +97,8 @@ async function migrateOne(l: Candidate): Promise<{ ok: number; fail: number }> {
     }
   }
 
-  // Gallery
+  // Gallery — parallelise the per-URL ingest so a listing with 10
+  // images doesn't serially eat 20s of function time.
   const gallery = parseGallery(l.galleryImages);
   if (gallery.length > 0) {
     const seen = new Set<string>();
@@ -105,25 +108,34 @@ async function migrateOne(l: Candidate): Promise<{ ok: number; fail: number }> {
       return true;
     });
     const capped = dedup.slice(0, MAX_GALLERY);
+
+    const results = await Promise.all(
+      capped.map(async (src) => {
+        if (isR2Url(src)) return { kind: 'keep' as const, url: src };
+        try {
+          const r = await ingestImage({
+            source: src,
+            slug: l.slug,
+            prefix: 'listings/gallery',
+          });
+          return { kind: 'ok' as const, url: r.url };
+        } catch {
+          return { kind: 'fail' as const };
+        }
+      }),
+    );
+
     const out: string[] = [];
     let galleryChanged = false;
-    for (const src of capped) {
-      if (isR2Url(src)) {
-        out.push(src);
-        continue;
-      }
-      try {
-        const r = await ingestImage({
-          source: src,
-          slug: l.slug,
-          prefix: 'listings/gallery',
-        });
+    for (const r of results) {
+      if (r.kind === 'keep') out.push(r.url);
+      else if (r.kind === 'ok') {
         out.push(r.url);
         ok++;
         galleryChanged = true;
-      } catch {
+      } else {
         fail++;
-        galleryChanged = true; // dead URL removed
+        galleryChanged = true;
       }
     }
     if (galleryChanged) {
@@ -132,7 +144,8 @@ async function migrateOne(l: Candidate): Promise<{ ok: number; fail: number }> {
     }
   }
 
-  // Backfill featured from first gallery if still empty
+  // If listing had no featured but now has at least one gallery R2 URL,
+  // promote the first one as featured.
   if (
     !update.featuredImageUrl &&
     !l.featuredImageUrl &&
@@ -152,36 +165,51 @@ async function migrateOne(l: Candidate): Promise<{ ok: number; fail: number }> {
 }
 
 export async function POST(req: NextRequest) {
+  const startedAt = Date.now();
   const url = new URL(req.url);
   const limit = Math.min(
     Math.max(Number(url.searchParams.get('limit') ?? DEFAULT_LIMIT), 1),
     HARD_CAP_LIMIT,
   );
 
+  let processed = 0;
+  let ok = 0;
+  let fail = 0;
+  let earlyExit = false;
+
   try {
     const pending = await findPending();
     const batch = pending.slice(0, limit);
-    let processed = 0;
-    let ok = 0;
-    let fail = 0;
     for (const l of batch) {
-      const r = await migrateOne(l);
-      ok += r.ok;
-      fail += r.fail;
+      if (Date.now() - startedAt > SOFT_TIME_BUDGET_MS) {
+        earlyExit = true;
+        break;
+      }
+      try {
+        const r = await migrateOne(l);
+        ok += r.ok;
+        fail += r.fail;
+      } catch {
+        fail++;
+      }
       processed++;
     }
+    const remaining = Math.max(0, pending.length - processed);
     return NextResponse.json({
       success: true,
       processed,
       images: { ok, fail },
-      remaining: Math.max(0, pending.length - processed),
+      remaining,
       totalPending: pending.length,
+      earlyExit,
     });
   } catch (e) {
+    // Always return JSON so the client never tries to parse HTML.
     return NextResponse.json(
       {
         success: false,
         error: { code: 'SYNC_ERROR', message: (e as Error).message },
+        partial: { processed, images: { ok, fail } },
       },
       { status: 500 },
     );
@@ -189,7 +217,6 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  // Quick stats — useful for UI badge "X listing menunggu sync"
   try {
     const pending = await findPending();
     return NextResponse.json({ success: true, pending: pending.length });

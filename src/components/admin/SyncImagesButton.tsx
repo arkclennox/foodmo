@@ -8,6 +8,7 @@ type SyncResp = {
   images?: { ok: number; fail: number };
   remaining?: number;
   totalPending?: number;
+  earlyExit?: boolean;
   error?: { message?: string };
 };
 
@@ -37,17 +38,55 @@ export function SyncImagesButton() {
     let ok = 0;
     let fail = 0;
     let iterations = 0;
-    const HARD_STOP = 300;
+    let consecutiveFailures = 0;
+    const HARD_STOP = 500;
     try {
       while (iterations < HARD_STOP) {
-        const res = await fetch('/api/admin/sync-images?limit=15', {
-          method: 'POST',
-        });
-        const json: SyncResp = await res.json();
-        if (!json.success) {
-          setStatus(`Error: ${json.error?.message ?? 'unknown'}`);
-          break;
+        let json: SyncResp;
+        try {
+          const res = await fetch('/api/admin/sync-images?limit=5', {
+            method: 'POST',
+          });
+          const text = await res.text();
+          try {
+            json = JSON.parse(text);
+          } catch {
+            // Server returned HTML (timeout/crash). Treat as one failed
+            // batch but keep going.
+            consecutiveFailures++;
+            setStatus(
+              `Batch ${iterations + 1} gagal (timeout/HTML response). Mencoba lanjut… [${consecutiveFailures}/3]`,
+            );
+            if (consecutiveFailures >= 3) {
+              setStatus(
+                `Terhenti setelah 3 batch berturut-turut gagal. Sudah selesai: ${processed} listing, ${ok} OK, ${fail} gagal. Coba lagi nanti.`,
+              );
+              break;
+            }
+            iterations++;
+            continue;
+          }
+        } catch (netErr) {
+          consecutiveFailures++;
+          setStatus(
+            `Network error: ${netErr instanceof Error ? netErr.message : 'unknown'}. Mencoba lanjut… [${consecutiveFailures}/3]`,
+          );
+          if (consecutiveFailures >= 3) break;
+          iterations++;
+          continue;
         }
+
+        if (!json.success) {
+          consecutiveFailures++;
+          setStatus(
+            `Sync error: ${json.error?.message ?? 'unknown'}. [${consecutiveFailures}/3]`,
+          );
+          if (consecutiveFailures >= 3) break;
+          iterations++;
+          continue;
+        }
+
+        consecutiveFailures = 0;
         processed += json.processed ?? 0;
         ok += json.images?.ok ?? 0;
         fail += json.images?.fail ?? 0;
@@ -56,7 +95,8 @@ export function SyncImagesButton() {
         setStatus(
           `${processed} listing diproses · ${ok} image OK · ${fail} gagal · sisa ${remaining}…`,
         );
-        if (remaining === 0 || (json.processed ?? 0) === 0) break;
+        if (remaining === 0) break;
+        if ((json.processed ?? 0) === 0 && !json.earlyExit) break;
       }
       setStatus(`Selesai. ${processed} listing · ${ok} OK · ${fail} gagal.`);
       await refreshCount();

@@ -189,32 +189,59 @@ export function ImportListingsForm() {
       setFile(null);
       setPreview([]);
 
-      // Auto-sync images to R2 in batches. Keeps each request under the
-      // 60s Vercel function timeout and loops client-side until done.
+      // Auto-sync images to R2 in batches of 5 listings (≈30s/call) so
+      // each request fits comfortably inside the 60s function limit.
+      // Tolerate intermittent failures: skip past 3 consecutive errors
+      // and let the user resume via the "Sync Gambar" button on /admin.
       try {
         let totalProcessed = 0;
         let totalOk = 0;
         let totalFail = 0;
         let iterations = 0;
-        const HARD_STOP = 200; // safety cap on iterations (~3K listing)
+        let consecutiveFailures = 0;
+        const HARD_STOP = 500;
         while (iterations < HARD_STOP) {
-          const syncRes = await fetch('/api/admin/sync-images?limit=15', {
-            method: 'POST',
-          });
-          const syncJson = (await syncRes.json()) as {
+          let syncJson: {
             success: boolean;
             processed?: number;
             images?: { ok: number; fail: number };
             remaining?: number;
-            totalPending?: number;
+            earlyExit?: boolean;
             error?: { message?: string };
           };
-          if (!syncJson.success) {
-            setSyncProgress(
-              `Sync error: ${syncJson.error?.message ?? 'unknown'} — kamu bisa coba klik "Sync Gambar" di /admin nanti.`,
-            );
-            break;
+          try {
+            const syncRes = await fetch('/api/admin/sync-images?limit=5', {
+              method: 'POST',
+            });
+            const text = await syncRes.text();
+            try {
+              syncJson = JSON.parse(text);
+            } catch {
+              consecutiveFailures++;
+              if (consecutiveFailures >= 3) {
+                setSyncProgress(
+                  `Terhenti setelah 3 batch gagal beruntun. Sudah pindah: ${totalProcessed} listing, ${totalOk} image. Lanjutkan via tombol "Sync Gambar" di /admin.`,
+                );
+                break;
+              }
+              iterations++;
+              continue;
+            }
+          } catch {
+            consecutiveFailures++;
+            if (consecutiveFailures >= 3) break;
+            iterations++;
+            continue;
           }
+
+          if (!syncJson.success) {
+            consecutiveFailures++;
+            if (consecutiveFailures >= 3) break;
+            iterations++;
+            continue;
+          }
+          consecutiveFailures = 0;
+
           totalProcessed += syncJson.processed ?? 0;
           totalOk += syncJson.images?.ok ?? 0;
           totalFail += syncJson.images?.fail ?? 0;
@@ -223,7 +250,8 @@ export function ImportListingsForm() {
           setSyncProgress(
             `Memindah gambar ke R2 — ${totalProcessed} listing diproses, ${totalOk} image OK, ${totalFail} gagal, sisa ${remaining} listing…`,
           );
-          if (remaining === 0 || (syncJson.processed ?? 0) === 0) break;
+          if (remaining === 0) break;
+          if ((syncJson.processed ?? 0) === 0 && !syncJson.earlyExit) break;
         }
         setSyncProgress(
           `Selesai. ${totalProcessed} listing disinkron — ${totalOk} image di R2, ${totalFail} URL gagal (di-drop).`,
