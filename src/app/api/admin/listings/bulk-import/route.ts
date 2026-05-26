@@ -44,6 +44,40 @@ export async function POST(req: NextRequest) {
   let skipped = 0;
   const errors: Array<{ row: number; name?: string; reason: string }> = [];
 
+  // Per-request memoisation: many CSV rows share the same category /
+  // city. Without this each duplicate name triggers another upsert
+  // round-trip which dominates time on a pooled connection.
+  const categoryCache = new Map<string, string>();
+  const cityCache = new Map<string, string>();
+
+  async function resolveCategoryId(rawName: unknown): Promise<string | null> {
+    if (typeof rawName !== 'string' || !rawName.trim()) return null;
+    const slug = slugify(rawName);
+    const cached = categoryCache.get(slug);
+    if (cached) return cached;
+    const cat = await prisma.category.upsert({
+      where: { slug },
+      update: {},
+      create: { name: rawName, slug, type: 'listing' },
+    });
+    categoryCache.set(slug, cat.id);
+    return cat.id;
+  }
+
+  async function resolveCityId(rawName: unknown): Promise<string | null> {
+    if (typeof rawName !== 'string' || !rawName.trim()) return null;
+    const slug = slugify(rawName);
+    const cached = cityCache.get(slug);
+    if (cached) return cached;
+    const city = await prisma.city.upsert({
+      where: { slug },
+      update: {},
+      create: { name: rawName, slug },
+    });
+    cityCache.set(slug, city.id);
+    return city.id;
+  }
+
   function isEmpty(v: unknown): boolean {
     if (v == null) return true;
     if (typeof v === 'string') return v.trim() === '';
@@ -87,29 +121,8 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        // 1. Resolve Category
-        let categoryId: string | null = null;
-        if (typeof row.categoryName === 'string' && row.categoryName.trim()) {
-          const catSlug = slugify(row.categoryName);
-          const cat = await prisma.category.upsert({
-            where: { slug: catSlug },
-            update: {},
-            create: { name: row.categoryName, slug: catSlug, type: 'listing' },
-          });
-          categoryId = cat.id;
-        }
-
-        // 2. Resolve City
-        let cityId: string | null = null;
-        if (typeof row.cityName === 'string' && row.cityName.trim()) {
-          const citySlug = slugify(row.cityName);
-          const city = await prisma.city.upsert({
-            where: { slug: citySlug },
-            update: {},
-            create: { name: row.cityName, slug: citySlug },
-          });
-          cityId = city.id;
-        }
+        const categoryId = await resolveCategoryId(row.categoryName);
+        const cityId = await resolveCityId(row.cityName);
 
         // 3. Check duplicate by (name, cityId). If found, smart-merge:
         //    only fill empty fields and append (dedup, cap) to arrays.

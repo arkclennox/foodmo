@@ -124,39 +124,66 @@ export function ImportListingsForm() {
         throw new Error("Tidak ada data valid yang ditemukan (kolom 'name' wajib ada).");
       }
 
-      const res = await fetch('/api/admin/listings/bulk-import', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: processedData }),
-      });
+      // Auto-chunk untuk hindari Vercel 60s function timeout. 50 row per
+      // chunk biasanya selesai ~10-20 detik tergantung jumlah upsert.
+      const CHUNK_SIZE = 50;
+      let totalImported = 0;
+      let totalMerged = 0;
+      let totalSkipped = 0;
+      let totalErrors: Array<{ row: number; name?: string; reason: string }> = [];
 
-      // Server may return HTML on timeout/crash; read text first then try
-      // to parse so we surface a useful message either way.
-      const rawText = await res.text();
-      let result: {
-        data?: { imported?: number; merged?: number; skipped?: number };
-        error?: { message?: string };
-      } = {};
-      try {
-        result = JSON.parse(rawText);
-      } catch {
-        if (res.status === 504 || rawText.toLowerCase().includes('timeout')) {
+      for (let i = 0; i < processedData.length; i += CHUNK_SIZE) {
+        const chunk = processedData.slice(i, i + CHUNK_SIZE);
+        const chunkIndex = Math.floor(i / CHUNK_SIZE) + 1;
+        const totalChunks = Math.ceil(processedData.length / CHUNK_SIZE);
+        setSuccess(
+          `Mengimpor batch ${chunkIndex}/${totalChunks} (${chunk.length} baris)…`,
+        );
+
+        const res = await fetch('/api/admin/listings/bulk-import', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: chunk }),
+        });
+        const rawText = await res.text();
+        let result: {
+          data?: {
+            imported?: number;
+            merged?: number;
+            skipped?: number;
+            errors?: Array<{ row: number; name?: string; reason: string }>;
+          };
+          error?: { message?: string };
+        } = {};
+        try {
+          result = JSON.parse(rawText);
+        } catch {
+          if (res.status === 504 || rawText.toLowerCase().includes('timeout')) {
+            throw new Error(
+              `Server timeout di batch ${chunkIndex}/${totalChunks}. Sudah selesai: ${totalImported} baru, ${totalMerged} merged.`,
+            );
+          }
           throw new Error(
-            `Server timeout. Coba pecah CSV jadi batch lebih kecil (saat ini ${processedData.length} baris).`,
+            `Server tidak mengembalikan JSON di batch ${chunkIndex} (HTTP ${res.status}).`,
           );
         }
-        throw new Error(
-          `Server tidak mengembalikan JSON (HTTP ${res.status}). Cek logs Vercel atau coba lagi.`,
-        );
-      }
-      if (!res.ok) {
-        throw new Error(result.error?.message || `Gagal import (HTTP ${res.status})`);
+        if (!res.ok || !result.data) {
+          throw new Error(
+            result.error?.message ?? `Gagal di batch ${chunkIndex} (HTTP ${res.status})`,
+          );
+        }
+        totalImported += result.data.imported ?? 0;
+        totalMerged += result.data.merged ?? 0;
+        totalSkipped += result.data.skipped ?? 0;
+        if (result.data.errors?.length) {
+          totalErrors = totalErrors.concat(result.data.errors).slice(0, 20);
+        }
       }
 
       setSuccess(
-        `Berhasil: ${result.data?.imported || 0} listing baru, ${
-          result.data?.merged || 0
-        } listing lama dilengkapi, ${result.data?.skipped || 0} dilewati. Memindahkan gambar ke R2…`,
+        `Selesai: ${totalImported} listing baru, ${totalMerged} dilengkapi, ${totalSkipped} dilewati${
+          totalErrors.length ? ` (${totalErrors.length} error)` : ''
+        }. Memindahkan gambar ke R2…`,
       );
       setFile(null);
       setPreview([]);
