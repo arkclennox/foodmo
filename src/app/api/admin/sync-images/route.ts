@@ -22,9 +22,10 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 const MAX_GALLERY = 10;
-const DEFAULT_LIMIT = 5;
-const HARD_CAP_LIMIT = 10;
-const SOFT_TIME_BUDGET_MS = 45_000; // leave ~15s safety from the 60s hard cap
+const DEFAULT_LIMIT = 3;
+const HARD_CAP_LIMIT = 8;
+const SOFT_TIME_BUDGET_MS = 40_000; // leave ~20s safety from the 60s hard cap
+const GALLERY_CONCURRENCY = 3; // cap parallel sharp+upload per listing
 
 type Candidate = {
   id: string;
@@ -109,21 +110,40 @@ async function migrateOne(l: Candidate): Promise<{ ok: number; fail: number }> {
     });
     const capped = dedup.slice(0, MAX_GALLERY);
 
-    const results = await Promise.all(
-      capped.map(async (src) => {
-        if (isR2Url(src)) return { kind: 'keep' as const, url: src };
-        try {
-          const r = await ingestImage({
-            source: src,
-            slug: l.slug,
-            prefix: 'listings/gallery',
-          });
-          return { kind: 'ok' as const, url: r.url };
-        } catch {
-          return { kind: 'fail' as const };
+    type ItemResult =
+      | { kind: 'keep'; url: string }
+      | { kind: 'ok'; url: string }
+      | { kind: 'fail' };
+
+    const ingestSingle = async (src: string): Promise<ItemResult> => {
+      if (isR2Url(src)) return { kind: 'keep', url: src };
+      try {
+        const r = await ingestImage({
+          source: src,
+          slug: l.slug,
+          prefix: 'listings/gallery',
+        });
+        return { kind: 'ok', url: r.url };
+      } catch {
+        return { kind: 'fail' };
+      }
+    };
+
+    // Bounded-concurrency worker pool — paralel but capped so Vercel
+    // function doesn't OOM on 10 simultaneous sharp pipelines.
+    const results: ItemResult[] = new Array(capped.length);
+    let cursor = 0;
+    const workers = Array.from(
+      { length: Math.min(GALLERY_CONCURRENCY, capped.length) },
+      async () => {
+        while (true) {
+          const i = cursor++;
+          if (i >= capped.length) return;
+          results[i] = await ingestSingle(capped[i]);
         }
-      }),
+      },
     );
+    await Promise.all(workers);
 
     const out: string[] = [];
     let galleryChanged = false;

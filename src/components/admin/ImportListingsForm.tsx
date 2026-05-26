@@ -210,7 +210,7 @@ export function ImportListingsForm() {
             error?: { message?: string };
           };
           try {
-            const syncRes = await fetch('/api/admin/sync-images?limit=5', {
+            const syncRes = await fetch('/api/admin/sync-images?limit=3', {
               method: 'POST',
             });
             const text = await syncRes.text();

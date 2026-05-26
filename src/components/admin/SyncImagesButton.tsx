@@ -44,7 +44,7 @@ export function SyncImagesButton() {
       while (iterations < HARD_STOP) {
         let json: SyncResp;
         try {
-          const res = await fetch('/api/admin/sync-images?limit=5', {
+          const res = await fetch('/api/admin/sync-images?limit=3', {
             method: 'POST',
           });
           const text = await res.text();
