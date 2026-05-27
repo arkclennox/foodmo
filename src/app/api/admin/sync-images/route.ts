@@ -76,7 +76,10 @@ async function findPending(): Promise<Candidate[]> {
   return all.filter(needsMigration);
 }
 
-async function migrateOne(l: Candidate): Promise<{ ok: number; fail: number }> {
+async function migrateOne(
+  l: Candidate,
+  errorSamples: string[],
+): Promise<{ ok: number; fail: number }> {
   let ok = 0;
   let fail = 0;
   const update: { featuredImageUrl?: string | null; galleryImages?: string | null } = {};
@@ -93,8 +96,13 @@ async function migrateOne(l: Candidate): Promise<{ ok: number; fail: number }> {
       update.featuredImageUrl = r.url;
       ok++;
       changed = true;
-    } catch {
+    } catch (e) {
       fail++;
+      if (errorSamples.length < 5) {
+        errorSamples.push(
+          `${l.slug} (featured): ${(e as Error).message ?? 'unknown'}`,
+        );
+      }
     }
   }
 
@@ -124,7 +132,12 @@ async function migrateOne(l: Candidate): Promise<{ ok: number; fail: number }> {
           prefix: 'listings/gallery',
         });
         return { kind: 'ok', url: r.url };
-      } catch {
+      } catch (e) {
+        if (errorSamples.length < 5) {
+          errorSamples.push(
+            `${l.slug} (gallery): ${(e as Error).message ?? 'unknown'}`,
+          );
+        }
         return { kind: 'fail' };
       }
     };
@@ -196,6 +209,7 @@ export async function POST(req: NextRequest) {
   let ok = 0;
   let fail = 0;
   let earlyExit = false;
+  const errorSamples: string[] = [];
 
   try {
     const pending = await findPending();
@@ -206,11 +220,16 @@ export async function POST(req: NextRequest) {
         break;
       }
       try {
-        const r = await migrateOne(l);
+        const r = await migrateOne(l, errorSamples);
         ok += r.ok;
         fail += r.fail;
-      } catch {
+      } catch (e) {
         fail++;
+        if (errorSamples.length < 5) {
+          errorSamples.push(
+            `${l.slug} (listing): ${(e as Error).message ?? 'unknown'}`,
+          );
+        }
       }
       processed++;
     }
@@ -222,14 +241,14 @@ export async function POST(req: NextRequest) {
       remaining,
       totalPending: pending.length,
       earlyExit,
+      errorSamples,
     });
   } catch (e) {
-    // Always return JSON so the client never tries to parse HTML.
     return NextResponse.json(
       {
         success: false,
         error: { code: 'SYNC_ERROR', message: (e as Error).message },
-        partial: { processed, images: { ok, fail } },
+        partial: { processed, images: { ok, fail }, errorSamples },
       },
       { status: 500 },
     );

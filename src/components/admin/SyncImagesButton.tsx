@@ -9,6 +9,7 @@ type SyncResp = {
   remaining?: number;
   totalPending?: number;
   earlyExit?: boolean;
+  errorSamples?: string[];
   error?: { message?: string };
 };
 
@@ -16,6 +17,7 @@ export function SyncImagesButton() {
   const [pending, setPending] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
+  const [errorSamples, setErrorSamples] = useState<string[]>([]);
 
   async function refreshCount() {
     try {
@@ -92,6 +94,11 @@ export function SyncImagesButton() {
         fail += json.images?.fail ?? 0;
         iterations++;
         const remaining = json.remaining ?? 0;
+        if (json.errorSamples && json.errorSamples.length > 0) {
+          setErrorSamples((prev) =>
+            Array.from(new Set([...prev, ...json.errorSamples!])).slice(0, 10),
+          );
+        }
         setStatus(
           `${processed} listing diproses · ${ok} image OK · ${fail} gagal · sisa ${remaining}…`,
         );
@@ -121,6 +128,20 @@ export function SyncImagesButton() {
           </div>
           {status && (
             <div className="mt-1 text-xs text-amber-800">{status}</div>
+          )}
+          {errorSamples.length > 0 && (
+            <details className="mt-2 text-xs text-amber-900">
+              <summary className="cursor-pointer font-semibold">
+                {errorSamples.length} contoh error
+              </summary>
+              <ul className="mt-1 list-disc pl-5">
+                {errorSamples.map((e, i) => (
+                  <li key={i} className="font-mono text-[11px] break-all">
+                    {e}
+                  </li>
+                ))}
+              </ul>
+            </details>
           )}
         </div>
         {pending > 0 && (
