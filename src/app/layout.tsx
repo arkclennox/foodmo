@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { SITE_DESCRIPTION, SITE_NAME, siteUrl } from '@/lib/seo';
 import { jsonLdScript, organizationSchema, websiteSchema } from '@/lib/schema';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
@@ -90,6 +91,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(websiteSchema()) }}
         />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <Analytics />
       </body>
     </html>
   );
