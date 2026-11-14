@@ -30,7 +30,7 @@ export async function PATCH(req: NextRequest) {
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
     return ERR.validation(
-      parsed.error.errors[0]?.message ?? 'Data tidak valid',
+      parsed.error.issues[0]?.message ?? 'Data tidak valid',
       parsed.error.format()
     );
   }

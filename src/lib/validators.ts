@@ -44,7 +44,12 @@ export const listingInputSchema = z.object({
 
 export type ListingInput = z.infer<typeof listingInputSchema>;
 
-export const listingPatchSchema = listingInputSchema.partial();
+// Patch schemas must not inherit `.default()` values: since zod v4, defaults
+// apply even inside optional fields, which would silently reset status/type
+// on every partial update. Override those fields as plain optionals.
+export const listingPatchSchema = listingInputSchema
+  .partial()
+  .extend({ status: z.enum(LISTING_STATUSES).optional() });
 
 export const articleInputSchema = z.object({
   title: z.string().min(1).max(300),
@@ -79,7 +84,9 @@ export const articleInputSchema = z.object({
   meta_description: stringOrEmptyToNull(500).optional(),
 });
 
-export const articlePatchSchema = articleInputSchema.partial();
+export const articlePatchSchema = articleInputSchema
+  .partial()
+  .extend({ status: z.enum(ARTICLE_STATUSES).optional() });
 
 export const categoryInputSchema = z.object({
   name: z.string().min(1).max(200),
@@ -98,3 +105,9 @@ export const cityInputSchema = z.object({
   metaTitle: stringOrEmptyToNull(300).optional(),
   metaDescription: stringOrEmptyToNull(500).optional(),
 });
+
+export const categoryPatchSchema = categoryInputSchema
+  .partial()
+  .extend({ type: z.enum(['listing', 'article']).optional() });
+
+export const cityPatchSchema = cityInputSchema.partial();
