@@ -18,7 +18,15 @@ const nextConfig = {
   // The public site is published as a static export (see scripts/build-static.mjs)
   // and served from Cloudflare static assets. `next dev` keeps the full app
   // (admin + API) for managing content locally.
-  ...(isStaticExport ? { output: 'export', generateBuildId: stableBuildId } : {}),
+  ...(isStaticExport
+    ? {
+        output: 'export',
+        generateBuildId: stableBuildId,
+        // The listing index reads all ~5k listings while thousands of pages
+        // render against the same DB pool; give it more than the 60 s default.
+        staticPageGenerationTimeout: 300,
+      }
+    : {}),
   images: {
     // Images are served from Cloudflare R2 as WebP already; no optimizer.
     unoptimized: true,
