@@ -2,41 +2,25 @@
 
 import { useState } from 'react';
 
-export function ContactForm() {
-  const [submitting, setSubmitting] = useState(false);
-  const [result, setResult] = useState<
-    { ok: true } | { ok: false; message: string } | null
-  >(null);
+const CONTACT_EMAIL = 'hello@foodmo.id';
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+/**
+ * The site is a static export (no server to receive POSTs), so the form
+ * composes an email in the visitor's mail app instead.
+ */
+export function ContactForm() {
+  const [opened, setOpened] = useState(false);
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitting(true);
-    setResult(null);
     const fd = new FormData(e.currentTarget);
-    const payload = {
-      name: String(fd.get('name') ?? ''),
-      email: String(fd.get('email') ?? ''),
-      subject: String(fd.get('subject') ?? ''),
-      message: String(fd.get('message') ?? ''),
-    };
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = (await res.json()) as { success: boolean; error?: { message?: string } };
-      if (res.ok && data.success) {
-        setResult({ ok: true });
-        e.currentTarget.reset();
-      } else {
-        setResult({ ok: false, message: data.error?.message ?? 'Gagal mengirim pesan.' });
-      }
-    } catch {
-      setResult({ ok: false, message: 'Jaringan bermasalah, coba lagi.' });
-    } finally {
-      setSubmitting(false);
-    }
+    const name = String(fd.get('name') ?? '').trim();
+    const email = String(fd.get('email') ?? '').trim();
+    const subject = String(fd.get('subject') ?? '').trim() || `Pesan dari ${name}`;
+    const message = String(fd.get('message') ?? '').trim();
+    const body = `${message}\n\n—\n${name} <${email}>`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setOpened(true);
   }
 
   return (
@@ -72,14 +56,17 @@ export function ContactForm() {
         />
       </div>
       <div className="flex items-center gap-3">
-        <button type="submit" className="btn-primary" disabled={submitting}>
-          {submitting ? 'Mengirim…' : 'Kirim pesan'}
+        <button type="submit" className="btn-primary">
+          Kirim lewat email
         </button>
-        {result && result.ok && (
-          <span className="text-sm text-green-700">Pesan terkirim — terima kasih!</span>
-        )}
-        {result && !result.ok && (
-          <span className="text-sm text-red-600">{result.message}</span>
+        {opened && (
+          <span className="text-sm text-black/70">
+            Aplikasi email Anda akan terbuka. Tidak terbuka? Kirim ke{' '}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy hover:underline">
+              {CONTACT_EMAIL}
+            </a>
+            .
+          </span>
         )}
       </div>
     </form>

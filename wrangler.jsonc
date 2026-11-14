@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Static site only: no Worker script runs, so requests are free and
+  // unlimited. Build ./out with `npm run build:static`.
+  "name": "foodmo-web",
+  "compatibility_date": "2026-10-15",
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [{ "pattern": "www.foodmo.id", "custom_domain": true }],
+  "workers_dev": true,
+  "preview_urls": false
+}

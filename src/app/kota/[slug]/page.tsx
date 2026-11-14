@@ -2,17 +2,16 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Breadcrumb } from '@/components/Breadcrumb';
-import { ListingCard } from '@/components/ListingCard';
-import { ListingFilter } from '@/components/ListingFilter';
-import { Pagination } from '@/components/Pagination';
+import { Directory } from '@/components/Directory';
 import { prisma } from '@/lib/db';
 import { listCategories, listFacilities, listListings } from '@/lib/queries';
 import { DEFAULT_PAGE_SIZE, THIN_CONTENT_THRESHOLDS } from '@/lib/constants';
-import { parsePagination } from '@/lib/pagination';
+import { toCardData } from '@/lib/listing-index';
 import { buildMetadata } from '@/lib/seo';
 import { breadcrumbSchema, jsonLdScript } from '@/lib/schema';
 
 export const revalidate = 3600;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const items = await prisma.city.findMany({
@@ -21,10 +20,6 @@ export async function generateStaticParams() {
   return items.map((item) => ({ slug: item.slug }));
 }
 
-
-function oneOf(value: string | string[] | undefined): string {
-  return Array.isArray(value) ? value[0] ?? '' : value ?? '';
-}
 
 export async function generateMetadata({
   params,
@@ -53,50 +48,21 @@ export async function generateMetadata({
 
 export default async function CityPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const [{ slug }, sp] = await Promise.all([params, searchParams]);
+  const { slug } = await params;
   const city = await prisma.city.findUnique({ where: { slug } });
   if (!city) notFound();
 
-  const state = {
-    search: oneOf(sp.search),
-    category: oneOf(sp.category),
-    city: slug,
-    price: oneOf(sp.price),
-    facility: oneOf(sp.facility),
-    sort: oneOf(sp.sort) || 'latest',
-  };
-  const { page, limit } = parsePagination(sp, { limit: DEFAULT_PAGE_SIZE });
 
   const [categories, facilities, result, popularCategories] = await Promise.all([
     listCategories('listing'),
     listFacilities(),
-    listListings({
-      search: state.search,
-      categorySlug: state.category,
-      citySlug: slug,
-      priceRange: state.price,
-      facility: state.facility,
-      sort: state.sort as 'latest' | 'rating' | 'name' | 'featured',
-      page,
-      limit,
-    }),
+    listListings({ citySlug: slug, sort: 'latest', page: 1, limit: DEFAULT_PAGE_SIZE }),
     prisma.category.findMany({ where: { type: 'listing' }, take: 8, orderBy: { name: 'asc' } }),
   ]);
 
-  const buildPageHref = (p: number) => {
-    const qs = new URLSearchParams();
-    Object.entries(state).forEach(([k, v]) => {
-      if (v && k !== 'city') qs.set(k, String(v));
-    });
-    if (p > 1) qs.set('page', String(p));
-    const s = qs.toString();
-    return s ? `/kota/${slug}?${s}` : `/kota/${slug}`;
-  };
 
   const breadcrumbs = breadcrumbSchema([
     { name: 'Beranda', url: '/' },
@@ -143,34 +109,22 @@ export default async function CityPage({
           ))}
         </div>
       </section>
-      <div className="grid gap-6 lg:grid-cols-[320px,1fr]">
-        <ListingFilter
-          basePath={`/kota/${slug}`}
-          state={state}
-          categories={categories}
-          cities={[]}
-          facilities={facilities}
-          hideCity
-        />
-        <div>
-          {result.items.length === 0 ? (
-            <div className="card px-6 py-16 text-center">
-              <p className="text-black/70">Belum ada tempat makan di {city.name}.</p>
-            </div>
-          ) : (
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {result.items.map((l) => (
-                <ListingCard key={l.id} listing={l} />
-              ))}
-            </div>
-          )}
-          <Pagination
-            page={result.page}
-            totalPages={result.totalPages}
-            buildHref={buildPageHref}
-          />
-        </div>
-      </div>
+      <Directory
+        options={{
+          basePath: `/kota/${slug}`,
+          fixed: { city: slug },
+          categories: categories.map((c) => ({ slug: c.slug, name: c.name })),
+          cities: [],
+          facilities,
+          hideCity: true,
+        }}
+        initial={{
+          items: result.items.map(toCardData),
+          total: result.total,
+          totalPages: result.totalPages,
+        }}
+        pageSize={DEFAULT_PAGE_SIZE}
+      />
     </div>
   );
 }

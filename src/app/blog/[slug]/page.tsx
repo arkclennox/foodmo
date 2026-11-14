@@ -12,13 +12,13 @@ import { prisma } from '@/lib/db';
 
 
 export const revalidate = 604800; // 7 hari; edit dari admin/API langsung di-revalidate on-demand
-export const dynamicParams = true;
+// Static export: every published page is generated at build time; anything
+// else (drafts, archived, deleted) is a 404.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const items = await prisma.article.findMany({
     where: { status: 'published' },
-    orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
-    take: 30,
     select: { slug: true },
   });
   return items.map((item) => ({ slug: item.slug }));
