@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
+import { revalidateAllContent } from '@/lib/revalidate';
 
 export async function PATCH(req: NextRequest) {
   let body: any;
@@ -33,6 +34,7 @@ export async function PATCH(req: NextRequest) {
       where: { id: { in: ids } },
       data,
     });
+    revalidateAllContent();
     return apiSuccess({ count: result.count });
   } catch (err) {
     return ERR.server('Gagal update data');
@@ -56,6 +58,7 @@ export async function DELETE(req: NextRequest) {
     const result = await prisma.article.deleteMany({
       where: { id: { in: ids } },
     });
+    revalidateAllContent();
     return apiSuccess({ count: result.count });
   } catch (err) {
     return ERR.server('Gagal menghapus data');

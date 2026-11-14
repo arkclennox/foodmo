@@ -1,7 +1,8 @@
 import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
-import { categoryInputSchema } from '@/lib/validators';
+import { categoryPatchSchema } from '@/lib/validators';
+import { revalidateAllContent } from '@/lib/revalidate';
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -13,7 +14,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
   } catch {
     return ERR.validation('Body harus JSON');
   }
-  const parsed = categoryInputSchema.partial().safeParse(body);
+  const parsed = categoryPatchSchema.safeParse(body);
   if (!parsed.success) return ERR.validation('Data tidak valid', parsed.error.format());
   const existing = await prisma.category.findUnique({ where: { id } });
   if (!existing) return ERR.notFound('Kategori tidak ditemukan');
@@ -32,11 +33,13 @@ export async function PATCH(req: Request, { params }: Ctx) {
     if (conflict && conflict.id !== id) return ERR.conflict('Slug sudah dipakai');
   }
   const updated = await prisma.category.update({ where: { id }, data });
+  revalidateAllContent();
   return apiSuccess(updated);
 }
 
 export async function DELETE(_req: Request, { params }: Ctx) {
   const { id } = await params;
   await prisma.category.delete({ where: { id } }).catch(() => null);
+  revalidateAllContent();
   return apiSuccess({ ok: true });
 }

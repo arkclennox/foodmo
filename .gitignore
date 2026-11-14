@@ -19,3 +19,11 @@ prisma/dev.db-journal
 # Database dumps
 *.dump
 *.sql.gz
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# Raw data exports (keep source spreadsheets out of the public repo)
+/*.xlsx
+/*.xls
+/*.csv

@@ -2,6 +2,14 @@ import { prisma } from './db';
 import { parseJsonArray } from './json-fields';
 import { unstable_cache } from 'next/cache';
 
+// Cache windows. Detail pages are long-lived and refreshed on demand from
+// src/lib/revalidate.ts whenever admin/API writes happen. NOTE: Next.js uses
+// the *shortest* revalidate of any cached query on a page, so a short value
+// here would silently make every ISR page re-render that often.
+const WEEK = 60 * 60 * 24 * 7;
+const DAY = 60 * 60 * 24;
+const HOUR = 60 * 60;
+
 export type ListingQueryOptions = {
   search?: string;
   categorySlug?: string;
@@ -85,8 +93,20 @@ async function listListingsUncached(opts: ListingQueryOptions) {
 const cachedListListings = unstable_cache(
   (opts: ListingQueryOptions) => listListingsUncached(opts),
   ['list-listings'],
-  { revalidate: 300, tags: ['listings'] },
+  { revalidate: HOUR, tags: ['listings', 'listings-list'] },
 );
+
+// "Related" cards on listing detail pages. Kept separate from the list cache
+// so creating/editing one listing doesn't invalidate all ~5k detail pages.
+const cachedRelatedListings = unstable_cache(
+  (opts: ListingQueryOptions) => listListingsUncached(opts),
+  ['related-listings'],
+  { revalidate: WEEK, tags: ['listings'] },
+);
+
+export async function listRelatedListings(opts: ListingQueryOptions) {
+  return cachedRelatedListings(opts);
+}
 
 export async function listListings(opts: ListingQueryOptions) {
   if (opts.includeDrafts) {
@@ -113,11 +133,12 @@ async function findListingBySlugUncached(slug: string, includeDrafts = false) {
   };
 }
 
-const cachedFindListingBySlug = unstable_cache(
-  (slug: string) => findListingBySlugUncached(slug, false),
-  ['find-listing-by-slug'],
-  { revalidate: 300, tags: ['listings'] },
-);
+const cachedFindListingBySlug = (slug: string) =>
+  unstable_cache(
+    () => findListingBySlugUncached(slug, false),
+    ['find-listing-by-slug', slug],
+    { revalidate: WEEK, tags: ['listings', `listing:${slug}`] },
+  )();
 
 export async function findListingBySlug(slug: string, includeDrafts = false) {
   if (includeDrafts) {
@@ -172,7 +193,7 @@ async function listArticlesUncached(opts: {
 const cachedListArticles = unstable_cache(
   (opts: Parameters<typeof listArticlesUncached>[0]) => listArticlesUncached(opts),
   ['list-articles'],
-  { revalidate: 300, tags: ['articles'] },
+  { revalidate: HOUR, tags: ['articles', 'articles-list'] },
 );
 
 export async function listArticles(opts: Parameters<typeof listArticlesUncached>[0]) {
@@ -203,11 +224,12 @@ async function findArticleBySlugUncached(slug: string, includeDrafts = false) {
   return { ...article, tags, relatedListings };
 }
 
-const cachedFindArticleBySlug = unstable_cache(
-  (slug: string) => findArticleBySlugUncached(slug, false),
-  ['find-article-by-slug'],
-  { revalidate: 300, tags: ['articles'] },
-);
+const cachedFindArticleBySlug = (slug: string) =>
+  unstable_cache(
+    () => findArticleBySlugUncached(slug, false),
+    ['find-article-by-slug', slug],
+    { revalidate: WEEK, tags: ['articles', `article:${slug}`] },
+  )();
 
 export async function findArticleBySlug(slug: string, includeDrafts = false) {
   if (includeDrafts) {
@@ -228,7 +250,7 @@ export const listCategories = unstable_cache(
     });
   },
   ['categories-list'],
-  { revalidate: 3600, tags: ['categories'] }
+  { revalidate: DAY, tags: ['categories'] }
 );
 
 export const listCities = unstable_cache(
@@ -239,7 +261,7 @@ export const listCities = unstable_cache(
     });
   },
   ['cities-list'],
-  { revalidate: 3600, tags: ['cities'] }
+  { revalidate: DAY, tags: ['cities'] }
 );
 
 export const listFacilities = unstable_cache(
@@ -261,7 +283,7 @@ export const listFacilities = unstable_cache(
     return Array.from(set).sort();
   },
   ['facilities-list'],
-  { revalidate: 86400, tags: ['facilities', 'listings'] }
+  { revalidate: DAY, tags: ['facilities', 'listings'] }
 );
 
 // --- HOMEPAGE CACHED QUERIES ---
@@ -279,7 +301,7 @@ export const getHomepageLatestListings = unstable_cache(
     });
   },
   ['homepage-latest-listings'],
-  { revalidate: 1800, tags: ['listings'] }
+  { revalidate: HOUR, tags: ['listings', 'listings-list'] }
 );
 
 export const getHomepageFeaturedListings = unstable_cache(
@@ -295,7 +317,7 @@ export const getHomepageFeaturedListings = unstable_cache(
     });
   },
   ['homepage-featured-listings'],
-  { revalidate: 1800, tags: ['listings'] }
+  { revalidate: HOUR, tags: ['listings', 'listings-list'] }
 );
 
 export const getHomepageLatestArticles = unstable_cache(
@@ -308,7 +330,7 @@ export const getHomepageLatestArticles = unstable_cache(
     });
   },
   ['homepage-latest-articles'],
-  { revalidate: 1800, tags: ['articles'] }
+  { revalidate: HOUR, tags: ['articles', 'articles-list'] }
 );
 
 export const getHomepageStats = unstable_cache(
@@ -320,7 +342,7 @@ export const getHomepageStats = unstable_cache(
     ]);
   },
   ['homepage-stats'],
-  { revalidate: 3600, tags: ['listings', 'cities', 'categories'] }
+  { revalidate: HOUR, tags: ['listings', 'listings-list', 'cities', 'categories'] }
 );
 
 export const getHomepagePopularCategories = unstable_cache(
@@ -332,7 +354,7 @@ export const getHomepagePopularCategories = unstable_cache(
     });
   },
   ['homepage-popular-categories'],
-  { revalidate: 3600, tags: ['categories', 'listings'] }
+  { revalidate: HOUR, tags: ['categories', 'listings', 'listings-list'] }
 );
 
 export const getHomepagePopularCities = unstable_cache(
@@ -344,5 +366,5 @@ export const getHomepagePopularCities = unstable_cache(
     });
   },
   ['homepage-popular-cities'],
-  { revalidate: 3600, tags: ['cities', 'listings'] }
+  { revalidate: HOUR, tags: ['cities', 'listings', 'listings-list'] }
 );

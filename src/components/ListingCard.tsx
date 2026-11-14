@@ -36,7 +36,7 @@ export function ListingCard({
 
   return (
     <article className="card group overflow-hidden transition hover:shadow-md">
-      <Link href={`/tempat-makan/${listing.slug}`} className="block">
+      <Link prefetch={false} href={`/tempat-makan/${listing.slug}`} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-soft">
           <Image
             src={image}

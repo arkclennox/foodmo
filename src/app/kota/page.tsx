@@ -5,7 +5,7 @@ import { prisma } from '@/lib/db';
 import { buildMetadata } from '@/lib/seo';
 import { unstable_cache } from 'next/cache';
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 hari
 
 export const metadata: Metadata = buildMetadata({
   title: 'Jelajahi Berdasarkan Kota',
@@ -25,7 +25,7 @@ const getCitiesWithCount = unstable_cache(
     });
   },
   ['kota-index'],
-  { revalidate: 3600, tags: ['cities', 'listings'] },
+  { revalidate: 86400, tags: ['cities', 'listings', 'listings-list'] },
 );
 
 function groupByProvince(
@@ -74,7 +74,7 @@ export default async function KotaIndexPage() {
               <h2 className="mb-3 text-lg font-semibold text-black">{province}</h2>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                 {list.map((c) => (
-                  <Link
+                  <Link prefetch={false}
                     key={c.slug}
                     href={`/kota/${c.slug}`}
                     className="card flex flex-col gap-1 p-4 transition hover:border-navy"

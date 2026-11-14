@@ -13,7 +13,10 @@ function toJson(arr: unknown): string | null {
 
 async function main() {
   const adminEmail = (process.env.ADMIN_EMAIL ?? 'admin@direktori-kuliner.id').toLowerCase();
-  const adminPassword = process.env.ADMIN_PASSWORD ?? 'admin1234';
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword || adminPassword.length < 8) {
+    throw new Error('ADMIN_PASSWORD must be set (min. 8 karakter) before seeding');
+  }
   const adminName = process.env.ADMIN_NAME ?? 'Admin';
   const passwordHash = await bcrypt.hash(adminPassword, 10);
 

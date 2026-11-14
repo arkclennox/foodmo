@@ -2,6 +2,7 @@ import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
 import { categoryInputSchema } from '@/lib/validators';
+import { revalidateAllContent } from '@/lib/revalidate';
 
 export async function GET() {
   const categories = await prisma.category.findMany({ orderBy: { name: 'asc' } });
@@ -31,5 +32,6 @@ export async function POST(req: Request) {
       metaDescription: input.metaDescription ?? null,
     },
   });
+  revalidateAllContent();
   return apiSuccess(created, { status: 201 });
 }

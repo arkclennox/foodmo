@@ -50,7 +50,7 @@ export function CategoryQuickLinks() {
   return (
     <div className="flex flex-wrap gap-2">
       {items.map((item) => (
-        <Link
+        <Link prefetch={false}
           key={item.href}
           href={item.href}
           className="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-navy transition hover:border-navy hover:bg-navy/5"

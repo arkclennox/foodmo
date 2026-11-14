@@ -2,7 +2,7 @@ import { prisma } from '@/lib/db';
 import { THIN_CONTENT_THRESHOLDS } from '@/lib/constants';
 import { urlsetXml, xmlResponse } from '@/lib/sitemap-xml';
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 hari
 
 export async function GET(request: Request) {
   const url = new URL(request.url);

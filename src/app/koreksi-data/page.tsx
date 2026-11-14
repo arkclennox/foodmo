@@ -62,7 +62,7 @@ export default function CorrectionPage() {
             subjek <strong>&quot;Koreksi Data: [nama tempat]&quot;</strong>.
           </li>
           <li>
-            Atau gunakan <Link href="/contact">form kontak</Link> dengan kategori
+            Atau gunakan <Link prefetch={false} href="/contact">form kontak</Link> dengan kategori
             &quot;Koreksi Data&quot;.
           </li>
           <li>
@@ -126,7 +126,7 @@ export default function CorrectionPage() {
         </p>
         <p>
           Untuk klaim hak kekayaan intelektual (foto, logo, deskripsi), lihat juga bagian 10
-          pada <Link href="/terms-of-service">syarat &amp; ketentuan</Link>.
+          pada <Link prefetch={false} href="/terms-of-service">syarat &amp; ketentuan</Link>.
         </p>
 
         <h2>7. Jika Permintaan Ditolak</h2>

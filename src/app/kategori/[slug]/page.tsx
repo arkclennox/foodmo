@@ -164,7 +164,7 @@ export default async function CategoryPage({
           <ul className="space-y-2">
             {relatedArticles.map((a) => (
               <li key={a.id}>
-                <Link
+                <Link prefetch={false}
                   href={`/blog/${a.slug}`}
                   className="flex items-center justify-between rounded-lg border border-border bg-white p-4 transition hover:border-navy"
                 >

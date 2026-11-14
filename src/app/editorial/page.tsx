@@ -57,7 +57,7 @@ export default function EditorialPage() {
           </li>
           <li>
             <strong>Pengajuan pemilik usaha</strong> — pemilik mendaftarkan tempatnya melalui{' '}
-            <Link href="/contact">form kontak</Link> dengan data lengkap.
+            <Link prefetch={false} href="/contact">form kontak</Link> dengan data lengkap.
           </li>
           <li>
             <strong>Rekomendasi pembaca</strong> — pembaca menyarankan tempat melalui email,
@@ -119,7 +119,7 @@ export default function EditorialPage() {
         <p>
           Kami menyediakan jalur resmi untuk mengoreksi data, baik dari pemilik usaha maupun
           pembaca. Detail lengkap ada di{' '}
-          <Link href="/koreksi-data">kebijakan koreksi data</Link>. Kami berkomitmen merespon
+          <Link prefetch={false} href="/koreksi-data">kebijakan koreksi data</Link>. Kami berkomitmen merespon
           permintaan koreksi dalam <strong>1–3 hari kerja</strong> sejak laporan diterima.
         </p>
 
@@ -147,7 +147,7 @@ export default function EditorialPage() {
         <p>
           Saran perbaikan pedoman ini sangat kami hargai. Kirim ke{' '}
           <a href="mailto:hello@foodmo.id">hello@foodmo.id</a> atau melalui{' '}
-          <Link href="/contact">kontak</Link>.
+          <Link prefetch={false} href="/contact">kontak</Link>.
         </p>
       </div>
     </div>

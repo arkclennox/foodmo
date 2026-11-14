@@ -88,7 +88,7 @@ export default async function BlogIndexPage({
       {result.items.length === 0 ? (
         <div className="card px-6 py-16 text-center">
           <p className="mb-3 text-black/70">Belum ada artikel yang cocok dengan pencarianmu.</p>
-          <Link href="/blog" className="btn-secondary">
+          <Link prefetch={false} href="/blog" className="btn-secondary">
             Lihat semua artikel
           </Link>
         </div>

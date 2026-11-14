@@ -2,6 +2,7 @@ import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
 import { articlePatchSchema } from '@/lib/validators';
 import { updateArticleFromInput } from '@/lib/article-service';
+import { revalidateArticles } from '@/lib/revalidate';
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -37,5 +38,6 @@ export async function DELETE(_req: Request, { params }: Ctx) {
   const existing = await prisma.article.findUnique({ where: { id } });
   if (!existing) return ERR.notFound('Artikel tidak ditemukan');
   await prisma.article.delete({ where: { id } });
+  revalidateArticles(existing.slug);
   return apiSuccess({ ok: true });
 }

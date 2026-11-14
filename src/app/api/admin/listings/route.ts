@@ -4,6 +4,7 @@ import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
 import { listingInputSchema } from '@/lib/validators';
 import { toJsonString } from '@/lib/json-fields';
+import { revalidateListings } from '@/lib/revalidate';
 
 export async function GET() {
   const listings = await prisma.listing.findMany({
@@ -74,5 +75,6 @@ export async function POST(req: NextRequest) {
       metaDescription: input.metaDescription ?? null,
     },
   });
+  revalidateListings(created.slug);
   return apiSuccess(created, { status: 201 });
 }

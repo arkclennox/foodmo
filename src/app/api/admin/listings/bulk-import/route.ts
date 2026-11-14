@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
 import { toJsonString } from '@/lib/json-fields';
+import { revalidateAllContent } from '@/lib/revalidate';
 
 // Vercel Hobby allows up to 60s function duration with Fluid Compute.
 // Bulk-import stays DB-only and is heavily batched so the 60s window
@@ -344,6 +345,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    revalidateAllContent();
     return apiSuccess({
       imported,
       merged,

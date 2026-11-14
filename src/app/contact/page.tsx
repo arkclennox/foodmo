@@ -39,7 +39,7 @@ export default function ContactPage() {
             </a>
             <p className="mt-1 text-black/60">
               Subjek: &quot;Koreksi Data&quot;. Lihat{' '}
-              <Link href="/koreksi-data" className="text-navy hover:underline">
+              <Link prefetch={false} href="/koreksi-data" className="text-navy hover:underline">
                 kebijakan koreksi
               </Link>{' '}
               untuk detail.
@@ -56,11 +56,11 @@ export default function ContactPage() {
             <div className="font-semibold text-black">Privasi & Hukum</div>
             <p className="text-black/70">
               Permintaan terkait data pribadi tunduk pada{' '}
-              <Link href="/privacy-policy" className="text-navy hover:underline">
+              <Link prefetch={false} href="/privacy-policy" className="text-navy hover:underline">
                 kebijakan privasi
               </Link>{' '}
               dan{' '}
-              <Link href="/terms-of-service" className="text-navy hover:underline">
+              <Link prefetch={false} href="/terms-of-service" className="text-navy hover:underline">
                 syarat &amp; ketentuan
               </Link>
               .

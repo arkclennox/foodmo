@@ -5,7 +5,7 @@ import { prisma } from '@/lib/db';
 import { buildMetadata } from '@/lib/seo';
 import { unstable_cache } from 'next/cache';
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 hari
 
 export const metadata: Metadata = buildMetadata({
   title: 'Jelajahi Berdasarkan Kategori',
@@ -25,7 +25,7 @@ const getCategoriesWithCount = unstable_cache(
     });
   },
   ['kategori-index'],
-  { revalidate: 3600, tags: ['categories', 'listings'] },
+  { revalidate: 86400, tags: ['categories', 'listings', 'listings-list'] },
 );
 
 export default async function KategoriIndexPage() {
@@ -56,7 +56,7 @@ export default async function KategoriIndexPage() {
       ) : (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {categories.map((c) => (
-            <Link
+            <Link prefetch={false}
               key={c.slug}
               href={`/kategori/${c.slug}`}
               className="card flex flex-col gap-1 p-4 transition hover:border-navy"

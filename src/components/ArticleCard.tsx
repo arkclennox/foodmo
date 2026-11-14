@@ -32,7 +32,7 @@ export function ArticleCard({ article }: { article: ArticleCardData }) {
 
   return (
     <article className="card group overflow-hidden transition hover:shadow-md">
-      <Link href={`/blog/${article.slug}`} className="block">
+      <Link prefetch={false} href={`/blog/${article.slug}`} className="block">
         <div className="relative aspect-[16/9] overflow-hidden bg-soft">
           <Image
             src={image}

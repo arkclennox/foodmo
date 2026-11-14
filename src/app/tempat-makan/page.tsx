@@ -102,7 +102,7 @@ export default async function DirectoryPage({
               <p className="mb-4 text-sm text-black/60">
                 Coba ubah atau hapus beberapa filter pencarianmu.
               </p>
-              <Link href="/tempat-makan" className="btn-primary">
+              <Link prefetch={false} href="/tempat-makan" className="btn-primary">
                 Reset filter
               </Link>
             </div>
