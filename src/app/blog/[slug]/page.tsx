@@ -11,7 +11,7 @@ import { findArticleBySlug, listArticles } from '@/lib/queries';
 import { prisma } from '@/lib/db';
 
 
-export const revalidate = 3600;
+export const revalidate = 604800; // 7 hari; edit dari admin/API langsung di-revalidate on-demand
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
@@ -113,7 +113,7 @@ export default async function ArticleDetailPage({
       <article className="mx-auto max-w-3xl">
         <div className="mb-4 flex flex-wrap items-center gap-2">
           {article.category && (
-            <Link href={`/blog?category=${article.category.slug}`} className="badge">
+            <Link prefetch={false} href={`/blog?category=${article.category.slug}`} className="badge">
               {article.category.name}
             </Link>
           )}

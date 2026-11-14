@@ -5,6 +5,7 @@ import { authenticateApiKey } from '@/lib/api-key-guard';
 import { slugify } from '@/lib/slug';
 import { listingInputSchema } from '@/lib/validators';
 import { toJsonString } from '@/lib/json-fields';
+import { revalidateListings } from '@/lib/revalidate';
 
 export async function POST(req: NextRequest) {
   const auth = await authenticateApiKey(req, 'listings:create');
@@ -68,5 +69,6 @@ export async function POST(req: NextRequest) {
     },
   });
 
+  revalidateListings(created.slug);
   return apiSuccess(created, { status: 201 });
 }

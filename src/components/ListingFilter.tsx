@@ -142,7 +142,7 @@ export function ListingFilter({
           <button type="submit" className="btn-primary flex-1">
             Terapkan filter
           </button>
-          <Link href={basePath} className="btn-secondary">
+          <Link prefetch={false} href={basePath} className="btn-secondary">
             Reset
           </Link>
         </div>
@@ -154,27 +154,27 @@ export function ListingFilter({
           </div>
           <div className="flex flex-wrap gap-1.5">
             {state.search && (
-              <Link href={buildHref(basePath, { ...baseParams, search: '' })} className="badge-outline">
+              <Link prefetch={false} href={buildHref(basePath, { ...baseParams, search: '' })} className="badge-outline">
                 Cari: {state.search} ✕
               </Link>
             )}
             {state.category && (
-              <Link href={buildHref(basePath, { ...baseParams, category: '' })} className="badge-outline">
+              <Link prefetch={false} href={buildHref(basePath, { ...baseParams, category: '' })} className="badge-outline">
                 Kategori: {state.category} ✕
               </Link>
             )}
             {state.city && (
-              <Link href={buildHref(basePath, { ...baseParams, city: '' })} className="badge-outline">
+              <Link prefetch={false} href={buildHref(basePath, { ...baseParams, city: '' })} className="badge-outline">
                 Kota: {state.city} ✕
               </Link>
             )}
             {state.price && (
-              <Link href={buildHref(basePath, { ...baseParams, price: '' })} className="badge-outline">
+              <Link prefetch={false} href={buildHref(basePath, { ...baseParams, price: '' })} className="badge-outline">
                 Harga: {PRICE_RANGE_LABEL[state.price] ?? state.price} ✕
               </Link>
             )}
             {state.facility && (
-              <Link href={buildHref(basePath, { ...baseParams, facility: '' })} className="badge-outline">
+              <Link prefetch={false} href={buildHref(basePath, { ...baseParams, facility: '' })} className="badge-outline">
                 Fasilitas: {state.facility} ✕
               </Link>
             )}

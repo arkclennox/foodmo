@@ -148,7 +148,7 @@ export default function PrivacyPage() {
         <p>
           Pertanyaan tentang kebijakan ini dapat dikirim ke{' '}
           <a href="mailto:hello@foodmo.id">hello@foodmo.id</a> atau melalui halaman{' '}
-          <Link href="/contact">kontak</Link>.
+          <Link prefetch={false} href="/contact">kontak</Link>.
         </p>
       </div>
     </div>

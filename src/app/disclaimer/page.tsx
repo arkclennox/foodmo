@@ -56,7 +56,7 @@ export default function DisclaimerPage() {
           ketidaktepatan jam buka, perubahan menu/harga, kualitas pelayanan tempat usaha,
           keracunan makanan, atau dampak finansial dari keputusan berdasarkan informasi di
           Situs. Lihat juga{' '}
-          <Link href="/terms-of-service">syarat &amp; ketentuan</Link>.
+          <Link prefetch={false} href="/terms-of-service">syarat &amp; ketentuan</Link>.
         </p>
 
         <h2>4. Tautan ke Pihak Ketiga</h2>
@@ -76,7 +76,7 @@ export default function DisclaimerPage() {
           <li>Ditampilkan secara terpisah dari konten editorial.</li>
           <li>
             Dapat dipersonalisasi berdasarkan riwayat penelusuran Anda. Lihat{' '}
-            <Link href="/privacy-policy">kebijakan privasi</Link> untuk opsi opt-out.
+            <Link prefetch={false} href="/privacy-policy">kebijakan privasi</Link> untuk opsi opt-out.
           </li>
           <li>
             Tidak diendors oleh tim editorial kami. Munculnya sebuah brand di iklan bukan
@@ -112,7 +112,7 @@ export default function DisclaimerPage() {
         <p>
           Pertanyaan terkait disclaimer ini dapat dikirim ke{' '}
           <a href="mailto:hello@foodmo.id">hello@foodmo.id</a> atau melalui halaman{' '}
-          <Link href="/contact">kontak</Link>.
+          <Link prefetch={false} href="/contact">kontak</Link>.
         </p>
       </div>
     </div>

@@ -14,7 +14,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-white/90 backdrop-blur">
       <div className="section flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 font-semibold text-navy">
+        <Link prefetch={false} href="/" className="flex items-center gap-2 font-semibold text-navy">
           <Image
             src="/logo.png"
             alt="FoodMo"
@@ -27,7 +27,7 @@ export function Header() {
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
-            <Link
+            <Link prefetch={false}
               key={item.href}
               href={item.href}
               className="rounded-md px-3 py-2 text-sm font-medium text-black/80 transition hover:bg-soft hover:text-navy"
@@ -35,7 +35,7 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/tempat-makan" className="btn-primary ml-2">
+          <Link prefetch={false} href="/tempat-makan" className="btn-primary ml-2">
             Cari Tempat Makan
           </Link>
         </nav>
@@ -47,7 +47,7 @@ export function Header() {
           <div className="absolute right-0 z-40 mt-2 w-56 rounded-lg border border-border bg-white p-2 shadow-card">
             <nav className="flex flex-col">
               {NAV.map((item) => (
-                <Link
+                <Link prefetch={false}
                   key={item.href}
                   href={item.href}
                   className="rounded-md px-3 py-2 text-sm font-medium text-black/80 transition hover:bg-soft hover:text-navy"
@@ -55,7 +55,7 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Link
+              <Link prefetch={false}
                 href="/tempat-makan"
                 className="btn-primary mt-2 justify-center"
               >

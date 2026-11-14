@@ -5,7 +5,7 @@ import { prisma } from '@/lib/db';
 import { buildMetadata } from '@/lib/seo';
 import { unstable_cache } from 'next/cache';
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 hari
 
 export const metadata: Metadata = buildMetadata({
   title: 'Peta Situs',
@@ -43,7 +43,7 @@ const getSitemapData = unstable_cache(
     return { cities, categories, latestArticles, featuredListings };
   },
   ['peta-situs-data'],
-  { revalidate: 3600, tags: ['cities', 'categories', 'listings', 'articles'] },
+  { revalidate: 86400, tags: ['cities', 'categories', 'listings', 'articles', 'listings-list', 'articles-list'] },
 );
 
 export default async function PetaSitusPage() {
@@ -68,27 +68,27 @@ export default async function PetaSitusPage() {
           <h2 className="mb-3 text-lg font-semibold text-black">Halaman Utama</h2>
           <ul className="space-y-1.5 text-sm">
             <li>
-              <Link href="/" className="text-navy hover:underline">
+              <Link prefetch={false} href="/" className="text-navy hover:underline">
                 Beranda
               </Link>
             </li>
             <li>
-              <Link href="/tempat-makan" className="text-navy hover:underline">
+              <Link prefetch={false} href="/tempat-makan" className="text-navy hover:underline">
                 Direktori Tempat Makan
               </Link>
             </li>
             <li>
-              <Link href="/kota" className="text-navy hover:underline">
+              <Link prefetch={false} href="/kota" className="text-navy hover:underline">
                 Jelajahi Kota
               </Link>
             </li>
             <li>
-              <Link href="/kategori" className="text-navy hover:underline">
+              <Link prefetch={false} href="/kategori" className="text-navy hover:underline">
                 Jelajahi Kategori
               </Link>
             </li>
             <li>
-              <Link href="/blog" className="text-navy hover:underline">
+              <Link prefetch={false} href="/blog" className="text-navy hover:underline">
                 Blog Kuliner
               </Link>
             </li>
@@ -99,37 +99,37 @@ export default async function PetaSitusPage() {
           <h2 className="mb-3 text-lg font-semibold text-black">Tentang & Kebijakan</h2>
           <ul className="space-y-1.5 text-sm">
             <li>
-              <Link href="/about" className="text-navy hover:underline">
+              <Link prefetch={false} href="/about" className="text-navy hover:underline">
                 Tentang FoodMo
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="text-navy hover:underline">
+              <Link prefetch={false} href="/contact" className="text-navy hover:underline">
                 Kontak
               </Link>
             </li>
             <li>
-              <Link href="/editorial" className="text-navy hover:underline">
+              <Link prefetch={false} href="/editorial" className="text-navy hover:underline">
                 Pedoman Editorial
               </Link>
             </li>
             <li>
-              <Link href="/koreksi-data" className="text-navy hover:underline">
+              <Link prefetch={false} href="/koreksi-data" className="text-navy hover:underline">
                 Kebijakan Koreksi Data
               </Link>
             </li>
             <li>
-              <Link href="/disclaimer" className="text-navy hover:underline">
+              <Link prefetch={false} href="/disclaimer" className="text-navy hover:underline">
                 Disclaimer
               </Link>
             </li>
             <li>
-              <Link href="/privacy-policy" className="text-navy hover:underline">
+              <Link prefetch={false} href="/privacy-policy" className="text-navy hover:underline">
                 Kebijakan Privasi
               </Link>
             </li>
             <li>
-              <Link href="/terms-of-service" className="text-navy hover:underline">
+              <Link prefetch={false} href="/terms-of-service" className="text-navy hover:underline">
                 Syarat &amp; Ketentuan
               </Link>
             </li>
@@ -146,7 +146,7 @@ export default async function PetaSitusPage() {
             <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm sm:grid-cols-3">
               {cities.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/kota/${c.slug}`} className="text-navy hover:underline">
+                  <Link prefetch={false} href={`/kota/${c.slug}`} className="text-navy hover:underline">
                     {c.name}
                   </Link>
                 </li>
@@ -165,7 +165,7 @@ export default async function PetaSitusPage() {
             <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm sm:grid-cols-3">
               {categories.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/kategori/${c.slug}`} className="text-navy hover:underline">
+                  <Link prefetch={false} href={`/kategori/${c.slug}`} className="text-navy hover:underline">
                     {c.name}
                   </Link>
                 </li>
@@ -182,7 +182,7 @@ export default async function PetaSitusPage() {
             <ul className="space-y-1.5 text-sm">
               {featuredListings.map((l) => (
                 <li key={l.slug}>
-                  <Link
+                  <Link prefetch={false}
                     href={`/tempat-makan/${l.slug}`}
                     className="text-navy hover:underline"
                   >
@@ -193,7 +193,7 @@ export default async function PetaSitusPage() {
             </ul>
           )}
           <p className="mt-3 text-sm">
-            <Link href="/tempat-makan" className="text-navy hover:underline">
+            <Link prefetch={false} href="/tempat-makan" className="text-navy hover:underline">
               Lihat semua tempat makan →
             </Link>
           </p>
@@ -207,7 +207,7 @@ export default async function PetaSitusPage() {
             <ul className="space-y-1.5 text-sm">
               {latestArticles.map((a) => (
                 <li key={a.slug}>
-                  <Link href={`/blog/${a.slug}`} className="text-navy hover:underline">
+                  <Link prefetch={false} href={`/blog/${a.slug}`} className="text-navy hover:underline">
                     {a.title}
                   </Link>
                 </li>
@@ -215,7 +215,7 @@ export default async function PetaSitusPage() {
             </ul>
           )}
           <p className="mt-3 text-sm">
-            <Link href="/blog" className="text-navy hover:underline">
+            <Link prefetch={false} href="/blog" className="text-navy hover:underline">
               Lihat semua artikel →
             </Link>
           </p>

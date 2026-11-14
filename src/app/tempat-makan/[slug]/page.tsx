@@ -17,7 +17,7 @@ import {
   TiktokIcon,
   WhatsappIcon,
 } from '@/components/icons';
-import { findListingBySlug, listListings } from '@/lib/queries';
+import { findListingBySlug, listRelatedListings } from '@/lib/queries';
 import { parseJsonObject } from '@/lib/json-fields';
 import { PRICE_RANGE_LABEL, THIN_CONTENT_THRESHOLDS } from '@/lib/constants';
 import { buildMetadata, siteUrl } from '@/lib/seo';
@@ -29,7 +29,7 @@ import {
 } from '@/lib/facilities';
 import { prisma } from '@/lib/db';
 
-export const revalidate = 3600;
+export const revalidate = 604800; // 7 hari; edit dari admin/API langsung di-revalidate on-demand
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
@@ -90,7 +90,7 @@ export default async function ListingDetailPage({
 
   const openingHours = parseJsonObject<Record<string, string>>(listing.openingHours);
   const [related, relatedArticles] = await Promise.all([
-    listListings({
+    listRelatedListings({
       categorySlug: listing.category?.slug,
       citySlug: listing.city?.slug,
       limit: 4,
@@ -170,7 +170,7 @@ export default async function ListingDetailPage({
           <div className="mt-6">
             <div className="mb-3 flex flex-wrap items-center gap-2">
               {listing.category && (
-                <Link
+                <Link prefetch={false}
                   href={`/kategori/${listing.category.slug}`}
                   className="badge"
                 >
@@ -178,7 +178,7 @@ export default async function ListingDetailPage({
                 </Link>
               )}
               {listing.city && (
-                <Link href={`/kota/${listing.city.slug}`} className="badge-outline">
+                <Link prefetch={false} href={`/kota/${listing.city.slug}`} className="badge-outline">
                   {listing.city.name}
                 </Link>
               )}
@@ -404,7 +404,7 @@ export default async function ListingDetailPage({
           <ul className="space-y-2">
             {relatedArticles.map((a) => (
               <li key={a.id}>
-                <Link
+                <Link prefetch={false}
                   href={`/blog/${a.slug}`}
                   className="flex items-center justify-between rounded-lg border border-border bg-white p-4 transition hover:border-navy"
                 >

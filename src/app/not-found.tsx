@@ -10,10 +10,10 @@ export default function NotFound() {
           Maaf, halaman yang kamu cari tidak ada atau telah dipindahkan.
         </p>
         <div className="flex justify-center gap-3">
-          <Link href="/" className="btn-primary">
+          <Link prefetch={false} href="/" className="btn-primary">
             Kembali ke Beranda
           </Link>
-          <Link href="/tempat-makan" className="btn-secondary">
+          <Link prefetch={false} href="/tempat-makan" className="btn-secondary">
             Jelajahi Direktori
           </Link>
         </div>

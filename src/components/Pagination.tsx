@@ -28,7 +28,7 @@ export function Pagination({
   return (
     <nav className="mt-8 flex items-center justify-center gap-2" aria-label="Pagination">
       {page > 1 ? (
-        <Link href={buildHref(page - 1)} className="btn-secondary">
+        <Link prefetch={false} href={buildHref(page - 1)} className="btn-secondary">
           Sebelumnya
         </Link>
       ) : (
@@ -41,7 +41,7 @@ export function Pagination({
               …
             </span>
           ) : (
-            <Link
+            <Link prefetch={false}
               key={p}
               href={buildHref(p)}
               aria-current={p === page ? 'page' : undefined}
@@ -57,7 +57,7 @@ export function Pagination({
         )}
       </div>
       {page < totalPages ? (
-        <Link href={buildHref(page + 1)} className="btn-secondary">
+        <Link prefetch={false} href={buildHref(page + 1)} className="btn-secondary">
           Selanjutnya
         </Link>
       ) : (

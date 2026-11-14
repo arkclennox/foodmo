@@ -16,6 +16,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { ingestImage } from '@/lib/image-ingest';
 import { isR2Url } from '@/lib/r2';
+import { revalidateAllContent } from '@/lib/revalidate';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -234,6 +235,7 @@ export async function POST(req: NextRequest) {
       processed++;
     }
     const remaining = Math.max(0, pending.length - processed);
+    if (processed > 0) revalidateAllContent();
     return NextResponse.json({
       success: true,
       processed,

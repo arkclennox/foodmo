@@ -1,6 +1,7 @@
 import { prisma } from './db';
 import { slugify } from './slug';
 import { toJsonString } from './json-fields';
+import { revalidateArticles } from '@/lib/revalidate';
 
 function firstDefined<T>(...values: (T | null | undefined)[]): T | undefined {
   for (const v of values) {
@@ -65,7 +66,7 @@ export async function createArticleFromInput(input: RawArticleInput) {
     firstDefined<Date | null>(input.publishedAt, input.published_at) ??
     (status === 'published' ? new Date() : null);
 
-  return prisma.article.create({
+  const created = await prisma.article.create({
     data: {
       title,
       slug,
@@ -85,6 +86,8 @@ export async function createArticleFromInput(input: RawArticleInput) {
       metaDescription: firstDefined(input.metaDescription, input.meta_description) ?? null,
     },
   });
+  revalidateArticles(created.slug);
+  return created;
 }
 
 export async function updateArticleFromInput(idOrSlug: string, input: RawArticleInput) {
@@ -146,5 +149,7 @@ export async function updateArticleFromInput(idOrSlug: string, input: RawArticle
     data.metaDescription = metaD ?? null;
   }
 
-  return prisma.article.update({ where: { id: existing.id }, data });
+  const updated = await prisma.article.update({ where: { id: existing.id }, data });
+  revalidateArticles(existing.slug, updated.slug);
+  return updated;
 }

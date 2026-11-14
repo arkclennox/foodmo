@@ -16,7 +16,7 @@ export function Breadcrumb({
         return (
           <span key={`${item.label}-${idx}`} className="flex items-center gap-1.5">
             {item.href && !isLast ? (
-              <Link href={item.href} className="hover:text-navy">
+              <Link prefetch={false} href={item.href} className="hover:text-navy">
                 {item.label}
               </Link>
             ) : (

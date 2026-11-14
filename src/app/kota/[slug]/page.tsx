@@ -133,7 +133,7 @@ export default async function CityPage({
         </h2>
         <div className="flex flex-wrap gap-2">
           {popularCategories.map((c) => (
-            <Link
+            <Link prefetch={false}
               key={c.slug}
               href={`/kategori/${c.slug}?city=${slug}`}
               className="badge-outline hover:border-navy hover:text-navy"

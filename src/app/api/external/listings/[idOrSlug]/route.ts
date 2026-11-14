@@ -5,6 +5,7 @@ import { authenticateApiKey } from '@/lib/api-key-guard';
 import { slugify } from '@/lib/slug';
 import { listingPatchSchema } from '@/lib/validators';
 import { toJsonString } from '@/lib/json-fields';
+import { revalidateAllContent, revalidateListings } from '@/lib/revalidate';
 
 export async function PATCH(
   req: NextRequest,
@@ -89,6 +90,12 @@ export async function PATCH(
     where: { id: existing.id },
     data,
   });
+  if (existing.status !== updated.status || existing.slug !== updated.slug) {
+    // Visibility/URL changed: "related" cards on other pages must not link to it.
+    revalidateAllContent();
+  } else {
+    revalidateListings(updated.slug);
+  }
 
   return apiSuccess(updated);
 }

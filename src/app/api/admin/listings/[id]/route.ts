@@ -3,6 +3,7 @@ import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
 import { listingPatchSchema } from '@/lib/validators';
 import { toJsonString } from '@/lib/json-fields';
+import { revalidateAllContent, revalidateListings } from '@/lib/revalidate';
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -87,6 +88,12 @@ export async function PATCH(req: Request, { params }: Ctx) {
   data.slug = slug;
 
   const updated = await prisma.listing.update({ where: { id }, data });
+  if (existing.status !== updated.status || existing.slug !== updated.slug) {
+    // Visibility/URL changed: "related" cards on other pages must not link to it.
+    revalidateAllContent();
+  } else {
+    revalidateListings(updated.slug);
+  }
   return apiSuccess(updated);
 }
 
@@ -95,5 +102,6 @@ export async function DELETE(_req: Request, { params }: Ctx) {
   const existing = await prisma.listing.findUnique({ where: { id } });
   if (!existing) return ERR.notFound('Listing tidak ditemukan');
   await prisma.listing.delete({ where: { id } });
+  revalidateAllContent();
   return apiSuccess({ ok: true });
 }

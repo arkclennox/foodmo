@@ -13,7 +13,34 @@ export default function robots(): MetadataRoute.Robots {
           '/api/admin',
           '/api/admin/*',
           '/api/*',
+          // Filter/sort/search combinations: noindex already, and each one is
+          // a fresh server render (no ISR cache). Keep crawlers out of the
+          // near-infinite facet space; plain `?page=` stays crawlable.
+          '/*?*search=',
+          '/*?*category=',
+          '/*?*city=',
+          '/*?*price=',
+          '/*?*facility=',
+          '/*?*sort=',
         ],
+      },
+      {
+        // SEO-tool crawlers bring no visitors but crawl every URL repeatedly,
+        // burning Vercel function/ISR quota.
+        userAgent: [
+          'AhrefsBot',
+          'SemrushBot',
+          'MJ12bot',
+          'DotBot',
+          'BLEXBot',
+          'DataForSeoBot',
+          'serpstatbot',
+          'Barkrowler',
+          'MegaIndex.ru',
+          'PetalBot',
+          'Bytespider',
+        ],
+        disallow: '/',
       },
     ],
     sitemap: [

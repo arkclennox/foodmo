@@ -15,13 +15,13 @@ export function CTASection() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3 md:justify-end">
-            <Link
+            <Link prefetch={false}
               href="/contact"
               className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-medium text-navy transition hover:bg-white/90"
             >
               Hubungi Kami
             </Link>
-            <Link
+            <Link prefetch={false}
               href="/about"
               className="inline-flex items-center justify-center rounded-md border border-white/40 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
             >

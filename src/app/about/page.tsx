@@ -53,10 +53,10 @@ export default function AboutPage() {
         <h2>Standar Editorial</h2>
         <p>
           Konten artikel dan deskripsi listing di FoodMo mengikuti{' '}
-          <Link href="/editorial">pedoman editorial</Link> kami: ditulis manusia, dapat
+          <Link prefetch={false} href="/editorial">pedoman editorial</Link> kami: ditulis manusia, dapat
           ditelusuri sumbernya, dan diperbarui ketika ada perubahan signifikan. Untuk mengajukan
           koreksi data tempat makan, lihat{' '}
-          <Link href="/koreksi-data">kebijakan koreksi data</Link>.
+          <Link prefetch={false} href="/koreksi-data">kebijakan koreksi data</Link>.
         </p>
 
         <h2>Untuk Siapa?</h2>
@@ -72,15 +72,15 @@ export default function AboutPage() {
         <h2>Cakupan</h2>
         <p>
           FoodMo aktif mengkurasi tempat makan di kota-kota besar Indonesia. Lihat{' '}
-          <Link href="/kota">daftar kota</Link> dan{' '}
-          <Link href="/kategori">daftar kategori</Link> untuk mulai menelusuri. Cakupan kota dan
+          <Link prefetch={false} href="/kota">daftar kota</Link> dan{' '}
+          <Link prefetch={false} href="/kategori">daftar kategori</Link> untuk mulai menelusuri. Cakupan kota dan
           kategori akan terus diperluas seiring bertambahnya tempat yang sudah kami verifikasi.
         </p>
 
         <h2>Cara Menghubungi Kami</h2>
         <p>
           Untuk pertanyaan, kerja sama, koreksi data, atau pendaftaran listing, silakan kunjungi
-          halaman <Link href="/contact">kontak</Link> atau kirim email ke{' '}
+          halaman <Link prefetch={false} href="/contact">kontak</Link> atau kirim email ke{' '}
           <a href="mailto:hello@foodmo.id">hello@foodmo.id</a>. Kami biasanya merespon dalam
           1–3 hari kerja.
         </p>
@@ -90,7 +90,7 @@ export default function AboutPage() {
           FoodMo dikelola oleh tim independen yang berbasis di Indonesia. Pendapatan platform
           berasal dari iklan yang relevan dan kemitraan konten — tanpa mengorbankan
           objektivitas editorial. Pemasangan iklan dilakukan dengan transparansi sesuai{' '}
-          <Link href="/disclaimer">disclaimer</Link> kami.
+          <Link prefetch={false} href="/disclaimer">disclaimer</Link> kami.
         </p>
       </div>
     </div>

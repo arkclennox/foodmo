@@ -1,6 +1,6 @@
 import { urlsetXml, xmlResponse, type UrlEntry } from '@/lib/sitemap-xml';
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 hari
 
 const STATIC_PAGES: UrlEntry[] = [
   { loc: '/', priority: 1, changefreq: 'weekly' },

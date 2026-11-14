@@ -13,7 +13,7 @@ import {
   getHomepagePopularCities,
 } from '@/lib/queries';
 
-export const revalidate = 600;
+export const revalidate = 3600; // 1 jam; listing/artikel baru juga memicu revalidate on-demand
 
 // Data is now fetched dynamically from the database using cached queries
 
@@ -77,13 +77,13 @@ export default async function HomePage() {
             <h2 className="text-2xl font-semibold text-black">Kategori populer</h2>
             <p className="text-sm text-black/60">Mulai telusuri berdasarkan jenis tempat makan.</p>
           </div>
-          <Link href="/tempat-makan" className="btn-ghost">
+          <Link prefetch={false} href="/tempat-makan" className="btn-ghost">
             Lihat semua
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {popularCategories.map((cat) => (
-            <Link
+            <Link prefetch={false}
               key={cat.slug}
               href={`/kategori/${cat.slug}`}
               className="card group flex items-center gap-3 p-4 transition hover:border-navy"
@@ -105,7 +105,7 @@ export default async function HomePage() {
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {popularCities.map((city) => (
-            <Link
+            <Link prefetch={false}
               key={city.slug}
               href={`/kota/${city.slug}`}
               className="card flex flex-col items-start gap-1 p-4 transition hover:border-navy"
@@ -126,7 +126,7 @@ export default async function HomePage() {
               <h2 className="text-2xl font-semibold text-black">Rekomendasi untukmu</h2>
               <p className="text-sm text-black/60">Pilihan tempat makan pilihan dari direktori.</p>
             </div>
-            <Link href="/tempat-makan" className="btn-ghost">
+            <Link prefetch={false} href="/tempat-makan" className="btn-ghost">
               Lihat semua
             </Link>
           </div>
@@ -160,7 +160,7 @@ export default async function HomePage() {
               <h2 className="text-2xl font-semibold text-black">Artikel kuliner terbaru</h2>
               <p className="text-sm text-black/60">Tips, rekomendasi, dan berita kuliner pilihan.</p>
             </div>
-            <Link href="/blog" className="btn-ghost">
+            <Link prefetch={false} href="/blog" className="btn-ghost">
               Semua artikel
             </Link>
           </div>

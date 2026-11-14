@@ -78,7 +78,7 @@ export default function TermsPage() {
           <strong>
             Selalu lakukan konfirmasi langsung kepada tempat usaha untuk informasi penting
           </strong>{' '}
-          sebelum berkunjung. Lihat <Link href="/disclaimer">disclaimer</Link> untuk detail
+          sebelum berkunjung. Lihat <Link prefetch={false} href="/disclaimer">disclaimer</Link> untuk detail
           tambahan.
         </p>
 
@@ -117,7 +117,7 @@ export default function TermsPage() {
         <ul>
           <li>
             Pemilik usaha dapat mengajukan listing baru atau perbaikan listing yang ada melalui{' '}
-            <Link href="/contact">kontak</Link>.
+            <Link prefetch={false} href="/contact">kontak</Link>.
           </li>
           <li>
             Kami berhak menolak, mengedit, atau menghapus listing yang tidak sesuai dengan
@@ -131,7 +131,7 @@ export default function TermsPage() {
           Permintaan penghapusan listing, koreksi, atau klaim hak kekayaan intelektual dapat
           dikirim ke <a href="mailto:hello@foodmo.id">hello@foodmo.id</a> dengan bukti
           pendukung. Lihat juga{' '}
-          <Link href="/koreksi-data">kebijakan koreksi data</Link>.
+          <Link prefetch={false} href="/koreksi-data">kebijakan koreksi data</Link>.
         </p>
 
         <h2>11. Perubahan Layanan</h2>

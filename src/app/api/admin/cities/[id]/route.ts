@@ -1,7 +1,8 @@
 import { prisma } from '@/lib/db';
 import { apiSuccess, ERR } from '@/lib/api-response';
 import { slugify } from '@/lib/slug';
-import { cityInputSchema } from '@/lib/validators';
+import { cityPatchSchema } from '@/lib/validators';
+import { revalidateAllContent } from '@/lib/revalidate';
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -13,7 +14,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
   } catch {
     return ERR.validation('Body harus JSON');
   }
-  const parsed = cityInputSchema.partial().safeParse(body);
+  const parsed = cityPatchSchema.safeParse(body);
   if (!parsed.success) return ERR.validation('Data tidak valid', parsed.error.format());
   const existing = await prisma.city.findUnique({ where: { id } });
   if (!existing) return ERR.notFound('Kota tidak ditemukan');
@@ -32,11 +33,13 @@ export async function PATCH(req: Request, { params }: Ctx) {
     if (conflict && conflict.id !== id) return ERR.conflict('Slug sudah dipakai');
   }
   const updated = await prisma.city.update({ where: { id }, data });
+  revalidateAllContent();
   return apiSuccess(updated);
 }
 
 export async function DELETE(_req: Request, { params }: Ctx) {
   const { id } = await params;
   await prisma.city.delete({ where: { id } }).catch(() => null);
+  revalidateAllContent();
   return apiSuccess({ ok: true });
 }
