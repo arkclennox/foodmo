@@ -27,3 +27,8 @@ prisma/dev.db-journal
 /*.xlsx
 /*.xls
 /*.csv
+
+# static export / cloudflare
+/out
+/.static-stash
+/.wrangler

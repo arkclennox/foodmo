@@ -1,10 +1,11 @@
+import { siteUrl } from '@/lib/seo';
 import { indexXml, xmlResponse } from '@/lib/sitemap-xml';
 
+export const dynamic = 'force-static';
 export const revalidate = 86400; // 1 hari
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const origin = `${url.protocol}//${url.host}`;
+export async function GET() {
+  const origin = siteUrl().replace(/\/$/, '');
   const now = new Date();
   const body = indexXml([
     { loc: `${origin}/sitemap-static.xml`, lastmod: now },

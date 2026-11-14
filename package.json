@@ -10,7 +10,9 @@
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "build:static": "prisma generate && node scripts/build-static.mjs",
+    "deploy:static": "npm run build:static && wrangler deploy"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1053.0",
@@ -41,7 +43,8 @@
     "prisma": "^5.22.0",
     "tailwindcss": "^3.4.14",
     "tsx": "^4.19.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "wrangler": "^4.156.1"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

@@ -2,17 +2,16 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Breadcrumb } from '@/components/Breadcrumb';
-import { ListingCard } from '@/components/ListingCard';
-import { ListingFilter } from '@/components/ListingFilter';
-import { Pagination } from '@/components/Pagination';
+import { Directory } from '@/components/Directory';
 import { prisma } from '@/lib/db';
 import { listCities, listFacilities, listListings } from '@/lib/queries';
 import { DEFAULT_PAGE_SIZE, THIN_CONTENT_THRESHOLDS } from '@/lib/constants';
-import { parsePagination } from '@/lib/pagination';
+import { toCardData } from '@/lib/listing-index';
 import { buildMetadata } from '@/lib/seo';
 import { breadcrumbSchema, jsonLdScript } from '@/lib/schema';
 
 export const revalidate = 3600;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const items = await prisma.category.findMany({
@@ -21,10 +20,6 @@ export async function generateStaticParams() {
   return items.map((item) => ({ slug: item.slug }));
 }
 
-
-function oneOf(value: string | string[] | undefined): string {
-  return Array.isArray(value) ? value[0] ?? '' : value ?? '';
-}
 
 export async function generateMetadata({
   params,
@@ -53,38 +48,18 @@ export async function generateMetadata({
 
 export default async function CategoryPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const [{ slug }, sp] = await Promise.all([params, searchParams]);
+  const { slug } = await params;
   const category = await prisma.category.findUnique({ where: { slug } });
   if (!category) notFound();
 
-  const state = {
-    search: oneOf(sp.search),
-    category: slug,
-    city: oneOf(sp.city),
-    price: oneOf(sp.price),
-    facility: oneOf(sp.facility),
-    sort: oneOf(sp.sort) || 'latest',
-  };
-  const { page, limit } = parsePagination(sp, { limit: DEFAULT_PAGE_SIZE });
 
   const [cities, facilities, result, relatedArticles] = await Promise.all([
     listCities(),
     listFacilities(),
-    listListings({
-      search: state.search,
-      categorySlug: slug,
-      citySlug: state.city,
-      priceRange: state.price,
-      facility: state.facility,
-      sort: state.sort as 'latest' | 'rating' | 'name' | 'featured',
-      page,
-      limit,
-    }),
+    listListings({ categorySlug: slug, sort: 'latest', page: 1, limit: DEFAULT_PAGE_SIZE }),
     prisma.article.findMany({
       where: { status: 'published', category: { slug } },
       orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
@@ -92,15 +67,6 @@ export default async function CategoryPage({
     }),
   ]);
 
-  const buildPageHref = (p: number) => {
-    const qs = new URLSearchParams();
-    Object.entries(state).forEach(([k, v]) => {
-      if (v && k !== 'category') qs.set(k, String(v));
-    });
-    if (p > 1) qs.set('page', String(p));
-    const s = qs.toString();
-    return s ? `/kategori/${slug}?${s}` : `/kategori/${slug}`;
-  };
 
   const breadcrumbs = breadcrumbSchema([
     { name: 'Beranda', url: '/' },
@@ -128,34 +94,22 @@ export default async function CategoryPage({
           <p className="mt-2 max-w-3xl text-black/70">{category.description}</p>
         )}
       </header>
-      <div className="grid gap-6 lg:grid-cols-[320px,1fr]">
-        <ListingFilter
-          basePath={`/kategori/${slug}`}
-          state={state}
-          categories={[]}
-          cities={cities}
-          facilities={facilities}
-          hideCategory
-        />
-        <div>
-          {result.items.length === 0 ? (
-            <div className="card px-6 py-16 text-center">
-              <p className="text-black/70">Belum ada tempat makan pada kategori ini.</p>
-            </div>
-          ) : (
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {result.items.map((l) => (
-                <ListingCard key={l.id} listing={l} />
-              ))}
-            </div>
-          )}
-          <Pagination
-            page={result.page}
-            totalPages={result.totalPages}
-            buildHref={buildPageHref}
-          />
-        </div>
-      </div>
+      <Directory
+        options={{
+          basePath: `/kategori/${slug}`,
+          fixed: { category: slug },
+          categories: [],
+          cities: cities.map((c) => ({ slug: c.slug, name: c.name })),
+          facilities,
+          hideCategory: true,
+        }}
+        initial={{
+          items: result.items.map(toCardData),
+          total: result.total,
+          totalPages: result.totalPages,
+        }}
+        pageSize={DEFAULT_PAGE_SIZE}
+      />
       {relatedArticles.length > 0 && (
         <section className="mt-12">
           <h2 className="mb-3 text-xl font-semibold text-black">

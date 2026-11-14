@@ -1,5 +1,7 @@
+import { siteUrl } from '@/lib/seo';
 import { urlsetXml, xmlResponse, type UrlEntry } from '@/lib/sitemap-xml';
 
+export const dynamic = 'force-static';
 export const revalidate = 86400; // 1 hari
 
 const STATIC_PAGES: UrlEntry[] = [
@@ -18,9 +20,8 @@ const STATIC_PAGES: UrlEntry[] = [
   { loc: '/terms-of-service', priority: 0.4, changefreq: 'yearly' },
 ];
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const origin = `${url.protocol}//${url.host}`;
+export async function GET() {
+  const origin = siteUrl().replace(/\/$/, '');
   const now = new Date();
   const body = urlsetXml(
     STATIC_PAGES.map((p) => ({ ...p, loc: `${origin}${p.loc}`, lastmod: now })),

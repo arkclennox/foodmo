@@ -1,12 +1,13 @@
+import { siteUrl } from '@/lib/seo';
 import { prisma } from '@/lib/db';
 import { THIN_CONTENT_THRESHOLDS } from '@/lib/constants';
 import { urlsetXml, xmlResponse } from '@/lib/sitemap-xml';
 
+export const dynamic = 'force-static';
 export const revalidate = 86400; // 1 hari
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const origin = `${url.protocol}//${url.host}`;
+export async function GET() {
+  const origin = siteUrl().replace(/\/$/, '');
   const listings = await prisma.listing.findMany({
     where: { status: 'published' },
     select: { slug: true, updatedAt: true, description: true, isFeatured: true },
