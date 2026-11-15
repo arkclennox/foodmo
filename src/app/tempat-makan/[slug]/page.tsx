@@ -203,6 +203,7 @@ export default async function ListingDetailPage({
               <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0" />
               <p>{listing.address}</p>
             </div>
+            <AdsterraBanner unit="mobile320x50" mobileOnly className="mt-4" />
             <article className="prose prose-navy mt-6 max-w-none text-black/80">
               {listing.description.split(/\n\n+/).map((para, idx) => (
                 <p key={idx}>{para}</p>
