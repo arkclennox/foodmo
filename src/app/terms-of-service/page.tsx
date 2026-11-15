@@ -100,7 +100,7 @@ export default function TermsPage() {
 
         <h2>7. Iklan & Tautan Pihak Ketiga</h2>
         <p>
-          Situs dapat menampilkan iklan dari Google AdSense dan/atau mitra lain, serta tautan
+          Situs dapat menampilkan iklan dari Adsterra dan/atau mitra lain, serta tautan
           ke situs pihak ketiga (sosial media, layanan pesan, peta). Kami tidak bertanggung
           jawab atas konten, kebijakan privasi, atau praktik pihak ketiga.
         </p>

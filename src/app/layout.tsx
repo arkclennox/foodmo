@@ -7,7 +7,6 @@ import { Footer } from '@/components/Footer';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { SITE_DESCRIPTION, SITE_NAME, siteUrl } from '@/lib/seo';
 import { jsonLdScript, organizationSchema, websiteSchema } from '@/lib/schema';
-import Script from 'next/script';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
@@ -57,21 +56,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        {process.env.NEXT_PUBLIC_ADSENSE_PUB_ID && (
-          <>
-            <link
-              rel="preconnect"
-              href="https://pagead2.googlesyndication.com"
-              crossOrigin="anonymous"
-            />
-            <Script
-              async
-              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_PUB_ID}`}
-              crossOrigin="anonymous"
-              strategy="lazyOnload"
-            />
-          </>
-        )}
       </head>
       <body className="min-h-screen bg-white font-sans text-black antialiased">
         <div className="flex min-h-screen flex-col">

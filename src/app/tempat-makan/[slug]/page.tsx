@@ -28,6 +28,8 @@ import {
   FACILITY_SECTION_ORDER,
 } from '@/lib/facilities';
 import { prisma } from '@/lib/db';
+import { AdsterraBanner } from '@/components/AdsterraBanner';
+import { AdsterraNative } from '@/components/AdsterraNative';
 
 export const revalidate = 604800; // 7 hari; edit dari admin/API langsung di-revalidate on-demand
 // Static export: every published page is generated at build time; anything
@@ -384,8 +386,11 @@ export default async function ListingDetailPage({
             </div>
           )}
 
+          <AdsterraBanner />
         </aside>
       </div>
+
+      <AdsterraNative className="mt-12" />
 
       {relatedItems.length > 0 && (
         <section className="mt-12">
