@@ -9,6 +9,8 @@ import { buildMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbSchema, jsonLdScript } from '@/lib/schema';
 import { findArticleBySlug, listArticles } from '@/lib/queries';
 import { prisma } from '@/lib/db';
+import { AdsterraBanner } from '@/components/AdsterraBanner';
+import { AdsterraNative } from '@/components/AdsterraNative';
 
 
 export const revalidate = 604800; // 7 hari; edit dari admin/API langsung di-revalidate on-demand
@@ -155,6 +157,8 @@ export default async function ArticleDetailPage({
             ))}
           </div>
         )}
+
+        <AdsterraBanner className="mt-10" />
       </article>
 
       {article.relatedListings.length > 0 && (
@@ -167,6 +171,8 @@ export default async function ArticleDetailPage({
           </div>
         </section>
       )}
+
+      <AdsterraNative className="mt-12" />
 
       {relatedItems.length > 0 && (
         <section className="mt-12">

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ListingCard, type ListingCardData } from './ListingCard';
 import { ListingFilter } from './ListingFilter';
 import { Pagination } from './Pagination';
+import { AdsterraBanner } from './AdsterraBanner';
 import type { DirectoryState } from '@/lib/listing-index';
 
 type Option = { slug: string; name: string };
@@ -50,16 +51,19 @@ export function DirectoryLayout({
 }) {
   return (
     <div className="grid gap-6 lg:grid-cols-[320px,1fr]">
-      <ListingFilter
-        key={JSON.stringify(state)}
-        basePath={options.basePath}
-        state={state}
-        categories={options.categories}
-        cities={options.cities}
-        facilities={options.facilities}
-        hideCity={options.hideCity}
-        hideCategory={options.hideCategory}
-      />
+      <div className="space-y-6">
+        <ListingFilter
+          key={JSON.stringify(state)}
+          basePath={options.basePath}
+          state={state}
+          categories={options.categories}
+          cities={options.cities}
+          facilities={options.facilities}
+          hideCity={options.hideCity}
+          hideCategory={options.hideCategory}
+        />
+        <AdsterraBanner className="hidden lg:flex" />
+      </div>
       <div>
         <p className="mb-4 text-sm text-black/60" aria-live="polite">
           {loading ? 'Memuat hasil…' : `${total.toLocaleString('id-ID')} tempat makan ditemukan`}

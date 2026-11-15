@@ -6,7 +6,7 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata: Metadata = buildMetadata({
   title: 'Kebijakan Privasi',
   description:
-    'Kebijakan privasi FoodMo: data yang kami kumpulkan, cookies, pihak ketiga (Google Analytics, Google AdSense), dan hak Anda atas data pribadi.',
+    'Kebijakan privasi FoodMo: data yang kami kumpulkan, cookies, pihak ketiga (Google Analytics, Adsterra), dan hak Anda atas data pribadi.',
   path: '/privacy-policy',
 });
 
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
     <div className="section max-w-4xl py-10">
       <Breadcrumb items={[{ label: 'Beranda', href: '/' }, { label: 'Kebijakan Privasi' }]} />
       <h1 className="mb-2 text-3xl font-semibold text-black">Kebijakan Privasi</h1>
-      <p className="mb-6 text-sm text-black/60">Terakhir diperbarui: 16 Mei 2026</p>
+      <p className="mb-6 text-sm text-black/60">Terakhir diperbarui: 15 November 2026</p>
       <div className="prose prose-navy max-w-none text-black/80">
         <p>
           Kebijakan ini menjelaskan bagaimana <strong>FoodMo</strong> (selanjutnya
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
           <li>Menjalankan dan menjaga keamanan Situs.</li>
           <li>Menjawab pertanyaan, permintaan kerja sama, dan permintaan koreksi data.</li>
           <li>Mengukur traffic, memahami perilaku pembaca, dan memperbaiki konten.</li>
-          <li>Menampilkan iklan yang relevan melalui Google AdSense.</li>
+          <li>Menampilkan iklan melalui jaringan iklan Adsterra.</li>
           <li>Memenuhi kewajiban hukum yang berlaku di Indonesia.</li>
         </ul>
 
@@ -76,16 +76,15 @@ export default function PrivacyPage() {
             .
           </li>
           <li>
-            <strong>Google AdSense</strong> — menampilkan iklan. Google dan mitranya dapat
-            menggunakan cookies untuk menayangkan iklan berdasarkan kunjungan Anda ke Situs dan
-            situs lain di internet. Anda dapat menonaktifkan iklan yang dipersonalisasi dengan
-            mengunjungi{' '}
+            <strong>Adsterra</strong> — menampilkan iklan. Adsterra dan mitra pengiklannya dapat
+            menggunakan cookies dan teknologi serupa untuk menayangkan serta mengukur iklan,
+            termasuk berdasarkan kunjungan Anda ke situs lain. Lihat{' '}
             <a
-              href="https://www.google.com/settings/ads"
+              href="https://adsterra.com/privacy-policy/"
               target="_blank"
               rel="noreferrer noopener"
             >
-              Pengaturan Iklan Google
+              kebijakan privasi Adsterra
             </a>
             .
           </li>
@@ -93,8 +92,8 @@ export default function PrivacyPage() {
             <strong>Google Maps / penyedia peta</strong> — embed lokasi tempat makan.
           </li>
           <li>
-            <strong>Hosting</strong> — server dan CDN yang dapat memproses metadata teknis
-            seperti alamat IP demi keamanan dan kinerja.
+            <strong>Hosting (Cloudflare)</strong> — CDN dan hosting yang dapat memproses metadata
+            teknis seperti alamat IP demi keamanan dan kinerja.
           </li>
         </ul>
         <p>
@@ -104,8 +103,8 @@ export default function PrivacyPage() {
 
         <h2>5. Penyimpanan Data</h2>
         <p>
-          Pesan yang dikirim melalui form kontak disimpan selama maksimum 24 bulan untuk
-          keperluan audit dan komunikasi lanjutan. Data analitik agregat disimpan sesuai
+          Form kontak membuka aplikasi email Anda; email yang Anda kirim ke kami disimpan
+          selama maksimum 24 bulan untuk keperluan audit dan komunikasi lanjutan. Data analitik agregat disimpan sesuai
           retensi default penyedia layanan analitik. Anda dapat meminta penghapusan data
           pribadi kapan saja.
         </p>

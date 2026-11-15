@@ -6,7 +6,7 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata: Metadata = buildMetadata({
   title: 'Disclaimer',
   description:
-    'Disclaimer FoodMo terkait akurasi informasi kuliner, tanggung jawab, afiliasi, dan transparansi iklan AdSense.',
+    'Disclaimer FoodMo terkait akurasi informasi kuliner, tanggung jawab, afiliasi, dan transparansi iklan.',
   path: '/disclaimer',
 });
 
@@ -67,13 +67,13 @@ export default function DisclaimerPage() {
           dan tidak bertanggung jawab atas apa pun yang terjadi di luar Situs.
         </p>
 
-        <h2>5. Iklan & Transparansi AdSense</h2>
+        <h2>5. Iklan & Transparansi</h2>
         <p>
-          FoodMo menampilkan iklan dari <strong>Google AdSense</strong> dan/atau mitra iklan
-          lain. Iklan-iklan tersebut:
+          FoodMo menampilkan iklan dari jaringan iklan <strong>Adsterra</strong> dan/atau mitra
+          iklan lain. Iklan-iklan tersebut:
         </p>
         <ul>
-          <li>Ditampilkan secara terpisah dari konten editorial.</li>
+          <li>Ditampilkan secara terpisah dari konten editorial dan diberi label &quot;Iklan&quot;.</li>
           <li>
             Dapat dipersonalisasi berdasarkan riwayat penelusuran Anda. Lihat{' '}
             <Link prefetch={false} href="/privacy-policy">kebijakan privasi</Link> untuk opsi opt-out.
