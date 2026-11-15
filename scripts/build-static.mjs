@@ -33,6 +33,9 @@ for (const [orig, stashed] of MOVES) {
 let status = 1;
 try {
   rmSync('out', { recursive: true, force: true });
+  // Drop Next's data cache (unstable_cache results) so every build reads fresh
+  // content from the database instead of reusing the previous build's data.
+  rmSync('.next/cache', { recursive: true, force: true });
   const r = spawnSync('npx', ['next', 'build'], {
     stdio: 'inherit',
     env: { ...process.env, STATIC_EXPORT: '1' },
